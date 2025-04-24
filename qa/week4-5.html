@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weeks 4-5: Test Design Concepts | QA Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;700&family=Fira+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="../index.html">DevOps & QA Courses</a>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="../devops/index.html" class="nav-link">DevOps Course</a></li>
+                    <li class="nav-item"><a href="index.html" class="nav-link">QA Course</a></li>
+                    <li class="nav-item"><a href="../resources/index.html" class="nav-link">Resources</a></li>
+                    <li class="nav-item"><a href="https://github.com/username/course-website" class="nav-link" target="_blank">GitHub</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="week-content">
+                <h1>Weeks 4-5: Test Design Concepts</h1>
+                
+                <div class="content-section">
+                    <h2>Learning Objectives</h2>
+                    <p>By the end of these two weeks, you will be able to:</p>
+                    <ul>
+                        <li>Understand the fundamental concepts of test design</li>
+                        <li>Apply different test design techniques to create effective test cases</li>
+                        <li>Identify and implement appropriate coverage criteria for testing</li>
+                        <li>Design tests based on specifications, structure, and experience</li>
+                        <li>Create test cases that maximize defect detection with minimal effort</li>
+                        <li>Evaluate the effectiveness of test designs using coverage metrics</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Introduction to Test Design</h2>
+                    <p>Test design is the process of creating and developing test cases based on specific test conditions. Effective test design is crucial for finding defects efficiently and providing confidence in the quality of the software.</p>
+                    
+                    <h3>The Test Design Process</h3>
+                    <ol>
+                        <li><strong>Analyze the Test Basis</strong> - Understand requirements, specifications, and other documentation</li>
+                        <li><strong>Identify Test Conditions</strong> - Determine what aspects need to be tested</li>
+                        <li><strong>Design Test Cases</strong> - Create specific test scenarios with inputs, actions, and expected results</li>
+                        <li><strong>Define Test Data</strong> - Specify the data needed to execute the tests</li>
+                        <li><strong>Define Test Environment</strong> - Specify the environment requirements for testing</li>
+                        <li><strong>Create Traceability</strong> - Link test cases to requirements and other artifacts</li>
+                    </ol>
+                    
+                    <div class="interactive-element">
+                        <h4 class="interactive-title">Interactive Diagram: Test Design Process</h4>
+                        <div class="process-diagram">
+                            <div class="process-step" id="step1">
+                                <span>Analyze Test Basis</span>
+                                <div class="step-details">
+                                    <ul>
+                                        <li>Review requirements</li>
+                                        <li>Analyze specifications</li>
+                                        <li>Study user stories</li>
+                                        <li>Examine design documents</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="process-arrow">→</div>
+                            <div class="process-step" id="step2">
+                                <span>Identify Test Conditions</span>
+                                <div class="step-details">
+                                    <ul>
+                                        <li>Functional behaviors</li>
+                                        <li>Quality attributes</li>
+                                        <li>Constraints</li>
+                                        <li>Risks</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="process-arrow">→</div>
+                            <div class="process-step" id="step3">
+                                <span>Design Test Cases</span>
+                                <div class="step-details">
+                                    <ul>
+                                        <li>Apply test techniques</li>
+                                        <li>Define steps</li>
+                                        <li>Specify expected results</li>
+                                        <li>Consider preconditions</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="process-arrow">→</div>
+                            <div class="process-step" id="step4">
+                                <span>Define Test Data</span>
+                                <div class="step-details">
+                                    <ul>
+                                        <li>Input values</li>
+                                        <li>Database states</li>
+                                        <li>Configuration settings</li>
+                                        <li>Files and resources</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="diagram-caption">Click on each step to see more details about that phase of the test design process.</p>
+                    </div>
+                    
+                    <h3>Test Design Techniques Overview</h3>
+                    <p>Test design techniques help testers create effective test cases systematically. They can be categorized into three main types:</p>
+                    <ul>
+                        <li><strong>Specification-Based (Black-Box) Techniques</strong> - Based on the external behavior of the software</li>
+                        <li><strong>Structure-Based (White-Box) Techniques</strong> - Based on the internal structure of the software</li>
+                        <li><strong>Experience-Based Techniques</strong> - Based on the tester's knowledge and experience</li>
+                    </ul>
+                    
+                    <div class="activity">
+                        <h4 class="activity-title">Discussion Question</h4>
+                        <p>Why is it important to use a combination of different test design techniques rather than relying on just one approach? What are the potential risks of using only one type of technique?</p>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Specification-Based (Black-Box) Techniques</h2>
+                    <p>Specification-based techniques derive tests from the functional specifications without knowledge of the internal structure of the component or system.</p>
+                    
+                    <h3>Equivalence Partitioning</h3>
+                    <p>Equivalence partitioning divides input data into groups (partitions) that are expected to exhibit similar behavior, allowing you to test one value from each partition.</p>
+                    
+                    <div class="example-box">
+                        <h4>Example: Age Validation</h4>
+                        <p>For a field that accepts ages between 18 and 65:</p>
+                        <ul>
+                            <li><strong>Invalid Partition (below minimum):</strong> Test with age 17</li>
+                            <li><strong>Valid Partition:</strong> Test with age 30</li>
+                            <li><strong>Invalid Partition (above maximum):</strong> Test with age 66</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Implementing Equivalence Partitioning Tests in JavaScript</div>
+<pre><code class="javascript">// Function to validate age for a job application
+function validateAge(age) {
+  if (typeof age !== 'number') {
+    return 'Invalid input: Age must be a number';
+  }
+  
+  if (age < 18) {
+    return 'Invalid age: Applicant must be at least 18 years old';
+  }
+  
+  if (age > 65) {
+    return 'Invalid age: Applicant must be 65 years or younger';
+  }
+  
+  return 'Valid age';
+}
+
+// Test cases using equivalence partitioning
+describe('Age Validation Tests', () => {
+  // Invalid type partition
+  test('Invalid input type', () => {
+    expect(validateAge('twenty')).toBe('Invalid input: Age must be a number');
+  });
+  
+  // Invalid partition (below minimum)
+  test('Age below minimum (17)', () => {
+    expect(validateAge(17)).toBe('Invalid age: Applicant must be at least 18 years old');
+  });
+  
+  // Valid partition
+  test('Valid age (30)', () => {
+    expect(validateAge(30)).toBe('Valid age');
+  });
+  
+  // Invalid partition (above maximum)
+  test('Age above maximum (66)', () => {
+    expect(validateAge(66)).toBe('Invalid age: Applicant must be 65 years or younger');
+  });
+});</code></pre>
+                    </div>
+                    
+                    <h3>Boundary Value Analysis</h3>
+                    <p>Boundary value analysis focuses on testing at and around the boundaries of input partitions, as defects often occur at the boundaries.</p>
+                    
+                    <div class="example-box">
+                        <h4>Example: Age Validation Boundaries</h4>
+                        <p>For a field that accepts ages between 18 and 65:</p>
+                        <ul>
+                            <li><strong>Lower Boundary:</strong> Test with ages 17, 18, 19</li>
+                            <li><strong>Upper Boundary:</strong> Test with ages 64, 65, 66</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Implementing Boundary Value Analysis Tests in JavaScript</div>
+<pre><code class="javascript">// Using the same validateAge function from before
+
+// Test cases using boundary value analysis
+describe('Age Validation Boundary Tests', () => {
+  // Lower boundary tests
+  test('Age just below lower boundary (17)', () => {
+    expect(validateAge(17)).toBe('Invalid age: Applicant must be at least 18 years old');
+  });
+  
+  test('Age at lower boundary (18)', () => {
+    expect(validateAge(18)).toBe('Valid age');
+  });
+  
+  test('Age just above lower boundary (19)', () => {
+    expect(validateAge(19)).toBe('Valid age');
+  });
+  
+  // Upper boundary tests
+  test('Age just below upper boundary (64)', () => {
+    expect(validateAge(64)).toBe('Valid age');
+  });
+  
+  test('Age at upper boundary (65)', () => {
+    expect(validateAge(65)).toBe('Valid age');
+  });
+  
+  test('Age just above upper boundary (66)', () => {
+    expect(validateAge(66)).toBe('Invalid age: Applicant must be 65 years or younger');
+  });
+});</code></pre>
+                    </div>
+                    
+                    <h3>Decision Table Testing</h3>
+                    <p>Decision table testing is used when different combinations of inputs result in different actions. It's particularly useful for complex business rules.</p>
+                    
+                    <div class="example-box">
+                        <h4>Example: Discount Calculation</h4>
+                        <table class="decision-table">
+                            <thead>
+                                <tr>
+                                    <th colspan="4">Conditions</th>
+                                    <th colspan="4">Actions</th>
+                                </tr>
+                                <tr>
+                                    <th>Rule</th>
+                                    <th>Member?</th>
+                                    <th>Purchase &gt; $100?</th>
+                                    <th>Holiday Sale?</th>
+                                    <th>Discount %</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Yes</td>
+                                    <td>Yes</td>
+                                    <td>Yes</td>
+                                    <td>20%</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Yes</td>
+                                    <td>Yes</td>
+                                    <td>No</td>
+                                    <td>15%</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Yes</td>
+                                    <td>No</td>
+                                    <td>Yes</td>
+                                    <td>15%</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Yes</td>
+                                    <td>No</td>
+                                    <td>No</td>
+                                    <td>10%</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>No</td>
+                                    <td>Yes</td>
+                                    <td>Yes</td>
+                                    <td>10%</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>No</td>
+                                    <td>Yes</td>
+                                    <td>No</td>
+                                    <td>5%</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>No</td>
+                                    <td>No</td>
+                                    <td>Yes</td>
+                                    <td>5%</td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>No</td>
+                                    <td>No</td>
+                                    <td>No</td>
+                                    <td>0%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Implementing Decision Table Tests in JavaScript</div>
+<pre><code class="javascript">// Function to calculate discount
+function calculateDiscount(isMember, purchaseAmount, isHolidaySale) {
+  if (isMember) {
+    if (purchaseAmount > 100) {
+      return isHolidaySale ? 20 : 15;
+    } else {
+      return isHolidaySale ? 15 : 10;
+    }
+  } else {
+    if (purchaseAmount > 100) {
+      return isHolidaySale ? 10 : 5;
+    } else {
+      return isHolidaySale ? 5 : 0;
+    }
+  }
+}
+
+// Test cases using decision table testing
+describe('Discount Calculation Tests', () => {
+  // Rule 1: Member, Purchase > $100, Holiday Sale
+  test('Member with purchase > $100 during holiday sale gets 20% discount', () => {
+    expect(calculateDiscount(true, 150, true)).toBe(20);
+  });
+  
+  // Rule 2: Member, Purchase > $100, No Holiday Sale
+  test('Member with purchase > $100 outside holiday sale gets 15% discount', () => {
+    expect(calculateDiscount(true, 150, false)).toBe(15);
+  });
+  
+  // Rule 3: Member, Purchase <= $100, Holiday Sale
+  test('Member with purchase <= $100 during holiday sale gets 15% discount', () => {
+    expect(calculateDiscount(true, 75, true)).toBe(15);
+  });
+  
+  // Rule 4: Member, Purchase <= $100, No Holiday Sale
+  test('Member with purchase <= $100 outside holiday sale gets 10% discount', () => {
+    expect(calculateDiscount(true, 75, false)).toBe(10);
+  });
+  
+  // Rule 5: Non-Member, Purchase > $100, Holiday Sale
+  test('Non-member with purchase > $100 during holiday sale gets 10% discount', () => {
+    expect(calculateDiscount(false, 150, true)).toBe(10);
+  });
+  
+  // Rule 6: Non-Member, Purchase > $100, No Holiday Sale
+  test('Non-member with purchase > $100 outside holiday sale gets 5% discount', () => {
+    expect(calculateDiscount(false, 150, false)).toBe(5);
+  });
+  
+  // Rule 7: Non-Member, Purchase <= $100, Holiday Sale
+  test('Non-member with purchase <= $100 during holiday sale gets 5% discount', () => {
+    expect(calculateDiscount(false, 75, true)).toBe(5);
+  });
+  
+  // Rule 8: Non-Member, Purchase <= $100, No Holiday Sale
+  test('Non-member with purchase <= $100 outside holiday sale gets 0% discount', () => {
+    expect(calculateDiscount(false, 75, false)).toBe(0);
+  });
+});</code></pre>
+                    </div>
+                    
+                    <h3>State Transition Testing</h3>
+                    <p>State transition testing is used when a system can be in different states and transitions between states are triggered by events.</p>
+                    
+                    <div class="interactive-element">
+                        <h4 class="interactive-title">Interactive Diagram: State Transition for a Shopping Cart</h4>
+                        <div class="state-diagram">
+                            <div class="state" id="empty">Empty</div>
+                            <div class="state" id="items">Items Added</div>
+                            <div class="state" id="checkout">Checkout</div>
+                            <div class="state" id="paid">Paid</div>
+                            
+                            <div class="transition" id="t1">Add Item</div>
+                            <div class="transition" id="t2">Remove Last Item</div>
+                            <div class="transition" id="t3">Proceed to Checkout</div>
+                            <div class="transition" id="t4">Cancel Checkout</div>
+                            <div class="transition" id="t5">Complete Payment</div>
+                            <div class="transition" id="t6">New Order</div>
+                        </div>
+                        <p class="diagram-caption">Click on states and transitions to see test cases for each.</p>
+                        
+                        <div class="state-details" id="empty-details">
+                            <h5>Empty State Tests</h5>
+                            <ul>
+                                <li>Verify "Your cart is empty" message is displayed</li>
+                                <li>Verify checkout button is disabled</li>
+                                <li>Verify total amount is $0.00</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="state-details" id="items-details">
+                            <h5>Items Added State Tests</h5>
+                            <ul>
+                                <li>Verify items are displayed correctly</li>
+                                <li>Verify total amount is calculated correctly</li>
+                                <li>Verify checkout button is enabled</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="transition-details" id="t1-details">
+                            <h5>Add Item Transition Tests</h5>
+                            <ul>
+                                <li>Add first item to empty cart</li>
+                                <li>Add additional item to non-empty cart</li>
+                                <li>Add item with quantity > 1</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <h3>Use Case Testing</h3>
+                    <p>Use case testing focuses on the user's interaction with the system to achieve specific goals.</p>
+                    
+                    <div class="example-box">
+                        <h4>Example: User Registration Use Case</h4>
+                        <p><strong>Basic Flow:</strong></p>
+                        <ol>
+                            <li>User navigates to registration page</li>
+                            <li>User enters valid information</li>
+                            <li>System validates information</li>
+                            <li>System creates account</li>
+                            <li>System sends confirmation email</li>
+                            <li>User is redirected to login page</li>
+                        </ol>
+                        <p><strong>Alternative Flows:</strong></p>
+                        <ul>
+                            <li>User enters invalid email format</li>
+                            <li>User enters password that doesn't meet requirements</li>
+                            <li>User enters email that's already registered</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Structure-Based (White-Box) Techniques</h2>
+                    <p>Structure-based techniques derive tests based on the internal structure of the component or system.</p>
+                    
+                    <h3>Statement Coverage</h3>
+                    <p>Statement coverage aims to execute each statement in the code at least once.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Statement Coverage</div>
+<pre><code class="javascript">function processOrder(order) {
+  let total = 0;
+  
+  // Statement 1
+  for (const item of order.items) {
+    // Statement 2
+    total += item.price * item.quantity;
+  }
+  
+  // Statement 3
+  if (total > 100) {
+    // Statement 4
+    total *= 0.9; // 10% discount
+  }
+  
+  // Statement 5
+  return total;
+}
+
+// Test for statement coverage
+describe('Process Order - Statement Coverage', () => {
+  test('Order with total <= 100', () => {
+    const order = {
+      items: [
+        { name: 'Item 1', price: 20, quantity: 2 }
+      ]
+    };
+    
+    expect(processOrder(order)).toBe(40);
+    // This test covers statements 1, 2, 3, 5
+  });
+  
+  test('Order with total > 100', () => {
+    const order = {
+      items: [
+        { name: 'Item 1', price: 60, quantity: 2 }
+      ]
+    };
+    
+    expect(processOrder(order)).toBe(108); // 120 - 10% = 108
+    // This test covers statements 1, 2, 3, 4, 5
+  });
+  
+  // Together, these tests achieve 100% statement coverage
+});</code></pre>
+                    </div>
+                    
+                    <h3>Decision/Branch Coverage</h3>
+                    <p>Decision coverage aims to execute each decision (branch) in the code in both true and false outcomes.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Decision Coverage</div>
+<pre><code class="javascript">function calculateShipping(order) {
+  let shippingCost = 0;
+  
+  // Decision 1: Express shipping?
+  if (order.expressShipping) {
+    shippingCost = 15;
+  } else {
+    shippingCost = 5;
+  }
+  
+  // Decision 2: International shipping?
+  if (order.international) {
+    shippingCost += 10;
+  }
+  
+  // Decision 3: Free shipping for orders over $100?
+  if (order.total > 100 && !order.expressShipping) {
+    shippingCost = 0;
+  }
+  
+  return shippingCost;
+}
+
+// Tests for decision coverage
+describe('Calculate Shipping - Decision Coverage', () => {
+  test('Regular domestic shipping', () => {
+    const order = {
+      expressShipping: false,
+      international: false,
+      total: 50
+    };
+    
+    expect(calculateShipping(order)).toBe(5);
+    // Decision 1: false, Decision 2: false, Decision 3: false
+  });
+  
+  test('Express domestic shipping', () => {
+    const order = {
+      expressShipping: true,
+      international: false,
+      total: 50
+    };
+    
+    expect(calculateShipping(order)).toBe(15);
+    // Decision 1: true, Decision 2: false, Decision 3: false (condition is false)
+  });
+  
+  test('Regular international shipping', () => {
+    const order = {
+      expressShipping: false,
+      international: true,
+      total: 50
+    };
+    
+    expect(calculateShipping(order)).toBe(15); // 5 + 10
+    // Decision 1: false, Decision 2: true, Decision 3: false
+  });
+  
+  test('Free shipping for large order', () => {
+    const order = {
+      expressShipping: false,
+      international: false,
+      total: 150
+    };
+    
+    expect(calculateShipping(order)).toBe(0);
+    // Decision 1: false, Decision 2: false, Decision 3: true
+  });
+  
+  // These tests achieve 100% decision coverage
+});</code></pre>
+                    </div>
+                    
+                    <h3>Condition Coverage</h3>
+                    <p>Condition coverage aims to execute each condition in a decision in both true and false outcomes.</p>
+                    
+                    <div class="example-box">
+                        <h4>Example: Condition vs. Decision Coverage</h4>
+                        <p>For the condition: <code>if (A && B)</code></p>
+                        <ul>
+                            <li><strong>Decision Coverage:</strong> Need tests where (A && B) is true and false</li>
+                            <li><strong>Condition Coverage:</strong> Need tests where A is true and false, and B is true and false</li>
+                        </ul>
+                        <p>Test cases for full condition coverage:</p>
+                        <ol>
+                            <li>A = true, B = true (decision = true)</li>
+                            <li>A = true, B = false (decision = false)</li>
+                            <li>A = false, B = true (decision = false)</li>
+                            <li>A = false, B = false (decision = false)</li>
+                        </ol>
+                    </div>
+                    
+                    <h3>Path Coverage</h3>
+                    <p>Path coverage aims to execute all possible paths through the code.</p>
+                    
+                    <div class="interactive-element">
+                        <h4 class="interactive-title">Interactive Diagram: Path Coverage</h4>
+                        <div class="path-diagram">
+                            <div class="path-node" id="start">Start</div>
+                            <div class="path-node" id="check-a">if (A)</div>
+                            <div class="path-node" id="check-b">if (B)</div>
+                            <div class="path-node" id="action1">Action 1</div>
+                            <div class="path-node" id="action2">Action 2</div>
+                            <div class="path-node" id="action3">Action 3</div>
+                            <div class="path-node" id="end">End</div>
+                            
+                            <div class="path-arrow" id="a1"></div>
+                            <div class="path-arrow" id="a2"></div>
+                            <div class="path-arrow" id="a3"></div>
+                            <div class="path-arrow" id="a4"></div>
+                            <div class="path-arrow" id="a5"></div>
+                            <div class="path-arrow" id="a6"></div>
+                            <div class="path-arrow" id="a7"></div>
+                        </div>
+                        <div class="path-details">
+                            <h5>Possible Paths:</h5>
+                            <ol>
+                                <li><span class="path-highlight" data-path="p1">Start → if(A) [true] → if(B) [true] → Action 1 → End</span></li>
+                                <li><span class="path-highlight" data-path="p2">Start → if(A) [true] → if(B) [false] → Action 2 → End</span></li>
+                                <li><span class="path-highlight" data-path="p3">Start → if(A) [false] → Action 3 → End</span></li>
+                            </ol>
+                            <p>Click on each path to highlight it in the diagram.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Experience-Based Techniques</h2>
+                    <p>Experience-based techniques rely on the tester's knowledge, skills, and experience to design tests.</p>
+                    
+                    <h3>Error Guessing</h3>
+                    <p>Error guessing involves anticipating where defects might be based on experience and intuition.</p>
+                    
+                    <div class="example-box">
+                        <h4>Example: Error Guessing for a Login Form</h4>
+                        <p>Based on experience, a tester might try:</p>
+                        <ul>
+                            <li>Entering a valid username but incorrect password</li>
+                            <li>Entering a username with special characters</li>
+                            <li>Leaving fields blank and submitting</li>
+                            <li>Entering extremely long values</li>
+                            <li>Using SQL injection patterns in input fields</li>
+                            <li>Trying to bypass client-side validation</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>Exploratory Testing</h3>
+                    <p>Exploratory testing is simultaneous learning, test design, and test execution.</p>
+                    
+                    <div class="example-box">
+                        <h4>Example: Exploratory Testing Session</h4>
+                        <p><strong>Charter:</strong> Explore the shopping cart functionality to discover potential issues with adding, removing, and updating items.</p>
+                        <p><strong>Time Box:</strong> 60 minutes</p>
+                        <p><strong>Approach:</strong></p>
+                        <ol>
+                            <li>Start with basic operations (add, remove, update quantity)</li>
+                            <li>Try edge cases (add maximum items, set quantity to zero)</li>
+                            <li>Explore interactions with other features (wishlist, save for later)</li>
+                            <li>Test across different devices and browsers</li>
+                        </ol>
+                        <p><strong>Findings:</strong> Document issues, observations, and questions during the session</p>
+                    </div>
+                    
+                    <h3>Checklist-Based Testing</h3>
+                    <p>Checklist-based testing uses a predefined list of items to check or test.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Web Application Testing Checklist</div>
+<pre><code class="markdown"># Web Application Testing Checklist
+
+## Functionality
+- [ ] All links are working correctly
+- [ ] Forms submit data correctly
+- [ ] Required fields are validated
+- [ ] Error messages are displayed appropriately
+- [ ] CRUD operations work as expected
+- [ ] Search functionality returns correct results
+- [ ] Pagination works correctly
+
+## Usability
+- [ ] UI is consistent across all pages
+- [ ] Navigation is intuitive
+- [ ] Help text is available where needed
+- [ ] Form fields have appropriate labels
+- [ ] Error messages are clear and helpful
+- [ ] Success messages confirm actions
+
+## Performance
+- [ ] Pages load within acceptable time
+- [ ] Large data sets are handled efficiently
+- [ ] Animations and transitions are smooth
+- [ ] No memory leaks during extended use
+
+## Compatibility
+- [ ] Works in all required browsers
+- [ ] Works on all required devices
+- [ ] Responsive design adapts to different screen sizes
+- [ ] Fonts and images display correctly
+
+## Security
+- [ ] Authentication works correctly
+- [ ] Authorization controls access appropriately
+- [ ] Input validation prevents injection attacks
+- [ ] Sensitive data is protected
+- [ ] CSRF protection is implemented
+- [ ] Session management is secure
+
+## Accessibility
+- [ ] Semantic HTML is used
+- [ ] Color contrast meets WCAG standards
+- [ ] Keyboard navigation works
+- [ ] Screen readers can access content
+- [ ] Images have alt text
+- [ ] Forms are accessible</code></pre>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Coverage Criteria</h2>
+                    <p>Coverage criteria help measure the thoroughness of testing and identify areas that need more tests.</p>
+                    
+                    <h3>Types of Coverage</h3>
+                    <ul>
+                        <li><strong>Requirements Coverage</strong> - Percentage of requirements covered by tests</li>
+                        <li><strong>Code Coverage</strong> - Percentage of code covered by tests (statement, decision, etc.)</li>
+                        <li><strong>Risk Coverage</strong> - Percentage of identified risks covered by tests</li>
+                        <li><strong>Feature Coverage</strong> - Percentage of features covered by tests</li>
+                    </ul>
+                    
+                    <div class="interactive-element">
+                        <h4 class="interactive-title">Interactive Tool: Coverage Calculator</h4>
+                        <div class="coverage-calculator">
+                            <div class="calculator-input">
+                                <label for="total-items">Total Items:</label>
+                                <input type="number" id="total-items" min="1" value="10">
+                            </div>
+                            <div class="calculator-input">
+                                <label for="covered-items">Covered Items:</label>
+                                <input type="number" id="covered-items" min="0" value="7">
+                            </div>
+                            <button id="calculate-coverage">Calculate</button>
+                            <div class="calculator-result">
+                                <p>Coverage: <span id="coverage-result">70%</span></p>
+                                <div class="coverage-bar">
+                                    <div class="coverage-fill" style="width: 70%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="calculator-caption">Enter the total number of items (requirements, code statements, etc.) and how many are covered by tests to calculate coverage percentage.</p>
+                    </div>
+                    
+                    <h3>Code Coverage Tools</h3>
+                    <p>Various tools can help measure code coverage:</p>
+                    <ul>
+                        <li><strong>JavaScript:</strong> Istanbul, Jest, Karma</li>
+                        <li><strong>Java:</strong> JaCoCo, Cobertura</li>
+                        <li><strong>Python:</strong> Coverage.py, pytest-cov</li>
+                        <li><strong>C#:</strong> NCover, dotCover</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Setting Up Jest with Coverage in a JavaScript Project</div>
+<pre><code class="javascript">// package.json
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 80,
+        "branches": 80,
+        "functions": 80,
+        "lines": 80
+      }
+    }
+  },
+  "devDependencies": {
+    "jest": "^27.0.0"
+  }
+}
+
+// Example test file: src/math.test.js
+const { add, subtract, multiply, divide } = require('./math');
+
+describe('Math functions', () => {
+  test('add returns the sum of two numbers', () => {
+    expect(add(2, 3)).toBe(5);
+    expect(add(-1, 1)).toBe(0);
+    expect(add(0, 0)).toBe(0);
+  });
+  
+  test('subtract returns the difference of two numbers', () => {
+    expect(subtract(5, 3)).toBe(2);
+    expect(subtract(1, 1)).toBe(0);
+    expect(subtract(0, 5)).toBe(-5);
+  });
+  
+  test('multiply returns the product of two numbers', () => {
+    expect(multiply(2, 3)).toBe(6);
+    expect(multiply(-1, 1)).toBe(-1);
+    expect(multiply(0, 5)).toBe(0);
+  });
+  
+  test('divide returns the quotient of two numbers', () => {
+    expect(divide(6, 3)).toBe(2);
+    expect(divide(1, 1)).toBe(1);
+    expect(divide(0, 5)).toBe(0);
+  });
+  
+  test('divide throws an error when dividing by zero', () => {
+    expect(() => divide(5, 0)).toThrow('Cannot divide by zero');
+  });
+});</code></pre>
+                    </div>
+                    
+                    <div class="activity">
+                        <h4 class="activity-title">Exercise: Analyzing Coverage</h4>
+                        <p>Given the following function and test cases, analyze the coverage:</p>
+                        <div class="code-snippet">
+<pre><code class="javascript">function validatePassword(password) {
+  if (!password) {
+    return 'Password is required';
+  }
+  
+  if (password.length < 8) {
+    return 'Password must be at least 8 characters';
+  }
+  
+  if (!/[A-Z]/.test(password)) {
+    return 'Password must contain at least one uppercase letter';
+  }
+  
+  if (!/[a-z]/.test(password)) {
+    return 'Password must contain at least one lowercase letter';
+  }
+  
+  if (!/[0-9]/.test(password)) {
+    return 'Password must contain at least one number';
+  }
+  
+  return 'Password is valid';
+}
+
+// Test cases
+test('Empty password', () => {
+  expect(validatePassword('')).toBe('Password is required');
+});
+
+test('Password too short', () => {
+  expect(validatePassword('Abc123')).toBe('Password must be at least 8 characters');
+});
+
+test('Password without uppercase', () => {
+  expect(validatePassword('abcdefg123')).toBe('Password must contain at least one uppercase letter');
+});
+
+test('Valid password', () => {
+  expect(validatePassword('Abcdefg123')).toBe('Password is valid');
+});</code></pre>
+                        </div>
+                        <p>Questions:</p>
+                        <ol class="activity-steps">
+                            <li>What is the statement coverage percentage?</li>
+                            <li>What is the decision coverage percentage?</li>
+                            <li>What test cases are missing to achieve 100% coverage?</li>
+                            <li>Write the missing test cases.</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Designing Effective Test Cases</h2>
+                    <p>Effective test cases are clear, concise, and designed to find defects efficiently.</p>
+                    
+                    <h3>Test Case Structure</h3>
+                    <p>A well-structured test case typically includes:</p>
+                    <ul>
+                        <li><strong>Identifier</strong> - Unique ID for the test case</li>
+                        <li><strong>Title</strong> - Brief description of what is being tested</li>
+                        <li><strong>Preconditions</strong> - Required state before test execution</li>
+                        <li><strong>Test Steps</strong> - Specific actions to perform</li>
+                        <li><strong>Expected Results</strong> - What should happen if the system works correctly</li>
+                        <li><strong>Postconditions</strong> - Expected state after test execution</li>
+                        <li><strong>Traceability</strong> - Links to requirements or other artifacts</li>
+                    </ul>
+                    
+                    <div class="example-box">
+                        <h4>Example: Well-Structured Test Case</h4>
+                        <p><strong>ID:</strong> TC-LOGIN-001</p>
+                        <p><strong>Title:</strong> Verify successful login with valid credentials</p>
+                        <p><strong>Preconditions:</strong></p>
+                        <ul>
+                            <li>User has a valid account</li>
+                            <li>User is not already logged in</li>
+                            <li>Login page is accessible</li>
+                        </ul>
+                        <p><strong>Test Steps:</strong></p>
+                        <ol>
+                            <li>Navigate to the login page</li>
+                            <li>Enter valid username</li>
+                            <li>Enter valid password</li>
+                            <li>Click the "Login" button</li>
+                        </ol>
+                        <p><strong>Expected Results:</strong></p>
+                        <ul>
+                            <li>User is successfully logged in</li>
+                            <li>User is redirected to the dashboard</li>
+                            <li>Welcome message displays the user's name</li>
+                        </ul>
+                        <p><strong>Postconditions:</strong></p>
+                        <ul>
+                            <li>User session is created</li>
+                            <li>Login activity is recorded in the system logs</li>
+                        </ul>
+                        <p><strong>Traceability:</strong> REQ-AUTH-001, REQ-AUTH-005</p>
+                    </div>
+                    
+                    <h3>Test Case Design Best Practices</h3>
+                    <ul>
+                        <li><strong>Be Specific</strong> - Provide clear, detailed steps and expected results</li>
+                        <li><strong>One Purpose</strong> - Each test case should verify one specific thing</li>
+                        <li><strong>Independence</strong> - Test cases should not depend on each other</li>
+                        <li><strong>Repeatability</strong> - Test cases should produce the same results when repeated</li>
+                        <li><strong>Maintainability</strong> - Design test cases that are easy to update</li>
+                        <li><strong>Traceability</strong> - Link test cases to requirements or user stories</li>
+                        <li><strong>Prioritization</strong> - Focus on critical functionality and high-risk areas</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Selenium Test Case in JavaScript</div>
+<pre><code class="javascript">const { Builder, By, until } = require('selenium-webdriver');
+const assert = require('assert');
+
+describe('Login Functionality', function() {
+  let driver;
+  
+  before(async function() {
+    // Set up the WebDriver
+    driver = await new Builder().forBrowser('chrome').build();
+  });
+  
+  after(async function() {
+    // Quit the WebDriver
+    await driver.quit();
+  });
+  
+  it('should login successfully with valid credentials', async function() {
+    // Precondition: Navigate to the login page
+    await driver.get('https://example.com/login');
+    
+    // Step 1: Enter valid username
+    await driver.findElement(By.id('username')).sendKeys('testuser');
+    
+    // Step 2: Enter valid password
+    await driver.findElement(By.id('password')).sendKeys('Password123');
+    
+    // Step 3: Click the login button
+    await driver.findElement(By.id('login-button')).click();
+    
+    // Expected Result 1: User is redirected to dashboard
+    await driver.wait(until.urlContains('/dashboard'), 5000);
+    
+    // Expected Result 2: Welcome message displays user's name
+    const welcomeMessage = await driver.findElement(By.id('welcome-message')).getText();
+    assert.ok(welcomeMessage.includes('testuser'), 'Welcome message should include username');
+    
+    // Expected Result 3: Logout button is visible (indicating logged-in state)
+    const logoutButton = await driver.findElement(By.id('logout-button'));
+    assert.ok(await logoutButton.isDisplayed(), 'Logout button should be visible');
+  });
+  
+  it('should show error message with invalid credentials', async function() {
+    // Precondition: Navigate to the login page
+    await driver.get('https://example.com/login');
+    
+    // Step 1: Enter valid username
+    await driver.findElement(By.id('username')).sendKeys('testuser');
+    
+    // Step 2: Enter invalid password
+    await driver.findElement(By.id('password')).sendKeys('WrongPassword');
+    
+    // Step 3: Click the login button
+    await driver.findElement(By.id('login-button')).click();
+    
+    // Expected Result 1: Error message is displayed
+    const errorMessage = await driver.findElement(By.id('error-message')).getText();
+    assert.equal(errorMessage, 'Invalid username or password', 'Error message should indicate invalid credentials');
+    
+    // Expected Result 2: User remains on login page
+    const currentUrl = await driver.getCurrentUrl();
+    assert.ok(currentUrl.includes('/login'), 'User should remain on login page');
+  });
+});</code></pre>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Real-World Example: Spotify's Test Design</h2>
+                    <p>Spotify has developed a sophisticated approach to test design that balances automation and manual testing.</p>
+                    
+                    <h3>Key Aspects of Spotify's Approach</h3>
+                    <ul>
+                        <li><strong>Testing Quadrants</strong> - Categorizing tests based on business/technology focus and supporting team/critiquing product</li>
+                        <li><strong>Automated Testing</strong> - Extensive use of unit, integration, and end-to-end tests</li>
+                        <li><strong>Exploratory Testing</strong> - Structured exploratory testing sessions</li>
+                        <li><strong>Test Data Management</strong> - Sophisticated approach to generating and managing test data</li>
+                        <li><strong>Continuous Testing</strong> - Testing integrated throughout the development process</li>
+                    </ul>
+                    
+                    <h3>Lessons from Spotify</h3>
+                    <ul>
+                        <li>Balance different types of testing based on context</li>
+                        <li>Invest in test automation infrastructure</li>
+                        <li>Empower teams to own their testing strategy</li>
+                        <li>Use data to drive testing decisions</li>
+                        <li>Continuously improve testing practices</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Knowledge Check</h2>
+                    <div class="quiz-container">
+                        <div class="quiz-question">
+                            <p>1. Which test design technique divides input data into groups that are expected to exhibit similar behavior?</p>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" data-correct="true">Equivalence Partitioning</li>
+                                <li class="quiz-option" data-correct="false">Boundary Value Analysis</li>
+                                <li class="quiz-option" data-correct="false">Decision Table Testing</li>
+                                <li class="quiz-option" data-correct="false">State Transition Testing</li>
+                            </ul>
+                            <div class="quiz-feedback correct">
+                                <p>Correct! Equivalence partitioning divides input data into groups (partitions) that are expected to exhibit similar behavior.</p>
+                            </div>
+                            <div class="quiz-feedback incorrect">
+                                <p>Incorrect. Equivalence partitioning divides input data into groups (partitions) that are expected to exhibit similar behavior.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-question">
+                            <p>2. Which test design technique is most appropriate for testing complex business rules with multiple conditions?</p>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" data-correct="false">Boundary Value Analysis</li>
+                                <li class="quiz-option" data-correct="true">Decision Table Testing</li>
+                                <li class="quiz-option" data-correct="false">Equivalence Partitioning</li>
+                                <li class="quiz-option" data-correct="false">Statement Coverage</li>
+                            </ul>
+                            <div class="quiz-feedback correct">
+                                <p>Correct! Decision table testing is ideal for testing complex business rules with multiple conditions and different combinations of inputs.</p>
+                            </div>
+                            <div class="quiz-feedback incorrect">
+                                <p>Incorrect. Decision table testing is ideal for testing complex business rules with multiple conditions and different combinations of inputs.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-question">
+                            <p>3. Which of the following is a white-box testing technique?</p>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" data-correct="false">Use Case Testing</li>
+                                <li class="quiz-option" data-correct="false">Exploratory Testing</li>
+                                <li class="quiz-option" data-correct="true">Path Coverage</li>
+                                <li class="quiz-option" data-correct="false">Boundary Value Analysis</li>
+                            </ul>
+                            <div class="quiz-feedback correct">
+                                <p>Correct! Path coverage is a white-box (structure-based) testing technique that aims to execute all possible paths through the code.</p>
+                            </div>
+                            <div class="quiz-feedback incorrect">
+                                <p>Incorrect. Path coverage is a white-box (structure-based) testing technique that aims to execute all possible paths through the code.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-question">
+                            <p>4. What is the main difference between statement coverage and decision coverage?</p>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" data-correct="false">Statement coverage tests all statements, while decision coverage tests only if-statements</li>
+                                <li class="quiz-option" data-correct="true">Statement coverage ensures each statement is executed at least once, while decision coverage ensures each decision takes both true and false outcomes</li>
+                                <li class="quiz-option" data-correct="false">Statement coverage is for unit testing, while decision coverage is for integration testing</li>
+                                <li class="quiz-option" data-correct="false">Statement coverage is a black-box technique, while decision coverage is a white-box technique</li>
+                            </ul>
+                            <div class="quiz-feedback correct">
+                                <p>Correct! Statement coverage ensures each statement is executed at least once, while decision coverage ensures each decision takes both true and false outcomes.</p>
+                            </div>
+                            <div class="quiz-feedback incorrect">
+                                <p>Incorrect. Statement coverage ensures each statement is executed at least once, while decision coverage ensures each decision takes both true and false outcomes.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-question">
+                            <p>5. Which of the following is NOT a characteristic of a well-designed test case?</p>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" data-correct="false">Specific steps and expected results</li>
+                                <li class="quiz-option" data-correct="false">Independence from other test cases</li>
+                                <li class="quiz-option" data-correct="true">Testing multiple features in a single test case</li>
+                                <li class="quiz-option" data-correct="false">Traceability to requirements</li>
+                            </ul>
+                            <div class="quiz-feedback correct">
+                                <p>Correct! A well-designed test case should focus on testing one specific thing, not multiple features. This makes it easier to identify what failed when a test fails.</p>
+                            </div>
+                            <div class="quiz-feedback incorrect">
+                                <p>Incorrect. A well-designed test case should focus on testing one specific thing, not multiple features. This makes it easier to identify what failed when a test fails.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Additional Resources</h2>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=5gMBGVNR8wE" target="_blank">Video: Test Design Techniques Explained</a></li>
+                        <li><a href="https://www.istqb.org/downloads/syllabi/foundation-level-syllabus.html" target="_blank">ISTQB Foundation Level Syllabus (Chapter 4: Test Techniques)</a></li>
+                        <li><a href="https://martinfowler.com/articles/practical-test-pyramid.html" target="_blank">Article: The Practical Test Pyramid</a></li>
+                        <li><a href="https://www.geeksforgeeks.org/test-design-coverage-in-software-testing/" target="_blank">Article: Test Design Coverage in Software Testing</a></li>
+                        <li><a href="https://jestjs.io/docs/getting-started" target="_blank">Documentation: Jest Testing Framework</a></li>
+                    </ul>
+                </div>
+                
+                <div class="week-navigation">
+                    <a href="week3.html" class="btn">Previous Week: Why Do We Test Software?</a>
+                    <a href="week6-7.html" class="btn">Next Week: Test Automation</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">DevOps & QA Courses</div>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="../index.html">Home</a></li>
+                    <li class="footer-link"><a href="../devops/index.html">DevOps Course</a></li>
+                    <li class="footer-link"><a href="index.html">QA Course</a></li>
+                    <li class="footer-link"><a href="../resources/index.html">Resources</a></li>
+                    <li class="footer-link"><a href="https://github.com/username/course-website" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DevOps & QA Courses. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <span>↑</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

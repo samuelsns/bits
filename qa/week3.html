@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 3: Why Do We Test Software? | QA Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;700&family=Fira+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="../index.html">DevOps & QA Courses</a>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="../devops/index.html" class="nav-link">DevOps Course</a></li>
+                    <li class="nav-item"><a href="index.html" class="nav-link">QA Course</a></li>
+                    <li class="nav-item"><a href="../resources/index.html" class="nav-link">Resources</a></li>
+                    <li class="nav-item"><a href="https://github.com/username/course-website" class="nav-link" target="_blank">GitHub</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="week-content">
+                <h1>Week 3: Why Do We Test Software?</h1>
+                
+                <div class="content-section">
+                    <h2>Learning Objectives</h2>
+                    <p>By the end of this week, you will be able to:</p>
+                    <ul>
+                        <li>Understand the fundamental goals and objectives of software testing</li>
+                        <li>Identify when software goes bad and recognize common failure patterns</li>
+                        <li>Explain the economic benefits of testing and quality assurance</li>
+                        <li>Describe the relationship between testing and software quality</li>
+                        <li>Recognize the different perspectives on software testing</li>
+                        <li>Apply basic testing principles to evaluate software quality</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Introduction to Software Testing Goals</h2>
+                    <p>Software testing is a critical activity in the software development lifecycle that helps ensure the quality, reliability, and performance of software products. But what exactly are we trying to achieve through testing?</p>
+                    
+                    <h3>Primary Goals of Software Testing</h3>
+                    <ul>
+                        <li><strong>Verification and Validation</strong> - Ensuring the software meets requirements (verification) and fulfills its intended purpose (validation)</li>
+                        <li><strong>Defect Detection</strong> - Finding bugs, errors, and issues before they reach users</li>
+                        <li><strong>Quality Assessment</strong> - Evaluating the overall quality and readiness of the software</li>
+                        <li><strong>Risk Reduction</strong> - Minimizing the risk of failures in production</li>
+                        <li><strong>Compliance</strong> - Ensuring the software meets regulatory and industry standards</li>
+                        <li><strong>User Satisfaction</strong> - Delivering a product that meets user expectations</li>
+                    </ul>
+                    
+                    <div class="interactive-element">
+                        <h4 class="interactive-title">Interactive Diagram: The Testing Pyramid</h4>
+                        <div class="diagram-container">
+                            <div class="pyramid-level" id="ui-tests">
+                                <span>UI Tests</span>
+                                <div class="hover-info">
+                                    <h5>UI Tests</h5>
+                                    <p>Test the application through its user interface</p>
+                                    <p>Slower, more brittle, but test the entire system</p>
+                                    <p>Examples: Selenium, Cypress</p>
+                                </div>
+                            </div>
+                            <div class="pyramid-level" id="integration-tests">
+                                <span>Integration Tests</span>
+                                <div class="hover-info">
+                                    <h5>Integration Tests</h5>
+                                    <p>Test how components work together</p>
+                                    <p>Medium speed and reliability</p>
+                                    <p>Examples: API tests, service tests</p>
+                                </div>
+                            </div>
+                            <div class="pyramid-level" id="unit-tests">
+                                <span>Unit Tests</span>
+                                <div class="hover-info">
+                                    <h5>Unit Tests</h5>
+                                    <p>Test individual components in isolation</p>
+                                    <p>Fast, reliable, but limited scope</p>
+                                    <p>Examples: JUnit, Jest, Mocha</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="diagram-caption">The Testing Pyramid illustrates the ideal distribution of test types. Hover over each level to learn more.</p>
+                    </div>
+                    
+                    <h3>Software Quality Attributes</h3>
+                    <p>Testing helps ensure that software exhibits these key quality attributes:</p>
+                    <ul>
+                        <li><strong>Functionality</strong> - Does the software do what it's supposed to do?</li>
+                        <li><strong>Reliability</strong> - Does it work consistently without failures?</li>
+                        <li><strong>Usability</strong> - Is it easy to use and understand?</li>
+                        <li><strong>Efficiency</strong> - Does it use resources efficiently?</li>
+                        <li><strong>Maintainability</strong> - Is it easy to modify and enhance?</li>
+                        <li><strong>Portability</strong> - Can it work in different environments?</li>
+                        <li><strong>Security</strong> - Is it protected against vulnerabilities and attacks?</li>
+                        <li><strong>Scalability</strong> - Can it handle growth in users or data?</li>
+                    </ul>
+                    
+                    <div class="activity">
+                        <h4 class="activity-title">Discussion Question</h4>
+                        <p>Which quality attributes do you think are most important for different types of software (e.g., banking applications, social media platforms, games)? How might testing priorities differ for each?</p>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>When Software Goes Bad</h2>
+                    <p>Understanding software failures helps us appreciate the importance of testing and identify what to test for.</p>
+                    
+                    <h3>Notable Software Failures</h3>
+                    <div class="case-studies">
+                        <div class="case-study" id="case1">
+                            <h4>Ariane 5 Rocket Explosion (1996)</h4>
+                            <div class="case-details">
+                                <p><strong>What Happened:</strong> The Ariane 5 rocket exploded just 40 seconds after launch due to a software error.</p>
+                                <p><strong>Root Cause:</strong> A 64-bit floating-point number was converted to a 16-bit integer, causing an overflow error.</p>
+                                <p><strong>Cost:</strong> Approximately $370 million</p>
+                                <p><strong>Lesson:</strong> Proper testing of reused code in new contexts is essential. The code was reused from Ariane 4 but not tested under Ariane 5's different flight parameters.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="case-study" id="case2">
+                            <h4>Therac-25 Radiation Overdoses (1985-1987)</h4>
+                            <div class="case-details">
+                                <p><strong>What Happened:</strong> A radiation therapy machine delivered massive overdoses to patients, resulting in deaths and serious injuries.</p>
+                                <p><strong>Root Cause:</strong> Race conditions in the software and removal of hardware safety interlocks.</p>
+                                <p><strong>Cost:</strong> Multiple lives and millions in settlements</p>
+                                <p><strong>Lesson:</strong> Safety-critical systems require rigorous testing, including edge cases and concurrent operations.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="case-study" id="case3">
+                            <h4>Y2K Bug (2000)</h4>
+                            <div class="case-details">
+                                <p><strong>What Happened:</strong> Concern that date-related processing would fail when the year changed from 1999 to 2000.</p>
+                                <p><strong>Root Cause:</strong> Years represented as two digits (99 instead of 1999) to save memory.</p>
+                                <p><strong>Cost:</strong> $300+ billion in remediation efforts worldwide</p>
+                                <p><strong>Lesson:</strong> Consider long-term implications of design decisions and test for future scenarios.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="case-study" id="case4">
+                            <h4>Knight Capital Trading Loss (2012)</h4>
+                            <div class="case-details">
+                                <p><strong>What Happened:</strong> A trading firm lost $440 million in 45 minutes due to a software deployment error.</p>
+                                <p><strong>Root Cause:</strong> Old code was reactivated during a deployment, and one server wasn't updated with new code.</p>
+                                <p><strong>Cost:</strong> $440 million in 45 minutes</p>
+                                <p><strong>Lesson:</strong> Deployment processes need thorough testing, and systems should have safeguards against runaway processes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3>Common Types of Software Failures</h3>
+                    <ul>
+                        <li><strong>Functional Failures</strong> - Software doesn't perform its intended functions correctly</li>
+                        <li><strong>Performance Issues</strong> - Slow response times, high resource usage</li>
+                        <li><strong>Security Vulnerabilities</strong> - Weaknesses that can be exploited</li>
+                        <li><strong>Usability Problems</strong> - Difficult or confusing user interfaces</li>
+                        <li><strong>Compatibility Issues</strong> - Problems with specific environments or configurations</li>
+                        <li><strong>Data Handling Errors</strong> - Incorrect processing, storage, or retrieval of data</li>
+                        <li><strong>Integration Failures</strong> - Components don't work together properly</li>
+                        <li><strong>Deployment Problems</strong> - Issues during installation or updates</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: A Simple Bug That Could Cause Major Problems</div>
+<pre><code class="javascript">// Function to transfer money between accounts
+function transferMoney(fromAccount, toAccount, amount) {
+  // Check if the source account has sufficient funds
+  if (fromAccount.balance >= amount) {
+    // Deduct from source account
+    fromAccount.balance -= amount;
+    
+    // What if there's an error or system crash here?
+    // The money would be deducted but never added to the destination!
+    
+    // Add to destination account
+    toAccount.balance += amount;
+    
+    return true;
+  }
+  
+  return false;
+}
+
+// A more robust implementation with transaction handling
+function safeTransferMoney(fromAccount, toAccount, amount) {
+  // Start a transaction
+  try {
+    db.beginTransaction();
+    
+    // Check if the source account has sufficient funds
+    if (fromAccount.balance < amount) {
+      throw new Error("Insufficient funds");
+    }
+    
+    // Deduct from source account
+    fromAccount.balance -= amount;
+    db.update(fromAccount);
+    
+    // Add to destination account
+    toAccount.balance += amount;
+    db.update(toAccount);
+    
+    // Commit the transaction
+    db.commitTransaction();
+    return true;
+  } catch (error) {
+    // Rollback the transaction if any error occurs
+    db.rollbackTransaction();
+    console.error("Transfer failed:", error.message);
+    return false;
+  }
+}</code></pre>
+                    </div>
+                    
+                    <div class="activity">
+                        <h4 class="activity-title">Exercise: Bug Impact Analysis</h4>
+                        <p>Consider the following scenarios and analyze the potential impact of each bug:</p>
+                        <ol class="activity-steps">
+                            <li>A social media app that occasionally shows posts from blocked users</li>
+                            <li>An e-commerce site that sometimes displays incorrect prices during checkout</li>
+                            <li>A navigation app that calculates routes correctly but occasionally shows the wrong current location</li>
+                            <li>A banking app that rounds down instead of rounding to the nearest cent</li>
+                        </ol>
+                        <p>For each scenario, consider:</p>
+                        <ul>
+                            <li>What could be the business impact?</li>
+                            <li>What could be the user impact?</li>
+                            <li>How would you prioritize fixing this bug?</li>
+                            <li>What testing could have prevented this issue?</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>The Economics of Testing</h2>
+                    <p>Testing is not just a technical activity; it has significant economic implications for software development.</p>
+                    
+                    <h3>The Cost of Quality</h3>
+                    <p>The cost of quality includes both the cost of achieving good quality and the cost of poor quality:</p>
+                    <ul>
+                        <li><strong>Prevention Costs</strong> - Training, process improvement, tool selection</li>
+                        <li><strong>Appraisal Costs</strong> - Testing, reviews, inspections</li>
+                        <li><strong>Internal Failure Costs</strong> - Debugging, fixing, retesting</li>
+                        <li><strong>External Failure Costs</strong> - Support, warranties, lost business, reputation damage</li>
+                    </ul>
+                    
+                    <div class="interactive-element">
+                        <h4 class="interactive-title">Interactive Graph: Cost of Fixing Defects</h4>
+                        <div class="graph-container">
+                            <div class="graph-bar" id="requirements" style="height: 10%;">
+                                <span class="bar-label">Requirements</span>
+                                <span class="bar-value">$100</span>
+                            </div>
+                            <div class="graph-bar" id="design" style="height: 30%;">
+                                <span class="bar-label">Design</span>
+                                <span class="bar-value">$300</span>
+                            </div>
+                            <div class="graph-bar" id="coding" style="height: 50%;">
+                                <span class="bar-label">Coding</span>
+                                <span class="bar-value">$500</span>
+                            </div>
+                            <div class="graph-bar" id="testing" style="height: 100%;">
+                                <span class="bar-label">Testing</span>
+                                <span class="bar-value">$1,000</span>
+                            </div>
+                            <div class="graph-bar" id="production" style="height: 300%;">
+                                <span class="bar-label">Production</span>
+                                <span class="bar-value">$3,000</span>
+                            </div>
+                        </div>
+                        <p class="graph-caption">Relative cost of fixing defects at different stages of development. The earlier a defect is found, the cheaper it is to fix.</p>
+                    </div>
+                    
+                    <h3>Return on Investment (ROI) of Testing</h3>
+                    <p>Testing provides significant ROI through:</p>
+                    <ul>
+                        <li><strong>Reduced Maintenance Costs</strong> - Fewer bugs to fix after release</li>
+                        <li><strong>Improved Customer Satisfaction</strong> - Higher quality leads to happier users</li>
+                        <li><strong>Reduced Support Costs</strong> - Fewer support tickets and calls</li>
+                        <li><strong>Faster Time to Market</strong> - Fewer delays due to critical bugs</li>
+                        <li><strong>Reduced Risk</strong> - Lower likelihood of catastrophic failures</li>
+                        <li><strong>Better Reputation</strong> - Higher quality products build trust</li>
+                    </ul>
+                    
+                    <h3>Testing Economics in Different Contexts</h3>
+                    <p>The economics of testing vary based on the context:</p>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Context</th>
+                                <th>Testing Focus</th>
+                                <th>Economic Considerations</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Safety-Critical Systems</td>
+                                <td>Exhaustive testing, formal verification</td>
+                                <td>High upfront cost justified by preventing catastrophic failures</td>
+                            </tr>
+                            <tr>
+                                <td>Enterprise Software</td>
+                                <td>Functional correctness, reliability, security</td>
+                                <td>Balance between quality and time-to-market</td>
+                            </tr>
+                            <tr>
+                                <td>Consumer Apps</td>
+                                <td>Usability, performance, core functionality</td>
+                                <td>Focus on user-facing features, rapid release cycles</td>
+                            </tr>
+                            <tr>
+                                <td>Startups</td>
+                                <td>Critical features, minimum viable product</td>
+                                <td>Limited resources, prioritize testing for key functionality</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Testing and Software Quality</h2>
+                    <p>Testing is a key mechanism for ensuring and improving software quality, but it's important to understand both its capabilities and limitations.</p>
+                    
+                    <h3>What Testing Can and Cannot Do</h3>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Testing Can</th>
+                                <th>Testing Cannot</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Demonstrate the presence of defects</td>
+                                <td>Prove the absence of defects</td>
+                            </tr>
+                            <tr>
+                                <td>Reduce the risk of problems</td>
+                                <td>Eliminate all risks</td>
+                            </tr>
+                            <tr>
+                                <td>Provide information about quality</td>
+                                <td>Improve quality by itself</td>
+                            </tr>
+                            <tr>
+                                <td>Verify specific behaviors</td>
+                                <td>Verify all possible behaviors</td>
+                            </tr>
+                            <tr>
+                                <td>Find many types of defects</td>
+                                <td>Find all types of defects</td>
+                            </tr>
+                            <tr>
+                                <td>Validate against requirements</td>
+                                <td>Validate against unstated expectations</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h3>Testing as Part of Quality Assurance</h3>
+                    <p>Testing is one component of a comprehensive quality assurance strategy:</p>
+                    <ul>
+                        <li><strong>Quality Planning</strong> - Defining quality objectives and approaches</li>
+                        <li><strong>Quality Control</strong> - Monitoring and measuring quality</li>
+                        <li><strong>Quality Assurance</strong> - Ensuring processes are followed</li>
+                        <li><strong>Testing</strong> - Verifying and validating the software</li>
+                        <li><strong>Quality Improvement</strong> - Enhancing processes and practices</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Simple Unit Test with Jest (JavaScript)</div>
+<pre><code class="javascript">// Function to be tested
+function calculateTotal(items, discount = 0) {
+  if (!Array.isArray(items)) {
+    throw new Error('Items must be an array');
+  }
+  
+  if (discount < 0 || discount > 1) {
+    throw new Error('Discount must be between 0 and 1');
+  }
+  
+  const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const total = subtotal * (1 - discount);
+  
+  return parseFloat(total.toFixed(2));
+}
+
+// Unit tests using Jest
+describe('calculateTotal function', () => {
+  test('calculates total correctly without discount', () => {
+    const items = [
+      { name: 'Item 1', price: 10, quantity: 2 },
+      { name: 'Item 2', price: 15, quantity: 1 }
+    ];
+    
+    expect(calculateTotal(items)).toBe(35);
+  });
+  
+  test('calculates total correctly with discount', () => {
+    const items = [
+      { name: 'Item 1', price: 10, quantity: 2 },
+      { name: 'Item 2', price: 15, quantity: 1 }
+    ];
+    
+    expect(calculateTotal(items, 0.1)).toBe(31.5); // 35 - 10% = 31.5
+  });
+  
+  test('handles empty array', () => {
+    expect(calculateTotal([])).toBe(0);
+  });
+  
+  test('throws error for invalid items', () => {
+    expect(() => calculateTotal('not an array')).toThrow('Items must be an array');
+  });
+  
+  test('throws error for invalid discount', () => {
+    const items = [{ name: 'Item 1', price: 10, quantity: 1 }];
+    
+    expect(() => calculateTotal(items, -0.1)).toThrow('Discount must be between 0 and 1');
+    expect(() => calculateTotal(items, 1.1)).toThrow('Discount must be between 0 and 1');
+  });
+  
+  test('rounds to 2 decimal places', () => {
+    const items = [{ name: 'Item 1', price: 10.999, quantity: 1 }];
+    
+    expect(calculateTotal(items)).toBe(11);
+  });
+});</code></pre>
+                    </div>
+                    
+                    <h3>Quality Models and Standards</h3>
+                    <p>Various models and standards define software quality:</p>
+                    <ul>
+                        <li><strong>ISO/IEC 25010</strong> - Product quality model defining quality characteristics</li>
+                        <li><strong>ISO/IEC 29119</strong> - Software testing standards</li>
+                        <li><strong>CMMI (Capability Maturity Model Integration)</strong> - Process improvement approach</li>
+                        <li><strong>TMMi (Test Maturity Model integration)</strong> - Framework for test process improvement</li>
+                        <li><strong>TPI (Test Process Improvement)</strong> - Model for improving test processes</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Perspectives on Software Testing</h2>
+                    <p>Different stakeholders have different perspectives on software testing, which influence testing priorities and approaches.</p>
+                    
+                    <h3>Stakeholder Perspectives</h3>
+                    <ul>
+                        <li><strong>Developers</strong> - Focus on code correctness, maintainability, technical quality</li>
+                        <li><strong>Testers</strong> - Focus on finding defects, validating requirements, assessing quality</li>
+                        <li><strong>Project Managers</strong> - Focus on schedule, budget, risk management</li>
+                        <li><strong>Business Analysts</strong> - Focus on requirements coverage, business value</li>
+                        <li><strong>End Users</strong> - Focus on usability, functionality, performance</li>
+                        <li><strong>Operations</strong> - Focus on reliability, security, supportability</li>
+                        <li><strong>Executives</strong> - Focus on ROI, market impact, competitive advantage</li>
+                    </ul>
+                    
+                    <h3>Testing Mindsets</h3>
+                    <p>Different mindsets influence how testing is approached:</p>
+                    <ul>
+                        <li><strong>Verification Mindset</strong> - "Does the software meet the requirements?"</li>
+                        <li><strong>Validation Mindset</strong> - "Does the software solve the user's problem?"</li>
+                        <li><strong>Destructive Mindset</strong> - "How can I break this software?"</li>
+                        <li><strong>Constructive Mindset</strong> - "How can I help improve this software?"</li>
+                        <li><strong>Analytical Mindset</strong> - "What's happening under the hood?"</li>
+                        <li><strong>User-Centered Mindset</strong> - "What would a user experience?"</li>
+                    </ul>
+                    
+                    <div class="activity">
+                        <h4 class="activity-title">Role-Playing Exercise: Different Perspectives</h4>
+                        <p>Form groups and assign each person a different stakeholder role (developer, tester, project manager, end user, etc.). Consider a simple application like a to-do list app and discuss:</p>
+                        <ol class="activity-steps">
+                            <li>What aspects of the application would you focus on testing?</li>
+                            <li>What types of defects would concern you most?</li>
+                            <li>How would you define "quality" for this application?</li>
+                            <li>What testing approaches would you prioritize?</li>
+                        </ol>
+                        <p>Share your perspectives with the group and discuss how these different viewpoints might influence a testing strategy.</p>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Principles of Software Testing</h2>
+                    <p>The International Software Testing Qualifications Board (ISTQB) defines seven fundamental principles of software testing:</p>
+                    
+                    <div class="principles-container">
+                        <div class="principle" id="principle1">
+                            <h3>1. Testing shows the presence of defects, not their absence</h3>
+                            <p>Testing can show that defects are present, but cannot prove that there are no defects. Even after thorough testing, we cannot guarantee that software is defect-free.</p>
+                        </div>
+                        
+                        <div class="principle" id="principle2">
+                            <h3>2. Exhaustive testing is impossible</h3>
+                            <p>Testing everything (all combinations of inputs and preconditions) is not feasible except for trivial cases. Instead of exhaustive testing, we use risk analysis, test techniques, and priorities to focus testing efforts.</p>
+                        </div>
+                        
+                        <div class="principle" id="principle3">
+                            <h3>3. Early testing saves time and money</h3>
+                            <p>Testing activities should start as early as possible in the software development lifecycle. Finding defects early is less expensive to fix than finding them later.</p>
+                        </div>
+                        
+                        <div class="principle" id="principle4">
+                            <h3>4. Defects cluster together</h3>
+                            <p>A small number of modules usually contains most of the defects. This "Pareto principle" (80/20 rule) helps focus testing efforts on the most defect-prone areas.</p>
+                        </div>
+                        
+                        <div class="principle" id="principle5">
+                            <h3>5. Beware of the pesticide paradox</h3>
+                            <p>If the same tests are repeated over and over, they will eventually no longer find new defects. To overcome this, tests need to be regularly reviewed and revised.</p>
+                        </div>
+                        
+                        <div class="principle" id="principle6">
+                            <h3>6. Testing is context dependent</h3>
+                            <p>Testing is done differently in different contexts. For example, safety-critical software is tested differently from an e-commerce site.</p>
+                        </div>
+                        
+                        <div class="principle" id="principle7">
+                            <h3>7. Absence of errors is a fallacy</h3>
+                            <p>Finding and fixing defects does not help if the system is unusable or does not fulfill user needs and expectations.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Applying Testing Principles</h3>
+                    <p>These principles guide effective testing practices:</p>
+                    <ul>
+                        <li><strong>Risk-Based Testing</strong> - Focus testing efforts on the most critical areas</li>
+                        <li><strong>Test Design Techniques</strong> - Use systematic approaches to design effective tests</li>
+                        <li><strong>Continuous Testing</strong> - Integrate testing throughout the development process</li>
+                        <li><strong>Test Independence</strong> - Have tests performed by someone other than the developer</li>
+                        <li><strong>Test Automation</strong> - Automate repetitive tests to improve efficiency</li>
+                        <li><strong>Defect Management</strong> - Track and manage defects systematically</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Real-World Example: The Boeing 737 MAX Software Failure</h2>
+                    <p>The Boeing 737 MAX case provides a compelling example of the importance of thorough software testing and the potential consequences of inadequate testing.</p>
+                    
+                    <h3>Background</h3>
+                    <p>In 2018 and 2019, two Boeing 737 MAX aircraft crashed, killing 346 people. The crashes were linked to a software system called MCAS (Maneuvering Characteristics Augmentation System).</p>
+                    
+                    <h3>What Went Wrong</h3>
+                    <ul>
+                        <li><strong>Single Point of Failure</strong> - MCAS relied on a single angle-of-attack sensor without redundancy</li>
+                        <li><strong>Inadequate Testing</strong> - The system wasn't tested under all possible failure conditions</li>
+                        <li><strong>Poor Documentation</strong> - Pilots weren't adequately informed about the system</li>
+                        <li><strong>Regulatory Issues</strong> - FAA delegated too much of the safety assessment to Boeing</li>
+                        <li><strong>Development Pressure</strong> - Schedule pressure may have compromised thorough testing</li>
+                    </ul>
+                    
+                    <h3>Testing Lessons</h3>
+                    <ul>
+                        <li><strong>Test for Failure Conditions</strong> - Test how systems behave when components fail</li>
+                        <li><strong>Consider Human Factors</strong> - Test how users will interact with the system</li>
+                        <li><strong>Independent Verification</strong> - Have critical systems verified by independent testers</li>
+                        <li><strong>Thorough Risk Analysis</strong> - Identify and mitigate potential risks</li>
+                        <li><strong>Resist Schedule Pressure</strong> - Don't compromise safety for deadlines</li>
+                    </ul>
+                    
+                    <div class="activity">
+                        <h4 class="activity-title">Case Analysis</h4>
+                        <p>Research the Boeing 737 MAX case in more detail and analyze:</p>
+                        <ol class="activity-steps">
+                            <li>What testing practices could have prevented the failures?</li>
+                            <li>How did organizational culture contribute to the issue?</li>
+                            <li>What changes to the development and testing process were implemented afterward?</li>
+                            <li>How does this case illustrate the principles of software testing?</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Knowledge Check</h2>
+                    <div class="quiz-container">
+                        <div class="quiz-question">
+                            <p>1. Which of the following is NOT a primary goal of software testing?</p>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" data-correct="false">Finding defects</li>
+                                <li class="quiz-option" data-correct="false">Verifying requirements</li>
+                                <li class="quiz-option" data-correct="false">Reducing risk</li>
+                                <li class="quiz-option" data-correct="true">Writing documentation</li>
+                            </ul>
+                            <div class="quiz-feedback correct">
+                                <p>Correct! While documentation is important in the testing process, it's not a primary goal of testing itself.</p>
+                            </div>
+                            <div class="quiz-feedback incorrect">
+                                <p>Incorrect. Writing documentation is important but is not one of the primary goals of software testing.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-question">
+                            <p>2. According to the economics of testing, when is it most cost-effective to fix defects?</p>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" data-correct="true">During the requirements phase</li>
+                                <li class="quiz-option" data-correct="false">During the design phase</li>
+                                <li class="quiz-option" data-correct="false">During the coding phase</li>
+                                <li class="quiz-option" data-correct="false">During the testing phase</li>
+                            </ul>
+                            <div class="quiz-feedback correct">
+                                <p>Correct! The earlier a defect is found, the cheaper it is to fix. Fixing issues during the requirements phase is typically the most cost-effective.</p>
+                            </div>
+                            <div class="quiz-feedback incorrect">
+                                <p>Incorrect. The earlier a defect is found, the cheaper it is to fix. The requirements phase is typically when it's most cost-effective to address issues.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-question">
+                            <p>3. Which of the following is one of the seven principles of software testing according to ISTQB?</p>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" data-correct="false">Testing guarantees defect-free software</li>
+                                <li class="quiz-option" data-correct="false">All testing should be automated</li>
+                                <li class="quiz-option" data-correct="true">Exhaustive testing is impossible</li>
+                                <li class="quiz-option" data-correct="false">Testing is only necessary for critical systems</li>
+                            </ul>
+                            <div class="quiz-feedback correct">
+                                <p>Correct! "Exhaustive testing is impossible" is one of the seven fundamental principles of software testing according to ISTQB.</p>
+                            </div>
+                            <div class="quiz-feedback incorrect">
+                                <p>Incorrect. "Exhaustive testing is impossible" is one of the seven fundamental principles of software testing according to ISTQB.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-question">
+                            <p>4. What does the "pesticide paradox" in software testing refer to?</p>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" data-correct="false">The tendency of bugs to multiply rapidly</li>
+                                <li class="quiz-option" data-correct="true">The diminishing effectiveness of the same tests over time</li>
+                                <li class="quiz-option" data-correct="false">The toxic effect of poor testing on team morale</li>
+                                <li class="quiz-option" data-correct="false">The need to eliminate all bugs before release</li>
+                            </ul>
+                            <div class="quiz-feedback correct">
+                                <p>Correct! The pesticide paradox refers to how the same tests repeated over time become less effective at finding new defects, just as pesticides become less effective against insects that develop resistance.</p>
+                            </div>
+                            <div class="quiz-feedback incorrect">
+                                <p>Incorrect. The pesticide paradox refers to how the same tests repeated over time become less effective at finding new defects, just as pesticides become less effective against insects that develop resistance.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-question">
+                            <p>5. Which of the following is a limitation of software testing?</p>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" data-correct="false">Testing can only be performed by specialized testers</li>
+                                <li class="quiz-option" data-correct="false">Testing is only valuable for large software systems</li>
+                                <li class="quiz-option" data-correct="true">Testing cannot prove the absence of defects</li>
+                                <li class="quiz-option" data-correct="false">Testing is too expensive to be worthwhile</li>
+                            </ul>
+                            <div class="quiz-feedback correct">
+                                <p>Correct! Testing can show the presence of defects but cannot prove their absence. This is a fundamental limitation of software testing.</p>
+                            </div>
+                            <div class="quiz-feedback incorrect">
+                                <p>Incorrect. Testing can show the presence of defects but cannot prove their absence. This is a fundamental limitation of software testing.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Additional Resources</h2>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=u-HcPGhR-Q0" target="_blank">Video: The Importance of Software Testing</a></li>
+                        <li><a href="https://www.istqb.org/downloads/syllabi/foundation-level-syllabus.html" target="_blank">ISTQB Foundation Level Syllabus</a></li>
+                        <li><a href="https://www.geeksforgeeks.org/goals-of-software-testing/" target="_blank">Article: Goals of Software Testing</a></li>
+                        <li><a href="https://www.cigniti.com/blog/software-failures-inadequate-software-testing/" target="_blank">Article: Famous Software Failures</a></li>
+                        <li><a href="https://martinfowler.com/articles/practical-test-pyramid.html" target="_blank">Article: The Practical Test Pyramid</a></li>
+                    </ul>
+                </div>
+                
+                <div class="week-navigation">
+                    <a href="index.html" class="btn">Back to Course Overview</a>
+                    <a href="week4-5.html" class="btn">Next Week: Test Design Concepts</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">DevOps & QA Courses</div>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="../index.html">Home</a></li>
+                    <li class="footer-link"><a href="../devops/index.html">DevOps Course</a></li>
+                    <li class="footer-link"><a href="index.html">QA Course</a></li>
+                    <li class="footer-link"><a href="../resources/index.html">Resources</a></li>
+                    <li class="footer-link"><a href="https://github.com/username/course-website" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DevOps & QA Courses. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <span>↑</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

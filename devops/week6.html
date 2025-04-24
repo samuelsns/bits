@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 6: Continuous Integration | DevOps Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;700&family=Fira+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="../index.html">DevOps & QA Courses</a>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="index.html" class="nav-link">DevOps Course</a></li>
+                    <li class="nav-item"><a href="../qa/index.html" class="nav-link">QA Course</a></li>
+                    <li class="nav-item"><a href="../resources/index.html" class="nav-link">Resources</a></li>
+                    <li class="nav-item"><a href="https://github.com/username/course-website" class="nav-link" target="_blank">GitHub</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="week-content">
+                <h1>Week 6: Continuous Integration</h1>
+                
+                <div class="content-section">
+                    <h2>Learning Objectives</h2>
+                    <p>By the end of this week, you will be able to:</p>
+                    <ul>
+                        <li>Define continuous integration and explain its benefits</li>
+                        <li>Implement CI practices in a development workflow</li>
+                        <li>Set up and configure CI tools for automated builds and tests</li>
+                        <li>Apply code quality checks in a CI pipeline</li>
+                        <li>Troubleshoot common CI issues</li>
+                        <li>Measure the effectiveness of CI implementation</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Introduction to Continuous Integration</h2>
+                    <p>Continuous Integration (CI) is a development practice where developers integrate code into a shared repository frequently, preferably several times a day. Each integration is verified by an automated build and automated tests to detect integration errors as quickly as possible.</p>
+                    
+                    <h3>Key Principles of Continuous Integration</h3>
+                    <ul>
+                        <li><strong>Maintain a Single Source Repository</strong> - All code and assets in one place</li>
+                        <li><strong>Automate the Build</strong> - One command should build the entire system</li>
+                        <li><strong>Make the Build Self-Testing</strong> - Include automated tests in the build process</li>
+                        <li><strong>Everyone Commits to the Mainline Every Day</strong> - Frequent integration reduces merge conflicts</li>
+                        <li><strong>Every Commit Should Build the Mainline on an Integration Machine</strong> - Verify changes in a clean environment</li>
+                        <li><strong>Keep the Build Fast</strong> - Quick feedback is essential</li>
+                        <li><strong>Test in a Clone of the Production Environment</strong> - Minimize environment-related issues</li>
+                        <li><strong>Make It Easy to Get the Latest Deliverables</strong> - Everyone should know where to find the latest build</li>
+                        <li><strong>Everyone Can See the Results of the Latest Build</strong> - Transparency builds trust</li>
+                        <li><strong>Automate Deployment</strong> - Eliminate manual steps in the deployment process</li>
+                    </ul>
+                    
+                    <div class="activity">
+                        <h4 class="activity-title">Discussion Question</h4>
+                        <p>How does continuous integration change the way developers work compared to traditional integration approaches? What cultural changes might be needed in a team transitioning to CI?</p>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>CI Tools and Platforms</h2>
+                    <p>There are many CI tools and platforms available, each with its own strengths and features.</p>
+                    
+                    <h3>Popular CI Tools</h3>
+                    <ul>
+                        <li><strong>Jenkins</strong> - Open-source automation server with extensive plugin ecosystem</li>
+                        <li><strong>GitHub Actions</strong> - CI/CD service integrated with GitHub repositories</li>
+                        <li><strong>GitLab CI/CD</strong> - CI/CD service integrated with GitLab repositories</li>
+                        <li><strong>CircleCI</strong> - Cloud-based CI/CD service with Docker support</li>
+                        <li><strong>Travis CI</strong> - CI service that integrates with GitHub</li>
+                        <li><strong>TeamCity</strong> - CI server from JetBrains with intelligent build features</li>
+                        <li><strong>Bamboo</strong> - CI server from Atlassian that integrates with Jira and Bitbucket</li>
+                        <li><strong>Azure DevOps</strong> - Microsoft's suite of DevOps tools including CI/CD</li>
+                    </ul>
+                    
+                    <h3>Choosing a CI Tool</h3>
+                    <p>Consider the following factors when choosing a CI tool:</p>
+                    <ul>
+                        <li>Integration with your existing tools and workflows</li>
+                        <li>Support for your programming languages and frameworks</li>
+                        <li>Scalability and performance</li>
+                        <li>Ease of use and configuration</li>
+                        <li>Community support and documentation</li>
+                        <li>Cost and licensing</li>
+                        <li>Security features</li>
+                        <li>Extensibility and customization options</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Setting Up a CI Pipeline with Jenkins</h2>
+                    <p>Jenkins is one of the most popular open-source CI tools. Let's look at how to set up a basic CI pipeline with Jenkins.</p>
+                    
+                    <h3>Jenkins Pipeline Components</h3>
+                    <ul>
+                        <li><strong>Jenkinsfile</strong> - Pipeline as code, stored in version control</li>
+                        <li><strong>Stages</strong> - Logical divisions of the pipeline (e.g., build, test, deploy)</li>
+                        <li><strong>Steps</strong> - Individual tasks within a stage</li>
+                        <li><strong>Agents</strong> - Machines or containers that execute the pipeline</li>
+                        <li><strong>Plugins</strong> - Extensions that add functionality to Jenkins</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Jenkinsfile for a Java Application</div>
+<pre><code class="groovy">pipeline {
+    agent any
+    
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "M3"
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                // Get code from GitHub repository
+                git 'https://github.com/username/my-app.git'
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                // Run Maven on a Unix agent.
+                sh "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+            
+            post {
+                // If Maven was able to run the tests, even if some of the test
+                // failed, record the test results and archive the jar file.
+                success {
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                    archiveArtifacts 'target/*.jar'
+                }
+            }
+        }
+        
+        stage('Code Analysis') {
+            steps {
+                // Run SonarQube analysis
+                withSonarQubeEnv('SonarQube') {
+                    sh 'mvn sonar:sonar'
+                }
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                // Run the tests
+                sh 'mvn test'
+            }
+        }
+        
+        stage('Deploy to Staging') {
+            steps {
+                // Deploy to staging environment
+                sh 'mvn deploy -Pstaging'
+            }
+        }
+    }
+}
+</code></pre>
+                    </div>
+                    
+                    <h3>Setting Up Jenkins</h3>
+                    <ol>
+                        <li>Install Jenkins on a server or use a cloud-based Jenkins service</li>
+                        <li>Install necessary plugins (Git, Maven, JUnit, etc.)</li>
+                        <li>Configure Jenkins security and user accounts</li>
+                        <li>Set up build agents (if needed)</li>
+                        <li>Create a new pipeline job</li>
+                        <li>Configure the pipeline to use a Jenkinsfile from your repository</li>
+                        <li>Configure build triggers (e.g., webhook from GitHub)</li>
+                        <li>Run the pipeline and verify the results</li>
+                    </ol>
+                    
+                    <div class="activity">
+                        <h4 class="activity-title">Exercise: Create a Jenkins Pipeline</h4>
+                        <p>Create a basic Jenkins pipeline for a simple application. Include the following stages:</p>
+                        <ol class="activity-steps">
+                            <li>Checkout code from a repository</li>
+                            <li>Build the application</li>
+                            <li>Run unit tests</li>
+                            <li>Run code quality checks</li>
+                            <li>Archive the build artifacts</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Code Quality in CI</h2>
+                    <p>Continuous Integration provides an opportunity to enforce code quality standards automatically.</p>
+                    
+                    <h3>Code Quality Checks</h3>
+                    <ul>
+                        <li><strong>Static Code Analysis</strong> - Analyze code without executing it to find potential bugs, vulnerabilities, and code smells</li>
+                        <li><strong>Code Style Checks</strong> - Ensure code follows style guidelines and conventions</li>
+                        <li><strong>Code Coverage</strong> - Measure how much of the code is covered by tests</li>
+                        <li><strong>Duplicate Code Detection</strong> - Identify repeated code that could be refactored</li>
+                        <li><strong>Complexity Analysis</strong> - Measure code complexity to identify areas that may be difficult to maintain</li>
+                        <li><strong>Security Scanning</strong> - Identify potential security vulnerabilities</li>
+                        <li><strong>Dependency Checking</strong> - Verify that dependencies are up-to-date and free from known vulnerabilities</li>
+                    </ul>
+                    
+                    <h3>Popular Code Quality Tools</h3>
+                    <ul>
+                        <li><strong>SonarQube</strong> - Comprehensive code quality platform</li>
+                        <li><strong>ESLint</strong> - JavaScript linter</li>
+                        <li><strong>Checkstyle</strong> - Java style checker</li>
+                        <li><strong>PMD</strong> - Source code analyzer for Java and other languages</li>
+                        <li><strong>FindBugs</strong> - Java static analysis tool</li>
+                        <li><strong>JaCoCo</strong> - Java code coverage tool</li>
+                        <li><strong>OWASP Dependency-Check</strong> - Security vulnerability scanner for dependencies</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: SonarQube Configuration for Maven</div>
+<pre><code class="xml">&lt;!-- pom.xml --&gt;
+&lt;properties&gt;
+    &lt;sonar.host.url&gt;http://localhost:9000&lt;/sonar.host.url&gt;
+    &lt;sonar.login&gt;your-token&lt;/sonar.login&gt;
+    &lt;sonar.projectKey&gt;my-project&lt;/sonar.projectKey&gt;
+    &lt;sonar.projectName&gt;My Project&lt;/sonar.projectName&gt;
+    &lt;sonar.projectVersion&gt;1.0&lt;/sonar.projectVersion&gt;
+    &lt;sonar.sources&gt;src/main&lt;/sonar.sources&gt;
+    &lt;sonar.tests&gt;src/test&lt;/sonar.tests&gt;
+    &lt;sonar.java.coveragePlugin&gt;jacoco&lt;/sonar.java.coveragePlugin&gt;
+    &lt;sonar.jacoco.reportPath&gt;${project.build.directory}/jacoco.exec&lt;/sonar.jacoco.reportPath&gt;
+    &lt;sonar.language&gt;java&lt;/sonar.language&gt;
+&lt;/properties&gt;
+
+&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.jacoco&lt;/groupId&gt;
+            &lt;artifactId&gt;jacoco-maven-plugin&lt;/artifactId&gt;
+            &lt;version&gt;0.8.7&lt;/version&gt;
+            &lt;executions&gt;
+                &lt;execution&gt;
+                    &lt;id&gt;default-prepare-agent&lt;/id&gt;
+                    &lt;goals&gt;
+                        &lt;goal&gt;prepare-agent&lt;/goal&gt;
+                    &lt;/goals&gt;
+                &lt;/execution&gt;
+                &lt;execution&gt;
+                    &lt;id&gt;default-report&lt;/id&gt;
+                    &lt;phase&gt;prepare-package&lt;/phase&gt;
+                    &lt;goals&gt;
+                        &lt;goal&gt;report&lt;/goal&gt;
+                    &lt;/goals&gt;
+                &lt;/execution&gt;
+            &lt;/executions&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+</code></pre>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Real-World Example: Google's CI Practices</h2>
+                    <p>Google has developed sophisticated CI practices to manage its massive codebase.</p>
+                    
+                    <h3>Key CI Practices at Google</h3>
+                    <ul>
+                        <li><strong>Monorepo</strong> - Most of Google's code is in a single repository</li>
+                        <li><strong>Trunk-Based Development</strong> - Developers commit directly to the main branch</li>
+                        <li><strong>Presubmit Checks</strong> - Automated checks run before code is submitted</li>
+                        <li><strong>Code Review</strong> - All code changes require review before submission</li>
+                        <li><strong>Automated Testing</strong> - Extensive automated testing at all levels</li>
+                        <li><strong>Continuous Build System</strong> - Builds and tests run continuously</li>
+                        <li><strong>Hermetic Builds</strong> - Builds are isolated from the environment to ensure reproducibility</li>
+                        <li><strong>Test Automation</strong> - Tests are run automatically on code changes</li>
+                    </ul>
+                    
+                    <h3>Lessons from Google</h3>
+                    <ul>
+                        <li>Invest in build and test infrastructure</li>
+                        <li>Automate everything possible</li>
+                        <li>Make tests fast and reliable</li>
+                        <li>Provide fast feedback to developers</li>
+                        <li>Use a single source of truth for code</li>
+                        <li>Enforce code quality through automation</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>CI Best Practices</h2>
+                    <p>Here are some best practices for implementing continuous integration:</p>
+                    
+                    <h3>Technical Best Practices</h3>
+                    <ul>
+                        <li><strong>Commit Small Changes Frequently</strong> - Smaller changes are easier to integrate and test</li>
+                        <li><strong>Fix Broken Builds Immediately</strong> - A broken build should be the team's highest priority</li>
+                        <li><strong>Write Automated Tests</strong> - Tests should be comprehensive and reliable</li>
+                        <li><strong>Keep the Build Fast</strong> - Aim for a build time of less than 10 minutes</li>
+                        <li><strong>Test in a Production-Like Environment</strong> - Minimize environment-related issues</li>
+                        <li><strong>Don't Check In on a Broken Build</strong> - Wait until the build is fixed before checking in new changes</li>
+                        <li><strong>Use a Build Server</strong> - Dedicated machines for building and testing</li>
+                        <li><strong>Automate Deployment</strong> - Eliminate manual steps in the deployment process</li>
+                    </ul>
+                    
+                    <h3>Cultural Best Practices</h3>
+                    <ul>
+                        <li><strong>Make the Build Status Visible</strong> - Use build monitors or notifications</li>
+                        <li><strong>Celebrate Successes</strong> - Recognize when the team achieves CI milestones</li>
+                        <li><strong>Learn from Failures</strong> - Use build failures as learning opportunities</li>
+                        <li><strong>Share Responsibility</strong> - Everyone is responsible for the build</li>
+                        <li><strong>Continuously Improve</strong> - Regularly review and improve the CI process</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Measuring CI Effectiveness</h2>
+                    <p>To ensure your CI implementation is effective, you need to measure it.</p>
+                    
+                    <h3>CI Metrics</h3>
+                    <ul>
+                        <li><strong>Build Duration</strong> - How long it takes to complete a build</li>
+                        <li><strong>Build Frequency</strong> - How often builds are triggered</li>
+                        <li><strong>Build Success Rate</strong> - Percentage of builds that succeed</li>
+                        <li><strong>Mean Time to Fix</strong> - Average time to fix a broken build</li>
+                        <li><strong>Code Coverage</strong> - Percentage of code covered by tests</li>
+                        <li><strong>Test Pass Rate</strong> - Percentage of tests that pass</li>
+                        <li><strong>Defect Density</strong> - Number of defects per unit of code</li>
+                        <li><strong>Deployment Frequency</strong> - How often code is deployed to production</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Python Script to Calculate CI Metrics</div>
+<pre><code class="python">import requests
+import datetime
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Example: Fetch build data from Jenkins API
+def fetch_jenkins_builds(jenkins_url, job_name, api_token, username):
+    auth = (username, api_token)
+    url = f"{jenkins_url}/job/{job_name}/api/json?tree=builds[number,result,timestamp,duration]"
+    response = requests.get(url, auth=auth)
+    return response.json()['builds']
+
+# Calculate build metrics
+def calculate_build_metrics(builds):
+    total_builds = len(builds)
+    successful_builds = sum(1 for build in builds if build['result'] == 'SUCCESS')
+    success_rate = (successful_builds / total_builds) * 100 if total_builds > 0 else 0
+    
+    # Calculate average build duration (in minutes)
+    durations = [build['duration'] / 1000 / 60 for build in builds if build['result'] == 'SUCCESS']
+    avg_duration = sum(durations) / len(durations) if durations else 0
+    
+    # Calculate build frequency (builds per day)
+    if total_builds >= 2:
+        oldest_build_time = min(build['timestamp'] for build in builds) / 1000
+        newest_build_time = max(build['timestamp'] for build in builds) / 1000
+        days_diff = (newest_build_time - oldest_build_time) / 86400  # seconds in a day
+        build_frequency = total_builds / days_diff if days_diff > 0 else 0
+    else:
+        build_frequency = 0
+    
+    return {
+        'total_builds': total_builds,
+        'successful_builds': successful_builds,
+        'success_rate': success_rate,
+        'avg_duration': avg_duration,
+        'build_frequency': build_frequency
+    }
+
+# Example usage
+jenkins_url = 'https://jenkins.example.com'
+job_name = 'my-project'
+api_token = 'your-api-token'
+username = 'your-username'
+
+builds = fetch_jenkins_builds(jenkins_url, job_name, api_token, username)
+metrics = calculate_build_metrics(builds)
+
+print(f"Total builds: {metrics['total_builds']}")
+print(f"Successful builds: {metrics['successful_builds']}")
+print(f"Success rate: {metrics['success_rate']:.2f}%")
+print(f"Average build duration: {metrics['avg_duration']:.2f} minutes")
+print(f"Build frequency: {metrics['build_frequency']:.2f} builds per day")
+
+# Plot build duration over time
+build_numbers = [build['number'] for build in builds]
+build_durations = [build['duration'] / 1000 / 60 for build in builds]  # Convert to minutes
+
+plt.figure(figsize=(10, 6))
+plt.plot(build_numbers, build_durations, marker='o')
+plt.title('Build Duration Over Time')
+plt.xlabel('Build Number')
+plt.ylabel('Duration (minutes)')
+plt.grid(True)
+plt.savefig('build_duration.png')
+plt.close()
+</code></pre>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Knowledge Check</h2>
+                    <div class="quiz-question">
+                        <p>1. What is the primary goal of continuous integration?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">To eliminate the need for testing</li>
+                            <li class="quiz-option" data-correct="false">To replace manual deployment</li>
+                            <li class="quiz-option" data-correct="true">To detect integration errors as quickly as possible</li>
+                            <li class="quiz-option" data-correct="false">To reduce the number of code commits</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>2. Which of the following is NOT a principle of continuous integration?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">Maintain a single source repository</li>
+                            <li class="quiz-option" data-correct="false">Automate the build</li>
+                            <li class="quiz-option" data-correct="false">Make the build self-testing</li>
+                            <li class="quiz-option" data-correct="true">Limit code commits to once per week</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>3. What is a Jenkinsfile?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">A file that contains Jenkins server configuration</li>
+                            <li class="quiz-option" data-correct="true">A file that defines a Jenkins pipeline as code</li>
+                            <li class="quiz-option" data-correct="false">A file that lists Jenkins plugins</li>
+                            <li class="quiz-option" data-correct="false">A file that contains Jenkins user credentials</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>4. Which code quality check analyzes code without executing it?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="true">Static code analysis</li>
+                            <li class="quiz-option" data-correct="false">Code coverage</li>
+                            <li class="quiz-option" data-correct="false">Integration testing</li>
+                            <li class="quiz-option" data-correct="false">Performance testing</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>5. What should be the team's highest priority when the build is broken?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">Continue working on new features</li>
+                            <li class="quiz-option" data-correct="false">Run more tests</li>
+                            <li class="quiz-option" data-correct="true">Fix the broken build immediately</li>
+                            <li class="quiz-option" data-correct="false">Deploy the last successful build</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Additional Resources</h2>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=1er2cjUq1UI" target="_blank">Video: Continuous Integration Explained</a></li>
+                        <li><a href="https://martinfowler.com/articles/continuousIntegration.html" target="_blank">Article: Continuous Integration by Martin Fowler</a></li>
+                        <li><a href="https://www.jenkins.io/doc/book/pipeline/" target="_blank">Documentation: Jenkins Pipeline</a></li>
+                        <li><a href="https://docs.github.com/en/actions" target="_blank">Documentation: GitHub Actions</a></li>
+                        <li><a href="https://www.sonarqube.org/features/clean-code/" target="_blank">Tool: SonarQube for Code Quality</a></li>
+                    </ul>
+                </div>
+                
+                <div class="week-navigation">
+                    <a href="week5.html" class="btn">Previous Week: Creating the Foundation of Deployment Pipeline</a>
+                    <a href="week7.html" class="btn">Next Week: Implementing Continuous Delivery</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">DevOps & QA Courses</div>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="../index.html">Home</a></li>
+                    <li class="footer-link"><a href="index.html">DevOps Course</a></li>
+                    <li class="footer-link"><a href="../qa/index.html">QA Course</a></li>
+                    <li class="footer-link"><a href="../resources/index.html">Resources</a></li>
+                    <li class="footer-link"><a href="https://github.com/username/course-website" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DevOps & QA Courses. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <span>↑</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 9: Configuration Management | DevOps Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;700&family=Fira+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="../index.html">DevOps & QA Courses</a>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="index.html" class="nav-link">DevOps Course</a></li>
+                    <li class="nav-item"><a href="../qa/index.html" class="nav-link">QA Course</a></li>
+                    <li class="nav-item"><a href="../resources/index.html" class="nav-link">Resources</a></li>
+                    <li class="nav-item"><a href="https://github.com/username/course-website" class="nav-link" target="_blank">GitHub</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="week-content">
+                <h1>Week 9: Configuration Management</h1>
+                
+                <div class="content-section">
+                    <h2>Learning Objectives</h2>
+                    <p>By the end of this week, you will be able to:</p>
+                    <ul>
+                        <li>Understand the principles and benefits of configuration management</li>
+                        <li>Compare different configuration management tools</li>
+                        <li>Implement server configuration using Ansible</li>
+                        <li>Apply configuration management best practices</li>
+                        <li>Integrate configuration management with infrastructure provisioning</li>
+                        <li>Manage secrets and sensitive data securely</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Introduction to Configuration Management</h2>
+                    <p>Configuration Management (CM) is the practice of handling changes to a system in a way that maintains system integrity over time. In the context of DevOps, it involves automating the setup and maintenance of systems to ensure they're in a desired, consistent state.</p>
+                    
+                    <h3>Key Principles of Configuration Management</h3>
+                    <ul>
+                        <li><strong>Consistency</strong> - Systems are configured in a consistent, predictable manner</li>
+                        <li><strong>Idempotence</strong> - Running the same configuration multiple times produces the same result</li>
+                        <li><strong>Automation</strong> - Configuration changes are applied automatically</li>
+                        <li><strong>Version Control</strong> - Configuration code is stored in version control systems</li>
+                        <li><strong>Documentation</strong> - Configuration serves as documentation for the system</li>
+                        <li><strong>Testing</strong> - Configuration can be tested before applying to production</li>
+                    </ul>
+                    
+                    <h3>Benefits of Configuration Management</h3>
+                    <ul>
+                        <li><strong>Reduced Configuration Drift</strong> - Systems remain in their desired state</li>
+                        <li><strong>Faster Recovery</strong> - Systems can be quickly rebuilt after failures</li>
+                        <li><strong>Scalability</strong> - New systems can be configured automatically</li>
+                        <li><strong>Compliance</strong> - Systems can be configured to meet security and compliance requirements</li>
+                        <li><strong>Collaboration</strong> - Teams can work together on system configuration</li>
+                        <li><strong>Auditability</strong> - Changes to configuration are tracked and documented</li>
+                    </ul>
+                    
+                    <div class="activity">
+                        <h4 class="activity-title">Discussion Question</h4>
+                        <p>How does configuration management differ from infrastructure provisioning? In what ways do they complement each other in a DevOps workflow?</p>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Configuration Management Tools</h2>
+                    <p>There are various tools for implementing configuration management, each with its own approach and strengths.</p>
+                    
+                    <h3>Popular Configuration Management Tools</h3>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Tool</th>
+                                <th>Approach</th>
+                                <th>Language</th>
+                                <th>Architecture</th>
+                                <th>Best For</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ansible</td>
+                                <td>Procedural</td>
+                                <td>YAML</td>
+                                <td>Agentless (SSH)</td>
+                                <td>Simple, ad-hoc configuration management</td>
+                            </tr>
+                            <tr>
+                                <td>Chef</td>
+                                <td>Procedural</td>
+                                <td>Ruby</td>
+                                <td>Agent-based</td>
+                                <td>Complex, large-scale environments</td>
+                            </tr>
+                            <tr>
+                                <td>Puppet</td>
+                                <td>Declarative</td>
+                                <td>Puppet DSL</td>
+                                <td>Agent-based</td>
+                                <td>Enterprise environments with strict compliance</td>
+                            </tr>
+                            <tr>
+                                <td>SaltStack</td>
+                                <td>Declarative/Procedural</td>
+                                <td>YAML/Python</td>
+                                <td>Agent-based</td>
+                                <td>High-speed execution at scale</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h3>Choosing a Configuration Management Tool</h3>
+                    <p>When selecting a configuration management tool, consider the following factors:</p>
+                    <ul>
+                        <li><strong>Learning Curve</strong> - How easy is it to learn and use?</li>
+                        <li><strong>Community and Support</strong> - Is there a strong community and good documentation?</li>
+                        <li><strong>Integration</strong> - Does it integrate well with your existing tools and workflows?</li>
+                        <li><strong>Scalability</strong> - Can it handle your environment size and complexity?</li>
+                        <li><strong>Agent vs. Agentless</strong> - Do you prefer an agent-based or agentless approach?</li>
+                        <li><strong>Idempotence</strong> - Does it ensure idempotent operations?</li>
+                        <li><strong>Reporting</strong> - Does it provide good visibility into configuration state?</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Server Configuration with Ansible</h2>
+                    <p>Ansible is a popular configuration management tool known for its simplicity and agentless architecture.</p>
+                    
+                    <h3>Key Ansible Concepts</h3>
+                    <ul>
+                        <li><strong>Inventory</strong> - List of hosts to be managed</li>
+                        <li><strong>Playbooks</strong> - YAML files describing the desired state</li>
+                        <li><strong>Tasks</strong> - Individual units of configuration</li>
+                        <li><strong>Modules</strong> - Plugins that perform specific actions</li>
+                        <li><strong>Roles</strong> - Reusable collections of tasks</li>
+                        <li><strong>Variables</strong> - Values that can be used in playbooks</li>
+                        <li><strong>Templates</strong> - Jinja2 templates for generating files</li>
+                        <li><strong>Handlers</strong> - Tasks that run when notified by other tasks</li>
+                    </ul>
+                    
+                    <h3>Ansible Architecture</h3>
+                    <p>Ansible uses an agentless architecture, connecting to managed nodes via SSH (for Linux) or WinRM (for Windows). This simplifies deployment and reduces maintenance overhead.</p>
+                    <ul>
+                        <li><strong>Control Node</strong> - The system where Ansible is installed</li>
+                        <li><strong>Managed Nodes</strong> - The systems being configured</li>
+                        <li><strong>Inventory</strong> - Defines the managed nodes</li>
+                        <li><strong>Modules</strong> - Executed on managed nodes</li>
+                        <li><strong>Plugins</strong> - Extend Ansible's functionality</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Ansible Inventory File</div>
+<pre><code class="ini"># inventory.ini
+
+# Web servers
+[webservers]
+web1.example.com
+web2.example.com
+web3.example.com
+
+# Database servers
+[dbservers]
+db1.example.com
+db2.example.com
+
+# Load balancers
+[loadbalancers]
+lb1.example.com
+lb2.example.com
+
+# Group of groups
+[production:children]
+webservers
+dbservers
+loadbalancers
+
+# Group variables
+[webservers:vars]
+http_port=80
+https_port=443
+web_app_version=1.2.3
+
+[dbservers:vars]
+db_port=5432
+db_version=12
+</code></pre>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Ansible Playbook for Web Server Configuration</div>
+<pre><code class="yaml">---
+# webserver.yml
+- name: Configure web servers
+  hosts: webservers
+  become: yes
+  vars:
+    app_name: my-web-app
+    app_version: "{{ web_app_version | default('1.0.0') }}"
+    app_port: "{{ http_port | default(80) }}"
+    
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+      when: ansible_os_family == "Debian"
+    
+    - name: Install required packages
+      package:
+        name:
+          - nginx
+          - python3
+          - python3-pip
+          - git
+        state: present
+    
+    - name: Configure Nginx
+      template:
+        src: templates/nginx.conf.j2
+        dest: /etc/nginx/sites-available/{{ app_name }}
+        owner: root
+        group: root
+        mode: '0644'
+      notify: restart nginx
+    
+    - name: Enable Nginx site
+      file:
+        src: /etc/nginx/sites-available/{{ app_name }}
+        dest: /etc/nginx/sites-enabled/{{ app_name }}
+        state: link
+      notify: restart nginx
+    
+    - name: Ensure app directory exists
+      file:
+        path: /var/www/{{ app_name }}
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: '0755'
+    
+    - name: Clone application repository
+      git:
+        repo: https://github.com/example/{{ app_name }}.git
+        dest: /var/www/{{ app_name }}
+        version: "{{ app_version }}"
+      notify: restart application
+    
+    - name: Install application dependencies
+      pip:
+        requirements: /var/www/{{ app_name }}/requirements.txt
+        state: present
+    
+    - name: Configure application
+      template:
+        src: templates/app_config.j2
+        dest: /var/www/{{ app_name }}/config.py
+        owner: www-data
+        group: www-data
+        mode: '0644'
+      notify: restart application
+    
+    - name: Create application service
+      template:
+        src: templates/app_service.j2
+        dest: /etc/systemd/system/{{ app_name }}.service
+        owner: root
+        group: root
+        mode: '0644'
+      notify: restart application
+    
+    - name: Ensure application service is enabled
+      systemd:
+        name: "{{ app_name }}"
+        enabled: yes
+        daemon_reload: yes
+    
+  handlers:
+    - name: restart nginx
+      systemd:
+        name: nginx
+        state: restarted
+    
+    - name: restart application
+      systemd:
+        name: "{{ app_name }}"
+        state: restarted
+</code></pre>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Nginx Configuration Template (Jinja2)</div>
+<pre><code class="nginx"># templates/nginx.conf.j2
+server {
+    listen {{ http_port }};
+    server_name {{ inventory_hostname }};
+
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    location /static {
+        alias /var/www/{{ app_name }}/static;
+    }
+}
+</code></pre>
+                    </div>
+                    
+                    <h3>Ansible Roles</h3>
+                    <p>Roles are a way to organize playbooks and reuse code. A role is a set of tasks, variables, files, templates, and handlers that are stored in a standardized directory structure.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Ansible Role Directory Structure</div>
+<pre><code class="bash">roles/
+└── webserver/
+    ├── defaults/
+    │   └── main.yml       # Default variables
+    ├── files/
+    │   └── app.conf       # Static files
+    ├── handlers/
+    │   └── main.yml       # Handlers
+    ├── meta/
+    │   └── main.yml       # Role metadata
+    ├── tasks/
+    │   └── main.yml       # Tasks
+    ├── templates/
+    │   ├── nginx.conf.j2  # Templates
+    │   └── app_config.j2
+    └── vars/
+        └── main.yml       # Role variables
+</code></pre>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Using Roles in a Playbook</div>
+<pre><code class="yaml">---
+# site.yml
+- name: Configure web servers
+  hosts: webservers
+  become: yes
+  roles:
+    - common
+    - webserver
+    - monitoring
+
+- name: Configure database servers
+  hosts: dbservers
+  become: yes
+  roles:
+    - common
+    - database
+    - monitoring
+</code></pre>
+                    </div>
+                    
+                    <div class="activity">
+                        <h4 class="activity-title">Exercise: Create an Ansible Playbook</h4>
+                        <p>Create an Ansible playbook to configure a web server with the following requirements:</p>
+                        <ol class="activity-steps">
+                            <li>Install Nginx and configure it to serve a static website</li>
+                            <li>Set up a firewall to allow HTTP, HTTPS, and SSH traffic</li>
+                            <li>Create a cron job to back up the website daily</li>
+                            <li>Configure log rotation for Nginx logs</li>
+                            <li>Use variables to make the playbook reusable</li>
+                            <li>Include handlers to restart services when needed</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Configuration Management Best Practices</h2>
+                    <p>Following best practices for configuration management helps ensure that your systems are reliable, maintainable, and secure.</p>
+                    
+                    <h3>Version Control</h3>
+                    <ul>
+                        <li>Store all configuration code in version control</li>
+                        <li>Use branches and pull requests for changes</li>
+                        <li>Require code reviews before merging</li>
+                        <li>Tag releases for important configuration versions</li>
+                    </ul>
+                    
+                    <h3>Modularity and Reusability</h3>
+                    <ul>
+                        <li>Create reusable roles or modules for common patterns</li>
+                        <li>Use consistent naming conventions</li>
+                        <li>Parameterize configurations with variables</li>
+                        <li>Document inputs, outputs, and usage</li>
+                    </ul>
+                    
+                    <h3>Testing</h3>
+                    <ul>
+                        <li>Test configurations in development environments before applying to production</li>
+                        <li>Use tools like Molecule for testing Ansible roles</li>
+                        <li>Write idempotent configurations that can be run multiple times</li>
+                        <li>Include validation steps in your configurations</li>
+                    </ul>
+                    
+                    <h3>Security</h3>
+                    <ul>
+                        <li>Never store secrets in configuration code</li>
+                        <li>Use secret management tools (e.g., Ansible Vault, HashiCorp Vault)</li>
+                        <li>Apply the principle of least privilege</li>
+                        <li>Regularly audit and rotate credentials</li>
+                    </ul>
+                    
+                    <h3>Documentation</h3>
+                    <ul>
+                        <li>Document the purpose and usage of configuration code</li>
+                        <li>Include README files in repositories</li>
+                        <li>Comment complex or non-obvious configurations</li>
+                        <li>Keep documentation up-to-date with code changes</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Integrating Configuration Management with Infrastructure Provisioning</h2>
+                    <p>Configuration management and infrastructure provisioning are complementary practices that work together to create and maintain your infrastructure.</p>
+                    
+                    <h3>Approaches to Integration</h3>
+                    <ul>
+                        <li><strong>Sequential Approach</strong> - Provision infrastructure first, then configure it</li>
+                        <li><strong>Parallel Approach</strong> - Use separate tools for provisioning and configuration</li>
+                        <li><strong>Unified Approach</strong> - Use a single tool for both provisioning and configuration</li>
+                        <li><strong>Hybrid Approach</strong> - Use specialized tools but integrate them in a workflow</li>
+                    </ul>
+                    
+                    <h3>Terraform and Ansible Integration</h3>
+                    <p>A common approach is to use Terraform for infrastructure provisioning and Ansible for configuration management.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Terraform Provisioning with Ansible Configuration</div>
+<pre><code class="hcl"># main.tf
+
+# Provision EC2 instance
+resource "aws_instance" "web" {
+  ami           = var.ami_id
+  instance_type = var.instance_type
+  key_name      = var.key_name
+  
+  vpc_security_group_ids = [aws_security_group.web.id]
+  
+  tags = {
+    Name = "${var.project_name}-web"
+  }
+  
+  # Generate inventory file for Ansible
+  provisioner "local-exec" {
+    command = <<-EOT
+      echo "[webservers]" > inventory.ini
+      echo "${self.public_ip} ansible_user=ubuntu ansible_ssh_private_key_file=${var.private_key_path}" >> inventory.ini
+    EOT
+  }
+  
+  # Run Ansible playbook
+  provisioner "local-exec" {
+    command = "ansible-playbook -i inventory.ini webserver.yml"
+  }
+}
+
+# Output the instance IP
+output "web_ip" {
+  value = aws_instance.web.public_ip
+}
+</code></pre>
+                    </div>
+                    
+                    <h3>Benefits of Integration</h3>
+                    <ul>
+                        <li><strong>End-to-End Automation</strong> - Automate the entire process from provisioning to configuration</li>
+                        <li><strong>Consistency</strong> - Ensure consistent environments from development to production</li>
+                        <li><strong>Efficiency</strong> - Reduce manual steps and human error</li>
+                        <li><strong>Scalability</strong> - Easily scale infrastructure up or down</li>
+                        <li><strong>Flexibility</strong> - Use the best tool for each job</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Managing Secrets and Sensitive Data</h2>
+                    <p>Securely managing secrets and sensitive data is a critical aspect of configuration management.</p>
+                    
+                    <h3>Challenges of Secret Management</h3>
+                    <ul>
+                        <li>Secrets should not be stored in version control</li>
+                        <li>Secrets need to be accessible to authorized systems and users</li>
+                        <li>Secrets should be rotated regularly</li>
+                        <li>Access to secrets should be audited</li>
+                    </ul>
+                    
+                    <h3>Secret Management Solutions</h3>
+                    <ul>
+                        <li><strong>Ansible Vault</strong> - Encrypt sensitive data in Ansible playbooks</li>
+                        <li><strong>HashiCorp Vault</strong> - Dedicated secret management tool</li>
+                        <li><strong>AWS Secrets Manager</strong> - AWS service for managing secrets</li>
+                        <li><strong>Azure Key Vault</strong> - Azure service for managing secrets</li>
+                        <li><strong>Google Secret Manager</strong> - Google Cloud service for managing secrets</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Using Ansible Vault</div>
+<pre><code class="bash"># Create an encrypted file
+ansible-vault create secrets.yml
+
+# Edit an encrypted file
+ansible-vault edit secrets.yml
+
+# Encrypt an existing file
+ansible-vault encrypt secrets.yml
+
+# Decrypt an encrypted file
+ansible-vault decrypt secrets.yml
+
+# View an encrypted file
+ansible-vault view secrets.yml
+
+# Run a playbook with vault password
+ansible-playbook --ask-vault-pass playbook.yml
+
+# Run a playbook with vault password file
+ansible-playbook --vault-password-file=vault_pass.txt playbook.yml
+</code></pre>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Encrypted Variables in Ansible</div>
+<pre><code class="yaml"># secrets.yml (encrypted with Ansible Vault)
+---
+db_password: supersecretpassword
+api_key: abcdef123456
+ssl_private_key: |
+  -----BEGIN PRIVATE KEY-----
+  MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC7VJTUt9Us8cKj
+  ...
+  -----END PRIVATE KEY-----
+
+# Using encrypted variables in a playbook
+---
+- name: Configure database
+  hosts: dbservers
+  become: yes
+  vars_files:
+    - secrets.yml
+  
+  tasks:
+    - name: Set database password
+      mysql_user:
+        name: myapp
+        password: "{{ db_password }}"
+        host: localhost
+        priv: 'myapp.*:ALL'
+        state: present
+</code></pre>
+                    </div>
+                    
+                    <h3>Best Practices for Secret Management</h3>
+                    <ul>
+                        <li>Use a dedicated secret management solution</li>
+                        <li>Encrypt secrets at rest and in transit</li>
+                        <li>Implement least privilege access to secrets</li>
+                        <li>Rotate secrets regularly</li>
+                        <li>Audit access to secrets</li>
+                        <li>Use different secrets for different environments</li>
+                        <li>Never log or display secrets</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Real-World Example: Netflix's Configuration Management</h2>
+                    <p>Netflix has developed a sophisticated approach to configuration management as part of its cloud-native architecture.</p>
+                    
+                    <h3>Key Aspects of Netflix's Configuration Management</h3>
+                    <ul>
+                        <li><strong>Immutable Infrastructure</strong> - Using pre-configured Amazon Machine Images (AMIs)</li>
+                        <li><strong>Spinnaker</strong> - Continuous delivery platform for managing deployments</li>
+                        <li><strong>Archaius</strong> - Dynamic property management system</li>
+                        <li><strong>Chaos Engineering</strong> - Testing configuration resilience with chaos experiments</li>
+                        <li><strong>Automated Rollbacks</strong> - Automatically rolling back problematic configurations</li>
+                    </ul>
+                    
+                    <h3>Lessons from Netflix</h3>
+                    <ul>
+                        <li>Embrace immutable infrastructure for consistency</li>
+                        <li>Implement dynamic configuration for flexibility</li>
+                        <li>Test configuration resilience with chaos engineering</li>
+                        <li>Automate rollbacks for quick recovery</li>
+                        <li>Invest in tooling for scale</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Knowledge Check</h2>
+                    <div class="quiz-question">
+                        <p>1. What is the primary benefit of configuration management?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">Faster hardware provisioning</li>
+                            <li class="quiz-option" data-correct="true">Consistent, reproducible system configuration</li>
+                            <li class="quiz-option" data-correct="false">Reduced hardware costs</li>
+                            <li class="quiz-option" data-correct="false">Elimination of operations teams</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>2. Which of the following is an agentless configuration management tool?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="true">Ansible</li>
+                            <li class="quiz-option" data-correct="false">Chef</li>
+                            <li class="quiz-option" data-correct="false">Puppet</li>
+                            <li class="quiz-option" data-correct="false">SaltStack</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>3. What is the purpose of Ansible Vault?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">To store Ansible playbooks</li>
+                            <li class="quiz-option" data-correct="false">To manage Ansible roles</li>
+                            <li class="quiz-option" data-correct="true">To encrypt sensitive data in Ansible playbooks</li>
+                            <li class="quiz-option" data-correct="false">To provision infrastructure</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>4. Which of the following is NOT a best practice for configuration management?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">Store configuration code in version control</li>
+                            <li class="quiz-option" data-correct="false">Create reusable roles or modules</li>
+                            <li class="quiz-option" data-correct="true">Store secrets directly in configuration code</li>
+                            <li class="quiz-option" data-correct="false">Test configurations before applying to production</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>5. In Ansible, what is the purpose of a handler?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">To manage inventory</li>
+                            <li class="quiz-option" data-correct="false">To define variables</li>
+                            <li class="quiz-option" data-correct="true">To run tasks when notified by other tasks</li>
+                            <li class="quiz-option" data-correct="false">To encrypt sensitive data</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Additional Resources</h2>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=gMpldbcMHuI" target="_blank">Video: Ansible Crash Course</a></li>
+                        <li><a href="https://docs.ansible.com/ansible/latest/index.html" target="_blank">Documentation: Ansible</a></li>
+                        <li><a href="https://www.redhat.com/en/topics/automation/what-is-configuration-management" target="_blank">Article: What is Configuration Management?</a></li>
+                        <li><a href="https://medium.com/netflix-techblog/how-we-build-code-at-netflix-c5d9bd727f15" target="_blank">Blog: How We Build Code at Netflix</a></li>
+                        <li><a href="https://www.ansible.com/integrations/cloud/amazon-web-services" target="_blank">Resource: Ansible AWS Integration</a></li>
+                    </ul>
+                </div>
+                
+                <div class="week-navigation">
+                    <a href="week8.html" class="btn">Previous Week: Infrastructure as Code</a>
+                    <a href="week10.html" class="btn">Next Week: Monitoring and Observability</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">DevOps & QA Courses</div>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="../index.html">Home</a></li>
+                    <li class="footer-link"><a href="index.html">DevOps Course</a></li>
+                    <li class="footer-link"><a href="../qa/index.html">QA Course</a></li>
+                    <li class="footer-link"><a href="../resources/index.html">Resources</a></li>
+                    <li class="footer-link"><a href="https://github.com/username/course-website" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DevOps & QA Courses. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <span>↑</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

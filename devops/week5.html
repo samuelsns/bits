@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 5: Creating the Foundation of Deployment Pipeline | DevOps Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;700&family=Fira+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="../index.html">DevOps & QA Courses</a>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="index.html" class="nav-link">DevOps Course</a></li>
+                    <li class="nav-item"><a href="../qa/index.html" class="nav-link">QA Course</a></li>
+                    <li class="nav-item"><a href="../resources/index.html" class="nav-link">Resources</a></li>
+                    <li class="nav-item"><a href="https://github.com/username/course-website" class="nav-link" target="_blank">GitHub</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="week-content">
+                <h1>Week 5: Creating the Foundation of Deployment Pipeline</h1>
+                
+                <div class="content-section">
+                    <h2>Learning Objectives</h2>
+                    <p>By the end of this week, you will be able to:</p>
+                    <ul>
+                        <li>Understand the concept and components of a deployment pipeline</li>
+                        <li>Design a basic deployment pipeline for a software project</li>
+                        <li>Implement version control best practices</li>
+                        <li>Set up automated build processes</li>
+                        <li>Configure basic automated testing in a pipeline</li>
+                        <li>Explain the role of infrastructure as code in deployment pipelines</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Introduction to Deployment Pipelines</h2>
+                    <p>A deployment pipeline is an automated implementation of your application's build, deploy, test, and release process. It provides visibility into the production readiness of your application at each stage of the software delivery process.</p>
+                    
+                    <h3>Key Benefits of Deployment Pipelines</h3>
+                    <ul>
+                        <li><strong>Visibility</strong> - Everyone can see the progress of changes through the pipeline</li>
+                        <li><strong>Feedback</strong> - Fast feedback on the quality and deployability of changes</li>
+                        <li><strong>Automation</strong> - Consistent, repeatable processes that reduce manual errors</li>
+                        <li><strong>Collaboration</strong> - Shared responsibility for delivery across teams</li>
+                        <li><strong>Confidence</strong> - Increased confidence in the release process</li>
+                    </ul>
+                    
+                    <h3>Stages of a Typical Deployment Pipeline</h3>
+                    <ol>
+                        <li><strong>Commit Stage</strong> - Compile code, run unit tests, static analysis</li>
+                        <li><strong>Automated Acceptance Testing</strong> - Verify functionality meets requirements</li>
+                        <li><strong>Additional Testing</strong> - Performance, security, compatibility testing</li>
+                        <li><strong>Production Deployment</strong> - Deploy to production environments</li>
+                    </ol>
+                    
+                    <div class="activity">
+                        <h4 class="activity-title">Discussion Question</h4>
+                        <p>What challenges might organizations face when implementing a deployment pipeline for the first time? How might these challenges differ between small startups and large enterprises?</p>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Version Control Best Practices</h2>
+                    <p>Version control is the foundation of any deployment pipeline. It provides a single source of truth for your codebase and enables collaboration among team members.</p>
+                    
+                    <h3>Git Workflow Strategies</h3>
+                    <ul>
+                        <li><strong>Feature Branch Workflow</strong> - Create a branch for each feature or bug fix</li>
+                        <li><strong>Gitflow</strong> - Structured branching model with dedicated branches for features, releases, and hotfixes</li>
+                        <li><strong>Trunk-Based Development</strong> - Everyone commits to a single branch with frequent integration</li>
+                        <li><strong>GitHub Flow</strong> - Simplified workflow with feature branches and pull requests</li>
+                    </ul>
+                    
+                    <h3>Version Control Best Practices</h3>
+                    <ul>
+                        <li>Commit frequently with meaningful commit messages</li>
+                        <li>Keep branches short-lived to minimize merge conflicts</li>
+                        <li>Use pull requests or code reviews before merging</li>
+                        <li>Automate tests to run on every commit</li>
+                        <li>Tag releases with version numbers</li>
+                        <li>Store configuration in version control (but not secrets)</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Git Commands for Feature Branch Workflow</div>
+<pre><code class="bash"># Create a new feature branch
+git checkout -b feature/new-login-page
+
+# Make changes and commit
+git add .
+git commit -m "Implement new login page design"
+
+# Push branch to remote repository
+git push -u origin feature/new-login-page
+
+# Update branch with latest changes from main
+git fetch origin
+git rebase origin/main
+
+# After pull request is approved, merge to main
+git checkout main
+git merge --no-ff feature/new-login-page
+git push origin main
+
+# Delete the feature branch
+git branch -d feature/new-login-page
+git push origin --delete feature/new-login-page
+</code></pre>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Automated Build Processes</h2>
+                    <p>Automated builds are a critical component of deployment pipelines, ensuring that code can be compiled and packaged consistently.</p>
+                    
+                    <h3>Key Components of Build Automation</h3>
+                    <ul>
+                        <li><strong>Build Triggers</strong> - Events that initiate the build process (e.g., code commits, scheduled builds)</li>
+                        <li><strong>Build Tools</strong> - Software that compiles and packages code (e.g., Maven, Gradle, npm)</li>
+                        <li><strong>Build Servers</strong> - Systems that execute and manage builds (e.g., Jenkins, GitHub Actions, CircleCI)</li>
+                        <li><strong>Artifacts</strong> - Output of the build process (e.g., executables, container images)</li>
+                        <li><strong>Artifact Repositories</strong> - Storage for build artifacts (e.g., Nexus, Artifactory, Docker Hub)</li>
+                    </ul>
+                    
+                    <h3>Setting Up a Basic CI Pipeline with GitHub Actions</h3>
+                    <p>GitHub Actions allows you to automate your build, test, and deployment workflows directly in your GitHub repository.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: GitHub Actions Workflow for a Node.js Application</div>
+<pre><code class="yaml">name: Node.js CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run build --if-present
+    - run: npm test
+    
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-output
+        path: dist/
+</code></pre>
+                    </div>
+                    
+                    <div class="activity">
+                        <h4 class="activity-title">Exercise: Create a Basic CI Pipeline</h4>
+                        <p>Create a basic CI pipeline for a simple application using GitHub Actions or another CI tool of your choice. Include the following steps:</p>
+                        <ol class="activity-steps">
+                            <li>Set up a repository with a simple application (e.g., a "Hello World" web app)</li>
+                            <li>Create a CI configuration file that triggers on commits to the main branch</li>
+                            <li>Configure the pipeline to install dependencies, build the application, and run tests</li>
+                            <li>Add a step to create and store a build artifact</li>
+                            <li>Test the pipeline by making a change and pushing it to the repository</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Automated Testing in Pipelines</h2>
+                    <p>Automated testing is essential for ensuring the quality of your software as it moves through the deployment pipeline.</p>
+                    
+                    <h3>Types of Tests in a Pipeline</h3>
+                    <ul>
+                        <li><strong>Unit Tests</strong> - Test individual components in isolation</li>
+                        <li><strong>Integration Tests</strong> - Test interactions between components</li>
+                        <li><strong>Functional Tests</strong> - Test complete features or user stories</li>
+                        <li><strong>Performance Tests</strong> - Test system performance under load</li>
+                        <li><strong>Security Tests</strong> - Identify security vulnerabilities</li>
+                        <li><strong>Acceptance Tests</strong> - Verify the system meets business requirements</li>
+                    </ul>
+                    
+                    <h3>Testing Best Practices in Pipelines</h3>
+                    <ul>
+                        <li>Run fast tests (unit tests) early in the pipeline</li>
+                        <li>Run slower tests (integration, functional) later in the pipeline</li>
+                        <li>Fail fast - stop the pipeline as soon as tests fail</li>
+                        <li>Make test results visible and actionable</li>
+                        <li>Include code coverage metrics</li>
+                        <li>Maintain a stable test environment</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Jest Configuration for a JavaScript Project</div>
+<pre><code class="javascript">// jest.config.js
+module.exports = {
+  // Automatically clear mock calls and instances between every test
+  clearMocks: true,
+
+  // Indicates whether the coverage information should be collected while executing the test
+  collectCoverage: true,
+
+  // The directory where Jest should output its coverage files
+  coverageDirectory: "coverage",
+
+  // Indicates which provider should be used to instrument code for coverage
+  coverageProvider: "v8",
+
+  // A list of paths to directories that Jest should use to search for files in
+  roots: [
+    "<rootDir>/src"
+  ],
+
+  // The test environment that will be used for testing
+  testEnvironment: "node",
+
+  // The glob patterns Jest uses to detect test files
+  testMatch: [
+    "**/__tests__/**/*.js?(x)",
+    "**/?(*.)+(spec|test).js?(x)"
+  ],
+
+  // A map from regular expressions to paths to transformers
+  transform: {
+    "^.+\\.(js|jsx)$": "babel-jest"
+  },
+};
+</code></pre>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Infrastructure as Code</h2>
+                    <p>Infrastructure as Code (IaC) is the practice of managing and provisioning infrastructure through code instead of manual processes.</p>
+                    
+                    <h3>Benefits of Infrastructure as Code</h3>
+                    <ul>
+                        <li><strong>Consistency</strong> - Infrastructure is provisioned the same way every time</li>
+                        <li><strong>Version Control</strong> - Infrastructure changes can be tracked and reviewed</li>
+                        <li><strong>Automation</strong> - Reduces manual steps and human error</li>
+                        <li><strong>Documentation</strong> - Code serves as documentation for the infrastructure</li>
+                        <li><strong>Testing</strong> - Infrastructure can be tested before deployment</li>
+                        <li><strong>Scalability</strong> - Easy to scale infrastructure up or down</li>
+                    </ul>
+                    
+                    <h3>Popular IaC Tools</h3>
+                    <ul>
+                        <li><strong>Terraform</strong> - Cloud-agnostic infrastructure provisioning</li>
+                        <li><strong>AWS CloudFormation</strong> - Infrastructure provisioning for AWS</li>
+                        <li><strong>Azure Resource Manager</strong> - Infrastructure provisioning for Azure</li>
+                        <li><strong>Google Cloud Deployment Manager</strong> - Infrastructure provisioning for GCP</li>
+                        <li><strong>Ansible</strong> - Configuration management and orchestration</li>
+                        <li><strong>Chef</strong> - Configuration management</li>
+                        <li><strong>Puppet</strong> - Configuration management</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Terraform Configuration for AWS EC2 Instance</div>
+<pre><code class="hcl">provider "aws" {
+  region = "us-west-2"
+}
+
+resource "aws_instance" "web_server" {
+  ami           = "ami-0c55b159cbfafe1f0"
+  instance_type = "t2.micro"
+  
+  tags = {
+    Name = "WebServer"
+    Environment = "Production"
+  }
+  
+  vpc_security_group_ids = [aws_security_group.web.id]
+  
+  user_data = <<-EOF
+              #!/bin/bash
+              echo "Hello, World" > index.html
+              nohup busybox httpd -f -p 8080 &
+              EOF
+}
+
+resource "aws_security_group" "web" {
+  name        = "web-server-sg"
+  description = "Allow HTTP and SSH traffic"
+
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+output "public_ip" {
+  value = aws_instance.web_server.public_ip
+}
+</code></pre>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Real-World Example: Netflix's Deployment Pipeline</h2>
+                    <p>Netflix is known for its advanced deployment pipeline that enables thousands of deployments per day.</p>
+                    
+                    <h3>Key Components of Netflix's Pipeline</h3>
+                    <ul>
+                        <li><strong>Spinnaker</strong> - Multi-cloud continuous delivery platform</li>
+                        <li><strong>Automated Canary Analysis</strong> - Automated testing of new deployments</li>
+                        <li><strong>Chaos Engineering</strong> - Deliberately introducing failures to test resilience</li>
+                        <li><strong>Blue/Green Deployments</strong> - Running two identical production environments</li>
+                        <li><strong>Feature Flags</strong> - Enabling or disabling features without code changes</li>
+                    </ul>
+                    
+                    <h3>Lessons from Netflix</h3>
+                    <ul>
+                        <li>Automate everything possible</li>
+                        <li>Test in production (safely)</li>
+                        <li>Design for failure</li>
+                        <li>Use data to make deployment decisions</li>
+                        <li>Empower teams to own their deployments</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Designing Your First Deployment Pipeline</h2>
+                    <p>When designing your first deployment pipeline, start simple and iterate.</p>
+                    
+                    <h3>Steps to Design a Basic Pipeline</h3>
+                    <ol>
+                        <li><strong>Identify Stages</strong> - Determine the key stages your code needs to go through</li>
+                        <li><strong>Define Success Criteria</strong> - What must pass at each stage?</li>
+                        <li><strong>Choose Tools</strong> - Select appropriate tools for each stage</li>
+                        <li><strong>Implement Automation</strong> - Automate as much as possible</li>
+                        <li><strong>Monitor and Improve</strong> - Collect metrics and continuously improve</li>
+                    </ol>
+                    
+                    <h3>Common Pipeline Patterns</h3>
+                    <ul>
+                        <li><strong>Basic CI/CD Pipeline</strong> - Build, test, deploy</li>
+                        <li><strong>Environment Promotion Pipeline</strong> - Dev, test, staging, production</li>
+                        <li><strong>Feature Branch Pipeline</strong> - CI for feature branches, CD for main branch</li>
+                        <li><strong>Parallel Testing Pipeline</strong> - Run different types of tests in parallel</li>
+                        <li><strong>Microservices Pipeline</strong> - Independent pipelines for each service</li>
+                    </ul>
+                    
+                    <div class="activity">
+                        <h4 class="activity-title">Exercise: Design a Deployment Pipeline</h4>
+                        <p>Design a deployment pipeline for a web application. Include the following:</p>
+                        <ol class="activity-steps">
+                            <li>Identify the stages of your pipeline</li>
+                            <li>Specify the tools you would use at each stage</li>
+                            <li>Define the success criteria for each stage</li>
+                            <li>Describe how you would handle failures at each stage</li>
+                            <li>Create a diagram of your pipeline</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Knowledge Check</h2>
+                    <div class="quiz-question">
+                        <p>1. What is the primary purpose of a deployment pipeline?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">To replace manual testing</li>
+                            <li class="quiz-option" data-correct="false">To eliminate the need for operations teams</li>
+                            <li class="quiz-option" data-correct="true">To automate the build, test, and deployment process</li>
+                            <li class="quiz-option" data-correct="false">To reduce the number of deployments</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>2. Which of the following is NOT typically a stage in a deployment pipeline?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">Commit stage</li>
+                            <li class="quiz-option" data-correct="false">Automated acceptance testing</li>
+                            <li class="quiz-option" data-correct="false">Performance testing</li>
+                            <li class="quiz-option" data-correct="true">Requirements gathering</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>3. Which Git workflow involves everyone committing to a single branch with frequent integration?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">Gitflow</li>
+                            <li class="quiz-option" data-correct="false">Feature Branch Workflow</li>
+                            <li class="quiz-option" data-correct="true">Trunk-Based Development</li>
+                            <li class="quiz-option" data-correct="false">GitHub Flow</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>4. What is Infrastructure as Code (IaC)?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="true">Managing and provisioning infrastructure through code instead of manual processes</li>
+                            <li class="quiz-option" data-correct="false">Writing code that runs on infrastructure</li>
+                            <li class="quiz-option" data-correct="false">Using infrastructure to run code</li>
+                            <li class="quiz-option" data-correct="false">Documenting infrastructure in code comments</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>5. Which testing approach should be run earliest in the deployment pipeline?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="true">Unit tests</li>
+                            <li class="quiz-option" data-correct="false">Integration tests</li>
+                            <li class="quiz-option" data-correct="false">Performance tests</li>
+                            <li class="quiz-option" data-correct="false">Acceptance tests</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Additional Resources</h2>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=1er2cjUq1UI" target="_blank">Video: Continuous Delivery Pipeline Explained</a></li>
+                        <li><a href="https://martinfowler.com/bliki/DeploymentPipeline.html" target="_blank">Article: Deployment Pipeline by Martin Fowler</a></li>
+                        <li><a href="https://www.terraform.io/docs/tutorials/index.html" target="_blank">Tutorial: Getting Started with Terraform</a></li>
+                        <li><a href="https://github.com/features/actions" target="_blank">GitHub Actions Documentation</a></li>
+                        <li><a href="https://netflixtechblog.com/how-we-build-code-at-netflix-c5d9bd727f15" target="_blank">Blog: How We Build Code at Netflix</a></li>
+                    </ul>
+                </div>
+                
+                <div class="week-navigation">
+                    <a href="week4.html" class="btn">Previous Week: Introduction to the Technical Practice of Flow</a>
+                    <a href="week6.html" class="btn">Next Week: Continuous Integration</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">DevOps & QA Courses</div>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="../index.html">Home</a></li>
+                    <li class="footer-link"><a href="index.html">DevOps Course</a></li>
+                    <li class="footer-link"><a href="../qa/index.html">QA Course</a></li>
+                    <li class="footer-link"><a href="../resources/index.html">Resources</a></li>
+                    <li class="footer-link"><a href="https://github.com/username/course-website" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DevOps & QA Courses. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <span>↑</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

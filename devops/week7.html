@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 7: Implementing Continuous Delivery | DevOps Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;700&family=Fira+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="../index.html">DevOps & QA Courses</a>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="index.html" class="nav-link">DevOps Course</a></li>
+                    <li class="nav-item"><a href="../qa/index.html" class="nav-link">QA Course</a></li>
+                    <li class="nav-item"><a href="../resources/index.html" class="nav-link">Resources</a></li>
+                    <li class="nav-item"><a href="https://github.com/username/course-website" class="nav-link" target="_blank">GitHub</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="week-content">
+                <h1>Week 7: Implementing Continuous Delivery</h1>
+                
+                <div class="content-section">
+                    <h2>Learning Objectives</h2>
+                    <p>By the end of this week, you will be able to:</p>
+                    <ul>
+                        <li>Understand the difference between continuous delivery and continuous deployment</li>
+                        <li>Design and implement a continuous delivery pipeline</li>
+                        <li>Apply deployment automation techniques</li>
+                        <li>Implement feature toggles for safer releases</li>
+                        <li>Design effective deployment strategies</li>
+                        <li>Measure and improve the delivery process</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Continuous Delivery vs. Continuous Deployment</h2>
+                    <p>While the terms are often used interchangeably, there are important distinctions between continuous delivery and continuous deployment:</p>
+                    
+                    <h3>Continuous Delivery</h3>
+                    <p>Continuous Delivery (CD) is a software development practice where code changes are automatically built, tested, and prepared for release to production. The key characteristic is that releases to production are manual decisions.</p>
+                    <ul>
+                        <li>Code is always in a deployable state</li>
+                        <li>Deployment to production is a manual decision</li>
+                        <li>Enables frequent releases with lower risk</li>
+                        <li>Provides business flexibility in release timing</li>
+                    </ul>
+                    
+                    <h3>Continuous Deployment</h3>
+                    <p>Continuous Deployment takes continuous delivery one step further by automatically deploying every change that passes all stages of the production pipeline to production.</p>
+                    <ul>
+                        <li>Every change that passes tests is automatically deployed to production</li>
+                        <li>No human intervention required</li>
+                        <li>Provides fastest time to market</li>
+                        <li>Requires high confidence in testing and monitoring</li>
+                    </ul>
+                    
+                    <div class="activity">
+                        <h4 class="activity-title">Discussion Question</h4>
+                        <p>Under what circumstances would continuous delivery be more appropriate than continuous deployment? What organizational or technical factors might influence this decision?</p>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Designing a Continuous Delivery Pipeline</h2>
+                    <p>A well-designed continuous delivery pipeline enables reliable, repeatable releases with minimal manual intervention.</p>
+                    
+                    <h3>Key Components of a CD Pipeline</h3>
+                    <ul>
+                        <li><strong>Build Automation</strong> - Compile code and create artifacts</li>
+                        <li><strong>Test Automation</strong> - Run unit, integration, and acceptance tests</li>
+                        <li><strong>Deployment Automation</strong> - Automatically deploy to environments</li>
+                        <li><strong>Environment Management</strong> - Provision and configure environments</li>
+                        <li><strong>Release Management</strong> - Coordinate and track releases</li>
+                        <li><strong>Monitoring and Feedback</strong> - Monitor applications and gather feedback</li>
+                    </ul>
+                    
+                    <h3>CD Pipeline Stages</h3>
+                    <ol>
+                        <li><strong>Commit Stage</strong> - Build, unit tests, static analysis</li>
+                        <li><strong>Acceptance Test Stage</strong> - Deploy to test environment, run acceptance tests</li>
+                        <li><strong>Performance Test Stage</strong> - Deploy to performance environment, run performance tests</li>
+                        <li><strong>Manual Testing Stage</strong> - Deploy to UAT environment, perform manual tests</li>
+                        <li><strong>Production Stage</strong> - Deploy to production environment</li>
+                    </ol>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: GitLab CI/CD Pipeline Configuration</div>
+<pre><code class="yaml"># .gitlab-ci.yml
+stages:
+  - build
+  - test
+  - acceptance
+  - performance
+  - staging
+  - production
+
+variables:
+  DOCKER_REGISTRY: registry.example.com
+  APP_IMAGE: $DOCKER_REGISTRY/my-app:$CI_COMMIT_SHA
+
+build:
+  stage: build
+  script:
+    - docker build -t $APP_IMAGE .
+    - docker push $APP_IMAGE
+  artifacts:
+    paths:
+      - build/
+
+unit_tests:
+  stage: test
+  script:
+    - npm install
+    - npm run test:unit
+  artifacts:
+    paths:
+      - coverage/
+
+integration_tests:
+  stage: test
+  script:
+    - npm install
+    - npm run test:integration
+  dependencies:
+    - build
+
+acceptance_tests:
+  stage: acceptance
+  script:
+    - kubectl apply -f k8s/test/deployment.yaml
+    - npm run test:acceptance
+  environment:
+    name: test
+    url: https://test.example.com
+  dependencies:
+    - build
+
+performance_tests:
+  stage: performance
+  script:
+    - kubectl apply -f k8s/perf/deployment.yaml
+    - npm run test:performance
+  environment:
+    name: performance
+    url: https://perf.example.com
+  dependencies:
+    - build
+
+deploy_staging:
+  stage: staging
+  script:
+    - kubectl apply -f k8s/staging/deployment.yaml
+  environment:
+    name: staging
+    url: https://staging.example.com
+  dependencies:
+    - build
+  when: manual
+
+deploy_production:
+  stage: production
+  script:
+    - kubectl apply -f k8s/production/deployment.yaml
+  environment:
+    name: production
+    url: https://example.com
+  dependencies:
+    - build
+  when: manual
+  only:
+    - main
+</code></pre>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Deployment Automation</h2>
+                    <p>Deployment automation is the practice of using scripts or tools to deploy applications to various environments without manual intervention.</p>
+                    
+                    <h3>Benefits of Deployment Automation</h3>
+                    <ul>
+                        <li><strong>Consistency</strong> - Deployments are performed the same way every time</li>
+                        <li><strong>Reliability</strong> - Reduces human error in the deployment process</li>
+                        <li><strong>Speed</strong> - Automated deployments are faster than manual ones</li>
+                        <li><strong>Auditability</strong> - Automated deployments provide a clear record of what was deployed and when</li>
+                        <li><strong>Scalability</strong> - Automated deployments can be scaled to handle many applications and environments</li>
+                    </ul>
+                    
+                    <h3>Deployment Automation Tools</h3>
+                    <ul>
+                        <li><strong>Ansible</strong> - Simple, agentless automation tool</li>
+                        <li><strong>Chef</strong> - Configuration management tool with a focus on infrastructure as code</li>
+                        <li><strong>Puppet</strong> - Configuration management tool with a declarative approach</li>
+                        <li><strong>Kubernetes</strong> - Container orchestration platform</li>
+                        <li><strong>Spinnaker</strong> - Multi-cloud continuous delivery platform</li>
+                        <li><strong>Octopus Deploy</strong> - Deployment automation server</li>
+                        <li><strong>AWS CodeDeploy</strong> - Deployment service for AWS</li>
+                        <li><strong>Azure DevOps</strong> - Microsoft's suite of DevOps tools</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Ansible Playbook for Application Deployment</div>
+<pre><code class="yaml">---
+# deploy_app.yml
+- name: Deploy Application
+  hosts: web_servers
+  become: yes
+  vars:
+    app_name: my-app
+    app_version: "{{ lookup('env', 'APP_VERSION') }}"
+    app_config_template: templates/app_config.j2
+    app_service_name: my-app
+    
+  tasks:
+    - name: Ensure application directory exists
+      file:
+        path: "/opt/{{ app_name }}"
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: '0755'
+        
+    - name: Download application package
+      get_url:
+        url: "https://artifacts.example.com/{{ app_name }}/{{ app_name }}-{{ app_version }}.tar.gz"
+        dest: "/tmp/{{ app_name }}-{{ app_version }}.tar.gz"
+        
+    - name: Extract application package
+      unarchive:
+        src: "/tmp/{{ app_name }}-{{ app_version }}.tar.gz"
+        dest: "/opt/{{ app_name }}"
+        remote_src: yes
+        creates: "/opt/{{ app_name }}/{{ app_version }}"
+        
+    - name: Create symlink to current version
+      file:
+        src: "/opt/{{ app_name }}/{{ app_version }}"
+        dest: "/opt/{{ app_name }}/current"
+        state: link
+        force: yes
+        
+    - name: Configure application
+      template:
+        src: "{{ app_config_template }}"
+        dest: "/opt/{{ app_name }}/current/config.yml"
+        owner: www-data
+        group: www-data
+        mode: '0644'
+      notify: restart application
+        
+    - name: Ensure application service is enabled
+      systemd:
+        name: "{{ app_service_name }}"
+        enabled: yes
+        
+  handlers:
+    - name: restart application
+      systemd:
+        name: "{{ app_service_name }}"
+        state: restarted
+</code></pre>
+                    </div>
+                    
+                    <div class="activity">
+                        <h4 class="activity-title">Exercise: Create a Deployment Script</h4>
+                        <p>Create a simple deployment script for a web application using a tool of your choice (e.g., Bash, Ansible, Docker). Include the following steps:</p>
+                        <ol class="activity-steps">
+                            <li>Download or copy the application artifacts</li>
+                            <li>Configure the application for the target environment</li>
+                            <li>Stop the existing application (if running)</li>
+                            <li>Deploy the new version</li>
+                            <li>Start the application</li>
+                            <li>Verify the deployment was successful</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Feature Toggles</h2>
+                    <p>Feature toggles (also known as feature flags) are a technique that allows teams to modify system behavior without changing code.</p>
+                    
+                    <h3>Types of Feature Toggles</h3>
+                    <ul>
+                        <li><strong>Release Toggles</strong> - Enable incomplete features to be deployed to production but not activated</li>
+                        <li><strong>Experiment Toggles</strong> - Used for A/B testing to compare different implementations</li>
+                        <li><strong>Ops Toggles</strong> - Control operational aspects of a system (e.g., throttling)</li>
+                        <li><strong>Permission Toggles</strong> - Control feature access based on user permissions</li>
+                    </ul>
+                    
+                    <h3>Implementing Feature Toggles</h3>
+                    <p>Feature toggles can be implemented in various ways, from simple configuration files to sophisticated feature management systems.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Simple Feature Toggle Implementation in JavaScript</div>
+<pre><code class="javascript">// features.js
+const features = {
+  newUserInterface: false,
+  enhancedSearch: true,
+  betaFeatures: {
+    recommendationEngine: false,
+    chatSupport: true
+  }
+};
+
+// Usage in application code
+function renderUserInterface() {
+  if (features.newUserInterface) {
+    return renderNewUI();
+  } else {
+    return renderLegacyUI();
+  }
+}
+
+function search(query) {
+  if (features.enhancedSearch) {
+    return enhancedSearch(query);
+  } else {
+    return basicSearch(query);
+  }
+}
+
+// More sophisticated implementation with user targeting
+function isFeatureEnabled(featureName, user) {
+  // Simple feature check
+  if (!features[featureName]) {
+    return false;
+  }
+  
+  // Check if feature is enabled for specific user groups
+  if (user && user.groups) {
+    const featureConfig = featureConfigs[featureName];
+    if (featureConfig && featureConfig.enabledForGroups) {
+      return user.groups.some(group => featureConfig.enabledForGroups.includes(group));
+    }
+  }
+  
+  // Check if feature is enabled for percentage of users
+  if (user && featureConfig && featureConfig.rolloutPercentage) {
+    const userHash = hashUser(user.id);
+    return userHash % 100 < featureConfig.rolloutPercentage;
+  }
+  
+  return features[featureName];
+}
+
+// Usage with user targeting
+function renderFeature(featureName, user) {
+  if (isFeatureEnabled(featureName, user)) {
+    return renderFeatureComponent(featureName);
+  } else {
+    return null;
+  }
+}
+</code></pre>
+                    </div>
+                    
+                    <h3>Feature Toggle Best Practices</h3>
+                    <ul>
+                        <li>Keep the number of toggles to a minimum</li>
+                        <li>Remove toggles when they are no longer needed</li>
+                        <li>Document the purpose and expected lifetime of each toggle</li>
+                        <li>Test both toggle states</li>
+                        <li>Use a feature toggle management system for complex applications</li>
+                        <li>Consider the performance impact of toggle evaluation</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Deployment Strategies</h2>
+                    <p>Deployment strategies define how new versions of an application are released to users.</p>
+                    
+                    <h3>Common Deployment Strategies</h3>
+                    <ul>
+                        <li><strong>Big Bang Deployment</strong> - Replace the entire application at once</li>
+                        <li><strong>Blue/Green Deployment</strong> - Maintain two identical environments and switch traffic</li>
+                        <li><strong>Canary Deployment</strong> - Gradually roll out to a subset of users</li>
+                        <li><strong>Rolling Deployment</strong> - Update instances one at a time</li>
+                        <li><strong>A/B Testing</strong> - Direct different users to different versions to compare</li>
+                        <li><strong>Shadow Deployment</strong> - Run new version in parallel without affecting users</li>
+                    </ul>
+                    
+                    <h3>Blue/Green Deployment</h3>
+                    <p>In a blue/green deployment, two identical environments (blue and green) are maintained. At any time, one environment is live and serving production traffic.</p>
+                    <ol>
+                        <li>Deploy the new version to the inactive environment (e.g., green)</li>
+                        <li>Test the new version in the green environment</li>
+                        <li>Switch traffic from the blue environment to the green environment</li>
+                        <li>The green environment is now live, and the blue environment is inactive</li>
+                        <li>If issues are detected, traffic can be quickly switched back to the blue environment</li>
+                    </ol>
+                    
+                    <h3>Canary Deployment</h3>
+                    <p>In a canary deployment, the new version is gradually rolled out to a subset of users before being deployed to the entire user base.</p>
+                    <ol>
+                        <li>Deploy the new version to a small subset of servers or users (e.g., 5%)</li>
+                        <li>Monitor the performance and behavior of the new version</li>
+                        <li>If no issues are detected, gradually increase the percentage of traffic to the new version</li>
+                        <li>Continue until 100% of traffic is directed to the new version</li>
+                        <li>If issues are detected, roll back by redirecting traffic to the old version</li>
+                    </ol>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Kubernetes Canary Deployment</div>
+<pre><code class="yaml"># Original deployment (90% of traffic)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  replicas: 9
+  selector:
+    matchLabels:
+      app: my-app
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: my-app
+        version: v1
+    spec:
+      containers:
+      - name: my-app
+        image: my-app:v1
+        ports:
+        - containerPort: 8080
+
+---
+# Canary deployment (10% of traffic)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app-canary
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-app
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: my-app
+        version: v2
+    spec:
+      containers:
+      - name: my-app
+        image: my-app:v2
+        ports:
+        - containerPort: 8080
+
+---
+# Service that selects both deployments
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app
+spec:
+  selector:
+    app: my-app  # Matches both v1 and v2
+  ports:
+  - port: 80
+    targetPort: 8080
+</code></pre>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Real-World Example: Amazon's Deployment Process</h2>
+                    <p>Amazon has developed a sophisticated deployment process that enables them to deploy code thousands of times per day.</p>
+                    
+                    <h3>Key Features of Amazon's Deployment Process</h3>
+                    <ul>
+                        <li><strong>Service-Oriented Architecture</strong> - Small, independent services with their own deployment pipelines</li>
+                        <li><strong>Automated Deployments</strong> - Fully automated deployment process</li>
+                        <li><strong>Canary Deployments</strong> - Gradual rollout to detect issues early</li>
+                        <li><strong>Automated Rollbacks</strong> - Automatic rollback if issues are detected</li>
+                        <li><strong>Feature Toggles</strong> - Control feature availability without code changes</li>
+                        <li><strong>Extensive Monitoring</strong> - Real-time monitoring of application health</li>
+                    </ul>
+                    
+                    <h3>Lessons from Amazon</h3>
+                    <ul>
+                        <li>Small, frequent deployments reduce risk</li>
+                        <li>Automation is essential for scale</li>
+                        <li>Monitoring and quick rollbacks are critical</li>
+                        <li>Decoupled services enable independent deployments</li>
+                        <li>Testing in production (safely) provides valuable feedback</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Measuring and Improving the Delivery Process</h2>
+                    <p>To continuously improve your delivery process, you need to measure it and identify areas for improvement.</p>
+                    
+                    <h3>Key Delivery Metrics</h3>
+                    <ul>
+                        <li><strong>Deployment Frequency</strong> - How often you deploy to production</li>
+                        <li><strong>Lead Time for Changes</strong> - Time from code commit to code in production</li>
+                        <li><strong>Mean Time to Recover (MTTR)</strong> - Time to recover from failures</li>
+                        <li><strong>Change Failure Rate</strong> - Percentage of deployments that cause failures</li>
+                        <li><strong>Deployment Duration</strong> - Time it takes to complete a deployment</li>
+                        <li><strong>Deployment Success Rate</strong> - Percentage of deployments that succeed</li>
+                        <li><strong>Time to Detect Issues</strong> - Time from deployment to issue detection</li>
+                    </ul>
+                    
+                    <h3>Improving the Delivery Process</h3>
+                    <ul>
+                        <li><strong>Identify Bottlenecks</strong> - Use value stream mapping to identify constraints</li>
+                        <li><strong>Automate Manual Steps</strong> - Eliminate manual steps in the process</li>
+                        <li><strong>Improve Test Coverage</strong> - Increase test coverage to catch issues earlier</li>
+                        <li><strong>Reduce Batch Size</strong> - Deploy smaller changes more frequently</li>
+                        <li><strong>Implement Feature Toggles</strong> - Decouple deployment from release</li>
+                        <li><strong>Improve Monitoring</strong> - Detect issues faster with better monitoring</li>
+                        <li><strong>Practice Continuous Improvement</strong> - Regularly review and improve the process</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Knowledge Check</h2>
+                    <div class="quiz-question">
+                        <p>1. What is the key difference between continuous delivery and continuous deployment?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">Continuous delivery doesn't include automated testing</li>
+                            <li class="quiz-option" data-correct="true">Continuous delivery requires a manual approval to deploy to production, while continuous deployment is fully automated</li>
+                            <li class="quiz-option" data-correct="false">Continuous deployment is only for small applications</li>
+                            <li class="quiz-option" data-correct="false">Continuous delivery is only for web applications</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>2. Which deployment strategy maintains two identical environments and switches traffic between them?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">Canary deployment</li>
+                            <li class="quiz-option" data-correct="true">Blue/Green deployment</li>
+                            <li class="quiz-option" data-correct="false">Rolling deployment</li>
+                            <li class="quiz-option" data-correct="false">Big Bang deployment</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>3. What is the primary purpose of feature toggles?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">To replace version control</li>
+                            <li class="quiz-option" data-correct="false">To eliminate the need for testing</li>
+                            <li class="quiz-option" data-correct="true">To modify system behavior without changing code</li>
+                            <li class="quiz-option" data-correct="false">To speed up the build process</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>4. Which metric measures how quickly you can recover from a failure in production?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">Deployment Frequency</li>
+                            <li class="quiz-option" data-correct="false">Lead Time for Changes</li>
+                            <li class="quiz-option" data-correct="true">Mean Time to Recover (MTTR)</li>
+                            <li class="quiz-option" data-correct="false">Change Failure Rate</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>5. In a canary deployment, what happens first?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="true">Deploy the new version to a small subset of servers or users</li>
+                            <li class="quiz-option" data-correct="false">Deploy the new version to all servers simultaneously</li>
+                            <li class="quiz-option" data-correct="false">Deploy the new version to a separate environment</li>
+                            <li class="quiz-option" data-correct="false">Roll back the previous version</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Additional Resources</h2>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=2BTQQhC8WdI" target="_blank">Video: Continuous Delivery vs. Continuous Deployment</a></li>
+                        <li><a href="https://martinfowler.com/bliki/FeatureToggle.html" target="_blank">Article: Feature Toggles by Martin Fowler</a></li>
+                        <li><a href="https://martinfowler.com/bliki/BlueGreenDeployment.html" target="_blank">Article: Blue/Green Deployment by Martin Fowler</a></li>
+                        <li><a href="https://martinfowler.com/bliki/CanaryRelease.html" target="_blank">Article: Canary Release by Martin Fowler</a></li>
+                        <li><a href="https://cloud.google.com/solutions/devops/devops-tech-deployment-automation" target="_blank">Google Cloud: Deployment Automation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="week-navigation">
+                    <a href="week6.html" class="btn">Previous Week: Continuous Integration</a>
+                    <a href="week8.html" class="btn">Next Week: Infrastructure as Code</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">DevOps & QA Courses</div>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="../index.html">Home</a></li>
+                    <li class="footer-link"><a href="index.html">DevOps Course</a></li>
+                    <li class="footer-link"><a href="../qa/index.html">QA Course</a></li>
+                    <li class="footer-link"><a href="../resources/index.html">Resources</a></li>
+                    <li class="footer-link"><a href="https://github.com/username/course-website" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DevOps & QA Courses. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <span>↑</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

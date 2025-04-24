@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weeks 11-13: Testing Metrics and Quality Management | QA Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;700&family=Fira+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="../index.html">DevOps & QA Courses</a>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="../devops/index.html" class="nav-link">DevOps Course</a></li>
+                    <li class="nav-item"><a href="index.html" class="nav-link">QA Course</a></li>
+                    <li class="nav-item"><a href="../resources/index.html" class="nav-link">Resources</a></li>
+                    <li class="nav-item"><a href="https://github.com/username/course-website" class="nav-link" target="_blank">GitHub</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="week-content">
+                <h1>Weeks 11-13: Testing Metrics and Quality Management</h1>
+                
+                <div class="content-section">
+                    <h2>Learning Objectives</h2>
+                    <p>By the end of these three weeks, you will be able to:</p>
+                    <ul>
+                        <li>Define and implement effective testing metrics and KPIs</li>
+                        <li>Analyze testing data to make informed decisions about quality</li>
+                        <li>Create meaningful test reports for different stakeholders</li>
+                        <li>Implement quality management processes in software development</li>
+                        <li>Apply risk-based testing approaches to optimize testing efforts</li>
+                        <li>Evaluate the effectiveness of testing processes and implement improvements</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Introduction to Testing Metrics</h2>
+                    <p>Testing metrics are quantitative measurements that help evaluate the effectiveness and efficiency of testing activities. They provide insights into the quality of the software, the progress of testing, and areas that need improvement.</p>
+                    
+                    <h3>Why Measure Testing?</h3>
+                    <ul>
+                        <li><strong>Visibility</strong> - Provide transparency into testing activities</li>
+                        <li><strong>Decision Making</strong> - Support data-driven decisions about quality</li>
+                        <li><strong>Process Improvement</strong> - Identify areas for improvement</li>
+                        <li><strong>Resource Allocation</strong> - Optimize testing resources</li>
+                        <li><strong>Predictability</strong> - Forecast testing effort and completion</li>
+                        <li><strong>Communication</strong> - Facilitate discussions with stakeholders</li>
+                    </ul>
+                    
+                    <div class="interactive-element">
+                        <h4 class="interactive-title">Interactive Diagram: Testing Metrics Categories</h4>
+                        <div class="metrics-categories">
+                            <div class="metric-category" id="product-quality">
+                                <span class="category-name">Product Quality Metrics</span>
+                                <div class="category-details">
+                                    <h5>Product Quality Metrics</h5>
+                                    <p>Measure the quality of the software product itself</p>
+                                    <ul>
+                                        <li>Defect Density</li>
+                                        <li>Defect Severity Distribution</li>
+                                        <li>Test Coverage</li>
+                                        <li>Requirements Coverage</li>
+                                        <li>Reliability Metrics</li>
+                                        <li>Performance Metrics</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="metric-category" id="process-quality">
+                                <span class="category-name">Process Quality Metrics</span>
+                                <div class="category-details">
+                                    <h5>Process Quality Metrics</h5>
+                                    <p>Measure the effectiveness of the testing process</p>
+                                    <ul>
+                                        <li>Test Execution Rate</li>
+                                        <li>Defect Detection Rate</li>
+                                        <li>Defect Rejection Rate</li>
+                                        <li>Defect Leakage</li>
+                                        <li>Test Design Efficiency</li>
+                                        <li>Test Review Efficiency</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="metric-category" id="project-metrics">
+                                <span class="category-name">Project Metrics</span>
+                                <div class="category-details">
+                                    <h5>Project Metrics</h5>
+                                    <p>Measure testing progress and effort in the context of the project</p>
+                                    <ul>
+                                        <li>Test Progress (planned vs. actual)</li>
+                                        <li>Test Effort (planned vs. actual)</li>
+                                        <li>Schedule Variance</li>
+                                        <li>Cost Variance</li>
+                                        <li>Resource Utilization</li>
+                                        <li>Test Environment Availability</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="metric-category" id="operational-metrics">
+                                <span class="category-name">Operational Metrics</span>
+                                <div class="category-details">
+                                    <h5>Operational Metrics</h5>
+                                    <p>Measure the performance of the software in production</p>
+                                    <ul>
+                                        <li>Mean Time Between Failures (MTBF)</li>
+                                        <li>Mean Time To Repair (MTTR)</li>
+                                        <li>Customer Reported Defects</li>
+                                        <li>System Availability</li>
+                                        <li>Response Time</li>
+                                        <li>User Satisfaction</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="diagram-caption">Click on each category to see examples of metrics in that category.</p>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Key Testing Metrics and KPIs</h2>
+                    
+                    <h3>Defect Metrics</h3>
+                    <ul>
+                        <li><strong>Defect Density</strong> - Number of defects per size of the software (e.g., per KLOC or function point)</li>
+                        <li><strong>Defect Distribution</strong> - Categorization of defects by type, severity, priority, etc.</li>
+                        <li><strong>Defect Removal Efficiency (DRE)</strong> - Percentage of defects found before release</li>
+                        <li><strong>Defect Leakage</strong> - Percentage of defects that escaped to production</li>
+                        <li><strong>Defect Age</strong> - Time between defect detection and resolution</li>
+                        <li><strong>Defect Trend</strong> - Pattern of defect discovery over time</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Calculating Defect Metrics</div>
+<pre><code class="javascript">// JavaScript function to calculate defect metrics
+function calculateDefectMetrics(defects, codeSize, releasedDefects) {
+  // Defect Density = Total Defects / Code Size
+  const defectDensity = defects.length / codeSize;
+  
+  // Defect Distribution by Severity
+  const severityDistribution = defects.reduce((acc, defect) => {
+    acc[defect.severity] = (acc[defect.severity] || 0) + 1;
+    return acc;
+  }, {});
+  
+  // Defect Removal Efficiency (DRE)
+  // DRE = (Defects found before release / Total defects) * 100
+  const totalDefects = defects.length + releasedDefects.length;
+  const dre = (defects.length / totalDefects) * 100;
+  
+  // Defect Leakage
+  // Leakage = (Defects found after release / Total defects) * 100
+  const leakage = (releasedDefects.length / totalDefects) * 100;
+  
+  // Average Defect Age (in days)
+  const totalAge = defects.reduce((sum, defect) => {
+    const detectionDate = new Date(defect.detectionDate);
+    const resolutionDate = new Date(defect.resolutionDate);
+    const ageInDays = (resolutionDate - detectionDate) / (1000 * 60 * 60 * 24);
+    return sum + ageInDays;
+  }, 0);
+  const avgDefectAge = totalAge / defects.length;
+  
+  return {
+    defectDensity,
+    severityDistribution,
+    dre,
+    leakage,
+    avgDefectAge
+  };
+}
+
+// Example usage
+const defects = [
+  { id: 1, severity: 'Critical', detectionDate: '2023-01-01', resolutionDate: '2023-01-03' },
+  { id: 2, severity: 'Major', detectionDate: '2023-01-02', resolutionDate: '2023-01-05' },
+  { id: 3, severity: 'Minor', detectionDate: '2023-01-03', resolutionDate: '2023-01-04' },
+  { id: 4, severity: 'Critical', detectionDate: '2023-01-05', resolutionDate: '2023-01-08' },
+  { id: 5, severity: 'Major', detectionDate: '2023-01-06', resolutionDate: '2023-01-10' }
+];
+
+const releasedDefects = [
+  { id: 6, severity: 'Major', detectionDate: '2023-01-15', resolutionDate: '2023-01-18' },
+  { id: 7, severity: 'Minor', detectionDate: '2023-01-16', resolutionDate: '2023-01-17' }
+];
+
+const codeSize = 1000; // Lines of code
+
+const metrics = calculateDefectMetrics(defects, codeSize, releasedDefects);
+console.log(metrics);</code></pre>
+                    </div>
+                    
+                    <h3>Coverage Metrics</h3>
+                    <ul>
+                        <li><strong>Code Coverage</strong> - Percentage of code executed during testing</li>
+                        <li><strong>Requirements Coverage</strong> - Percentage of requirements covered by tests</li>
+                        <li><strong>Test Case Coverage</strong> - Percentage of test cases executed</li>
+                        <li><strong>Risk Coverage</strong> - Percentage of identified risks covered by tests</li>
+                    </ul>
+                    
+                    <div class="interactive-element">
+                        <h4 class="interactive-title">Interactive Diagram: Types of Code Coverage</h4>
+                        <div class="coverage-types">
+                            <div class="coverage-type" id="statement-coverage">
+                                <span class="type-name">Statement Coverage</span>
+                                <div class="type-details">
+                                    <h5>Statement Coverage</h5>
+                                    <p>Measures the percentage of statements executed during testing</p>
+                                    <div class="code-example">
+<pre><code class="javascript">function example(a, b) {
+  let result = 0;
+  if (a > 0) {
+    result = a + b;  // Statement 1
+  } else {
+    result = a - b;  // Statement 2
+  }
+  return result;     // Statement 3
+}</code></pre>
+                                    </div>
+                                    <p>If we test with a = 1, b = 2, we execute statements 1 and 3, giving 67% statement coverage.</p>
+                                </div>
+                            </div>
+                            <div class="coverage-type" id="branch-coverage">
+                                <span class="type-name">Branch Coverage</span>
+                                <div class="type-details">
+                                    <h5>Branch Coverage</h5>
+                                    <p>Measures the percentage of decision branches executed during testing</p>
+                                    <div class="code-example">
+<pre><code class="javascript">function example(a, b) {
+  let result = 0;
+  if (a > 0) {       // Branch 1: a > 0
+    result = a + b;
+  } else {           // Branch 2: a <= 0
+    result = a - b;
+  }
+  return result;
+}</code></pre>
+                                    </div>
+                                    <p>If we test with a = 1, b = 2, we execute Branch 1 but not Branch 2, giving 50% branch coverage.</p>
+                                </div>
+                            </div>
+                            <div class="coverage-type" id="path-coverage">
+                                <span class="type-name">Path Coverage</span>
+                                <div class="type-details">
+                                    <h5>Path Coverage</h5>
+                                    <p>Measures the percentage of possible paths through the code executed during testing</p>
+                                    <div class="code-example">
+<pre><code class="javascript">function example(a, b) {
+  let result = 0;
+  if (a > 0) {
+    if (b > 0) {     // Path 1: a > 0, b > 0
+      result = a + b;
+    } else {         // Path 2: a > 0, b <= 0
+      result = a;
+    }
+  } else {
+    if (b > 0) {     // Path 3: a <= 0, b > 0
+      result = b;
+    } else {         // Path 4: a <= 0, b <= 0
+      result = 0;
+    }
+  }
+  return result;
+}</code></pre>
+                                    </div>
+                                    <p>If we test with (a=1, b=2) and (a=-1, b=-2), we execute Paths 1 and 4, giving 50% path coverage.</p>
+                                </div>
+                            </div>
+                            <div class="coverage-type" id="function-coverage">
+                                <span class="type-name">Function Coverage</span>
+                                <div class="type-details">
+                                    <h5>Function Coverage</h5>
+                                    <p>Measures the percentage of functions called during testing</p>
+                                    <div class="code-example">
+<pre><code class="javascript">function add(a, b) {
+  return a + b;
+}
+
+function subtract(a, b) {
+  return a - b;
+}
+
+function multiply(a, b) {
+  return a * b;
+}
+
+function calculate(a, b, operation) {
+  if (operation === 'add') {
+    return add(a, b);
+  } else if (operation === 'subtract') {
+    return subtract(a, b);
+  } else if (operation === 'multiply') {
+    return multiply(a, b);
+  }
+  return 0;
+}</code></pre>
+                                    </div>
+                                    <p>If we test with operation = 'add', we call add() and calculate(), giving 50% function coverage (2 out of 4 functions).</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="diagram-caption">Click on each coverage type to see an explanation and example.</p>
+                    </div>
+                    
+                    <h3>Test Execution Metrics</h3>
+                    <ul>
+                        <li><strong>Test Pass Rate</strong> - Percentage of tests that pass</li>
+                        <li><strong>Test Execution Time</strong> - Time taken to execute tests</li>
+                        <li><strong>Test Progress</strong> - Percentage of planned tests executed</li>
+                        <li><strong>Test Effectiveness</strong> - Number of defects found per test case</li>
+                        <li><strong>Test Efficiency</strong> - Number of defects found per testing hour</li>
+                        <li><strong>Automation Coverage</strong> - Percentage of tests that are automated</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Generating Test Execution Metrics Report</div>
+<pre><code class="javascript">// JavaScript function to generate test execution metrics
+function generateTestExecutionReport(testResults, plannedTests, testingHours) {
+  // Test Pass Rate = (Passed Tests / Total Tests) * 100
+  const totalTests = testResults.length;
+  const passedTests = testResults.filter(test => test.status === 'Pass').length;
+  const passRate = (passedTests / totalTests) * 100;
+  
+  // Test Execution Time (average in seconds)
+  const totalExecutionTime = testResults.reduce((sum, test) => sum + test.executionTime, 0);
+  const avgExecutionTime = totalExecutionTime / totalTests;
+  
+  // Test Progress = (Executed Tests / Planned Tests) * 100
+  const progress = (totalTests / plannedTests) * 100;
+  
+  // Test Effectiveness = Defects Found / Number of Test Cases
+  const defectsFound = testResults.reduce((sum, test) => sum + test.defectsFound, 0);
+  const testEffectiveness = defectsFound / totalTests;
+  
+  // Test Efficiency = Defects Found / Testing Hours
+  const testEfficiency = defectsFound / testingHours;
+  
+  // Automation Coverage = (Automated Tests / Total Tests) * 100
+  const automatedTests = testResults.filter(test => test.isAutomated).length;
+  const automationCoverage = (automatedTests / totalTests) * 100;
+  
+  return {
+    passRate,
+    avgExecutionTime,
+    progress,
+    testEffectiveness,
+    testEfficiency,
+    automationCoverage,
+    summary: {
+      totalTests,
+      passedTests,
+      failedTests: totalTests - passedTests,
+      defectsFound,
+      automatedTests,
+      manualTests: totalTests - automatedTests
+    }
+  };
+}
+
+// Example usage
+const testResults = [
+  { id: 1, name: 'Login Test', status: 'Pass', executionTime: 5.2, defectsFound: 0, isAutomated: true },
+  { id: 2, name: 'Search Test', status: 'Fail', executionTime: 8.7, defectsFound: 2, isAutomated: true },
+  { id: 3, name: 'Payment Test', status: 'Pass', executionTime: 12.3, defectsFound: 0, isAutomated: true },
+  { id: 4, name: 'Profile Update Test', status: 'Pass', executionTime: 6.5, defectsFound: 0, isAutomated: false },
+  { id: 5, name: 'Checkout Test', status: 'Fail', executionTime: 15.1, defectsFound: 3, isAutomated: false }
+];
+
+const plannedTests = 10; // Total planned tests
+const testingHours = 8; // Hours spent testing
+
+const report = generateTestExecutionReport(testResults, plannedTests, testingHours);
+console.log(report);</code></pre>
+                    </div>
+                    
+                    <h3>Quality and Business Metrics</h3>
+                    <ul>
+                        <li><strong>Customer Satisfaction</strong> - User feedback and ratings</li>
+                        <li><strong>Mean Time Between Failures (MTBF)</strong> - Average time between system failures</li>
+                        <li><strong>Mean Time To Repair (MTTR)</strong> - Average time to fix issues</li>
+                        <li><strong>Cost of Quality</strong> - Cost of preventing defects vs. cost of fixing them</li>
+                        <li><strong>Return on Investment (ROI)</strong> - Value gained from testing activities</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Collecting and Analyzing Testing Data</h2>
+                    
+                    <h3>Data Collection Methods</h3>
+                    <ul>
+                        <li><strong>Test Management Tools</strong> - Track test execution and results</li>
+                        <li><strong>Defect Tracking Systems</strong> - Record and manage defects</li>
+                        <li><strong>Automation Tools</strong> - Generate test execution data</li>
+                        <li><strong>Code Coverage Tools</strong> - Measure code coverage</li>
+                        <li><strong>Performance Monitoring Tools</strong> - Collect performance metrics</li>
+                        <li><strong>User Feedback Systems</strong> - Gather user satisfaction data</li>
+                    </ul>
+                    
+                    <h3>Data Analysis Techniques</h3>
+                    <ul>
+                        <li><strong>Trend Analysis</strong> - Identify patterns over time</li>
+                        <li><strong>Root Cause Analysis</strong> - Determine underlying causes of issues</li>
+                        <li><strong>Pareto Analysis</strong> - Focus on the vital few issues</li>
+                        <li><strong>Statistical Analysis</strong> - Apply statistical methods to testing data</li>
+                        <li><strong>Comparative Analysis</strong> - Compare metrics across projects or releases</li>
+                    </ul>
+                    
+                    <div class="interactive-element">
+                        <h4 class="interactive-title">Interactive Chart: Defect Trend Analysis</h4>
+                        <div class="trend-chart">
+                            <div class="chart-container">
+                                <div class="chart-bar" style="height: 20%;" data-week="1" data-count="10">
+                                    <span class="bar-label">Week 1</span>
+                                    <span class="bar-value">10</span>
+                                </div>
+                                <div class="chart-bar" style="height: 40%;" data-week="2" data-count="20">
+                                    <span class="bar-label">Week 2</span>
+                                    <span class="bar-value">20</span>
+                                </div>
+                                <div class="chart-bar" style="height: 60%;" data-week="3" data-count="30">
+                                    <span class="bar-label">Week 3</span>
+                                    <span class="bar-value">30</span>
+                                </div>
+                                <div class="chart-bar" style="height: 80%;" data-week="4" data-count="40">
+                                    <span class="bar-label">Week 4</span>
+                                    <span class="bar-value">40</span>
+                                </div>
+                                <div class="chart-bar" style="height: 70%;" data-week="5" data-count="35">
+                                    <span class="bar-label">Week 5</span>
+                                    <span class="bar-value">35</span>
+                                </div>
+                                <div class="chart-bar" style="height: 50%;" data-week="6" data-count="25">
+                                    <span class="bar-label">Week 6</span>
+                                    <span class="bar-value">25</span>
+                                </div>
+                                <div class="chart-bar" style="height: 30%;" data-week="7" data-count="15">
+                                    <span class="bar-label">Week 7</span>
+                                    <span class="bar-value">15</span>
+                                </div>
+                                <div class="chart-bar" style="height: 10%;" data-week="8" data-count="5">
+                                    <span class="bar-label">Week 8</span>
+                                    <span class="bar-value">5</span>
+                                </div>
+                            </div>
+                            <div class="chart-analysis">
+                                <h5>Defect Trend Analysis</h5>
+                                <p>This chart shows the number of defects found each week during testing.</p>
+                                <p>The pattern follows a typical defect discovery curve:</p>
+                                <ul>
+                                    <li>Initial phase: Few defects as testing begins</li>
+                                    <li>Middle phase: Peak defect discovery as testing intensifies</li>
+                                    <li>Final phase: Declining defects as the software stabilizes</li>
+                                </ul>
+                                <p>This pattern suggests that testing is progressing well, with defects being found and fixed at an expected rate.</p>
+                                <p>Hover over each bar to see the exact defect count for that week.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3>Visualizing Testing Data</h3>
+                    <p>Effective visualization helps communicate testing data to stakeholders:</p>
+                    <ul>
+                        <li><strong>Dashboards</strong> - Provide at-a-glance views of key metrics</li>
+                        <li><strong>Trend Charts</strong> - Show changes in metrics over time</li>
+                        <li><strong>Heat Maps</strong> - Highlight areas with high defect density</li>
+                        <li><strong>Pie Charts</strong> - Show distribution of defects by category</li>
+                        <li><strong>Bar Charts</strong> - Compare metrics across different dimensions</li>
+                        <li><strong>Burndown Charts</strong> - Track progress toward testing goals</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Creating a Testing Dashboard with Chart.js</div>
+<pre><code class="html">&lt;!-- HTML for the dashboard --&gt;
+&lt;div class="dashboard"&gt;
+  &lt;div class="dashboard-item"&gt;
+    &lt;h3&gt;Test Execution Progress&lt;/h3&gt;
+    &lt;canvas id="progressChart"&gt;&lt;/canvas&gt;
+  &lt;/div&gt;
+  &lt;div class="dashboard-item"&gt;
+    &lt;h3&gt;Defect Severity Distribution&lt;/h3&gt;
+    &lt;canvas id="severityChart"&gt;&lt;/canvas&gt;
+  &lt;/div&gt;
+  &lt;div class="dashboard-item"&gt;
+    &lt;h3&gt;Test Pass Rate Trend&lt;/h3&gt;
+    &lt;canvas id="passRateChart"&gt;&lt;/canvas&gt;
+  &lt;/div&gt;
+  &lt;div class="dashboard-item"&gt;
+    &lt;h3&gt;Code Coverage&lt;/h3&gt;
+    &lt;canvas id="coverageChart"&gt;&lt;/canvas&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<pre><code class="javascript">// JavaScript for creating the charts
+document.addEventListener('DOMContentLoaded', function() {
+  // Test Execution Progress (Doughnut Chart)
+  const progressCtx = document.getElementById('progressChart').getContext('2d');
+  const progressChart = new Chart(progressCtx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Passed', 'Failed', 'Blocked', 'Not Run'],
+      datasets: [{
+        data: [65, 15, 10, 10],
+        backgroundColor: ['#4CAF50', '#F44336', '#FF9800', '#9E9E9E']
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'right'
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return context.label + ': ' + context.raw + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+  
+  // Defect Severity Distribution (Pie Chart)
+  const severityCtx = document.getElementById('severityChart').getContext('2d');
+  const severityChart = new Chart(severityCtx, {
+    type: 'pie',
+    data: {
+      labels: ['Critical', 'Major', 'Minor', 'Trivial'],
+      datasets: [{
+        data: [10, 25, 40, 25],
+        backgroundColor: ['#D32F2F', '#F57C00', '#FFC107', '#8BC34A']
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'right'
+        }
+      }
+    }
+  });
+  
+  // Test Pass Rate Trend (Line Chart)
+  const passRateCtx = document.getElementById('passRateChart').getContext('2d');
+  const passRateChart = new Chart(passRateCtx, {
+    type: 'line',
+    data: {
+      labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
+      datasets: [{
+        label: 'Pass Rate (%)',
+        data: [60, 65, 70, 75, 82, 88],
+        borderColor: '#2196F3',
+        backgroundColor: 'rgba(33, 150, 243, 0.1)',
+        fill: true
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100
+        }
+      }
+    }
+  });
+  
+  // Code Coverage (Bar Chart)
+  const coverageCtx = document.getElementById('coverageChart').getContext('2d');
+  const coverageChart = new Chart(coverageCtx, {
+    type: 'bar',
+    data: {
+      labels: ['Statement', 'Branch', 'Function', 'Line'],
+      datasets: [{
+        label: 'Coverage (%)',
+        data: [85, 72, 90, 88],
+        backgroundColor: '#673AB7'
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100
+        }
+      }
+    }
+  });
+});</code></pre>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Test Reporting</h2>
+                    <p>Test reporting involves communicating testing results and insights to stakeholders in a clear, concise, and actionable format.</p>
+                    
+                    <h3>Types of Test Reports</h3>
+                    <ul>
+                        <li><strong>Test Summary Report</strong> - Overview of testing activities and results</li>
+                        <li><strong>Defect Report</strong> - Details of defects found during testing</li>
+                        <li><strong>Test Progress Report</strong> - Status of testing activities against the plan</li>
+                        <li><strong>Test Metrics Report</strong> - Quantitative measurements of testing</li>
+                        <li><strong>Test Coverage Report</strong> - Extent of test coverage achieved</li>
+                        <li><strong>Release Readiness Report</strong> - Assessment of whether the software is ready for release</li>
+                    </ul>
+                    
+                    <h3>Tailoring Reports for Different Stakeholders</h3>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Stakeholder</th>
+                                <th>Information Needs</th>
+                                <th>Report Focus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Executive Management</td>
+                                <td>Overall quality, risks, business impact</td>
+                                <td>High-level summary, key metrics, risk assessment</td>
+                            </tr>
+                            <tr>
+                                <td>Project Manager</td>
+                                <td>Progress, issues, resource needs</td>
+                                <td>Test progress, blockers, resource utilization</td>
+                            </tr>
+                            <tr>
+                                <td>Development Team</td>
+                                <td>Technical details, defect information</td>
+                                <td>Detailed defect reports, code coverage, technical metrics</td>
+                            </tr>
+                            <tr>
+                                <td>Product Owner</td>
+                                <td>Feature readiness, user impact</td>
+                                <td>Feature-level test results, user-facing issues</td>
+                            </tr>
+                            <tr>
+                                <td>QA Team</td>
+                                <td>Detailed test results, test effectiveness</td>
+                                <td>Comprehensive test metrics, test efficiency, coverage</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="example-box">
+                        <h4>Example: Executive Summary Report</h4>
+<pre>
+# Test Summary Report: Project XYZ - Release 2.0
+
+## Executive Summary
+The testing of Release 2.0 is 85% complete with an overall pass rate of 92%. 
+Critical functionality has been fully tested with no outstanding critical defects.
+Based on current metrics, the release is on track for the planned deployment date.
+
+## Key Metrics
+- Test Completion: 85% (170/200 test cases executed)
+- Test Pass Rate: 92% (156/170 test cases passed)
+- Defects: 25 total (0 Critical, 5 Major, 15 Minor, 5 Trivial)
+- Code Coverage: 87% overall (95% for critical components)
+- Automation Coverage: 70% of test cases automated
+
+## Risk Assessment
+- **Low Risk**: Core functionality is stable with no critical defects
+- **Medium Risk**: Payment processing module has 3 open major defects
+- **Low Risk**: Performance testing shows all KPIs within acceptable ranges
+
+## Recommendations
+- Proceed with release as scheduled
+- Prioritize fixing the 5 major defects before release
+- Monitor payment processing module closely during initial deployment
+</pre>
+                    </div>
+                    
+                    <h3>Effective Reporting Practices</h3>
+                    <ul>
+                        <li><strong>Be Clear and Concise</strong> - Focus on key information</li>
+                        <li><strong>Use Visual Elements</strong> - Charts and graphs for better understanding</li>
+                        <li><strong>Provide Context</strong> - Compare with previous results or targets</li>
+                        <li><strong>Highlight Risks</strong> - Clearly identify potential issues</li>
+                        <li><strong>Include Recommendations</strong> - Suggest actions based on findings</li>
+                        <li><strong>Automate Where Possible</strong> - Use tools to generate consistent reports</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Quality Management in Software Development</h2>
+                    <p>Quality management involves the processes and activities that ensure software meets quality requirements and customer expectations.</p>
+                    
+                    <h3>Quality Management Components</h3>
+                    <div class="interactive-element">
+                        <h4 class="interactive-title">Interactive Diagram: Quality Management Components</h4>
+                        <div class="qm-components">
+                            <div class="qm-component" id="quality-planning">
+                                <span class="component-name">Quality Planning</span>
+                                <div class="component-details">
+                                    <h5>Quality Planning</h5>
+                                    <p>Establishing quality objectives and processes</p>
+                                    <ul>
+                                        <li>Defining quality requirements</li>
+                                        <li>Creating test strategies and plans</li>
+                                        <li>Establishing quality metrics</li>
+                                        <li>Allocating resources for quality activities</li>
+                                        <li>Setting quality standards and guidelines</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="qm-component" id="quality-assurance">
+                                <span class="component-name">Quality Assurance</span>
+                                <div class="component-details">
+                                    <h5>Quality Assurance</h5>
+                                    <p>Ensuring processes are in place to meet quality objectives</p>
+                                    <ul>
+                                        <li>Establishing and improving processes</li>
+                                        <li>Conducting process audits</li>
+                                        <li>Training teams on quality practices</li>
+                                        <li>Implementing quality standards</li>
+                                        <li>Preventing defects through process improvement</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="qm-component" id="quality-control">
+                                <span class="component-name">Quality Control</span>
+                                <div class="component-details">
+                                    <h5>Quality Control</h5>
+                                    <p>Verifying that outputs meet quality requirements</p>
+                                    <ul>
+                                        <li>Executing tests</li>
+                                        <li>Reviewing code and documentation</li>
+                                        <li>Inspecting deliverables</li>
+                                        <li>Identifying and reporting defects</li>
+                                        <li>Verifying fixes and improvements</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="qm-component" id="quality-improvement">
+                                <span class="component-name">Quality Improvement</span>
+                                <div class="component-details">
+                                    <h5>Quality Improvement</h5>
+                                    <p>Continuously enhancing quality processes and outcomes</p>
+                                    <ul>
+                                        <li>Analyzing quality metrics</li>
+                                        <li>Conducting retrospectives</li>
+                                        <li>Implementing process improvements</li>
+                                        <li>Adopting new tools and techniques</li>
+                                        <li>Sharing lessons learned</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="diagram-caption">Click on each component to learn more about its role in quality management.</p>
+                    </div>
+                    
+                    <h3>Quality Standards and Models</h3>
+                    <ul>
+                        <li><strong>ISO 9001</strong> - Quality management system standard</li>
+                        <li><strong>ISO/IEC 25010</strong> - Software quality characteristics</li>
+                        <li><strong>CMMI (Capability Maturity Model Integration)</strong> - Process improvement approach</li>
+                        <li><strong>TMMi (Test Maturity Model integration)</strong> - Test process improvement model</li>
+                        <li><strong>ISTQB (International Software Testing Qualifications Board)</strong> - Testing standards and certifications</li>
+                    </ul>
+                    
+                    <h3>Risk-Based Testing</h3>
+                    <p>Risk-based testing is an approach that prioritizes testing activities based on the level of risk associated with different aspects of the software.</p>
+                    
+                    <div class="example-box">
+                        <h4>Risk-Based Testing Process</h4>
+                        <ol>
+                            <li><strong>Identify Risks</strong> - Determine what could go wrong</li>
+                            <li><strong>Analyze Risks</strong> - Assess probability and impact</li>
+                            <li><strong>Prioritize Risks</strong> - Rank risks based on severity</li>
+                            <li><strong>Mitigate Risks</strong> - Plan testing to address high-priority risks</li>
+                            <li><strong>Monitor Risks</strong> - Track risk status throughout testing</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Risk Assessment Matrix</div>
+<pre><code class="javascript">// JavaScript function to calculate risk priority
+function calculateRiskPriority(risks) {
+  // Risk priority = Probability * Impact
+  const riskMatrix = risks.map(risk => {
+    const priority = risk.probability * risk.impact;
+    let level;
+    
+    if (priority >= 15) {
+      level = 'Critical';
+    } else if (priority >= 8) {
+      level = 'High';
+    } else if (priority >= 3) {
+      level = 'Medium';
+    } else {
+      level = 'Low';
+    }
+    
+    return {
+      ...risk,
+      priority,
+      level
+    };
+  });
+  
+  // Sort risks by priority (highest first)
+  return riskMatrix.sort((a, b) => b.priority - a.priority);
+}
+
+// Example usage
+const risks = [
+  { id: 1, description: 'Payment processing failure', probability: 3, impact: 5 },
+  { id: 2, description: 'User data exposure', probability: 2, impact: 5 },
+  { id: 3, description: 'Performance degradation under load', probability: 4, impact: 3 },
+  { id: 4, description: 'UI rendering issues on mobile devices', probability: 4, impact: 2 },
+  { id: 5, description: 'Incorrect calculation of order totals', probability: 2, impact: 4 }
+];
+
+const prioritizedRisks = calculateRiskPriority(risks);
+console.log(prioritizedRisks);
+
+// Output:
+// [
+//   { id: 1, description: 'Payment processing failure', probability: 3, impact: 5, priority: 15, level: 'Critical' },
+//   { id: 3, description: 'Performance degradation under load', probability: 4, impact: 3, priority: 12, level: 'High' },
+//   { id: 2, description: 'User data exposure', probability: 2, impact: 5, priority: 10, level: 'High' },
+//   { id: 5, description: 'Incorrect calculation of order totals', probability: 2, impact: 4, priority: 8, level: 'High' },
+//   { id: 4, description: 'UI rendering issues on mobile devices', probability: 4, impact: 2, priority: 8, level: 'High' }
+// ]</code></pre>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Real-World Example: Google's Testing and Quality Approach</h2>
+                    <p>Google has developed a comprehensive approach to testing and quality that balances speed, scale, and reliability.</p>
+                    
+                    <h3>Key Aspects of Google's Approach</h3>
+                    <ul>
+                        <li><strong>Test Automation</strong> - Heavy investment in automated testing at all levels</li>
+                        <li><strong>Continuous Integration</strong> - Frequent integration with automated testing</li>
+                        <li><strong>Testing on Production</strong> - Controlled experiments in production environments</li>
+                        <li><strong>Data-Driven Decisions</strong> - Using metrics to guide testing efforts</li>
+                        <li><strong>Developer Ownership</strong> - Developers responsible for testing their code</li>
+                        <li><strong>Specialized Testing Roles</strong> - Test engineers focus on infrastructure and tools</li>
+                    </ul>
+                    
+                    <h3>Lessons from Google</h3>
+                    <ul>
+                        <li>Invest in test infrastructure</li>
+                        <li>Automate repetitive testing tasks</li>
+                        <li>Make quality everyone's responsibility</li>
+                        <li>Use data to drive testing decisions</li>
+                        <li>Balance speed and quality</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Knowledge Check</h2>
+                    <div class="quiz-container">
+                        <div class="quiz-question">
+                            <p>1. Which of the following is NOT a defect metric?</p>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" data-correct="false">Defect Density</li>
+                                <li class="quiz-option" data-correct="false">Defect Removal Efficiency</li>
+                                <li class="quiz-option" data-correct="true">Test Execution Rate</li>
+                                <li class="quiz-option" data-correct="false">Defect Leakage</li>
+                            </ul>
+                            <div class="quiz-feedback correct">
+                                <p>Correct! Test Execution Rate is a test execution metric, not a defect metric. It measures the rate at which tests are being executed compared to the plan.</p>
+                            </div>
+                            <div class="quiz-feedback incorrect">
+                                <p>Incorrect. Test Execution Rate is a test execution metric, not a defect metric. It measures the rate at which tests are being executed compared to the plan.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-question">
+                            <p>2. What does code coverage measure?</p>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" data-correct="true">The percentage of code executed during testing</li>
+                                <li class="quiz-option" data-correct="false">The number of lines of code in the application</li>
+                                <li class="quiz-option" data-correct="false">The percentage of requirements covered by tests</li>
+                                <li class="quiz-option" data-correct="false">The number of defects per line of code</li>
+                            </ul>
+                            <div class="quiz-feedback correct">
+                                <p>Correct! Code coverage measures the percentage of code (statements, branches, functions, etc.) that is executed during testing, helping identify untested parts of the code.</p>
+                            </div>
+                            <div class="quiz-feedback incorrect">
+                                <p>Incorrect. Code coverage measures the percentage of code (statements, branches, functions, etc.) that is executed during testing, helping identify untested parts of the code.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-question">
+                            <p>3. Which of the following is a component of quality management?</p>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" data-correct="false">Quality Metrics</li>
+                                <li class="quiz-option" data-correct="false">Quality Testing</li>
+                                <li class="quiz-option" data-correct="true">Quality Assurance</li>
+                                <li class="quiz-option" data-correct="false">Quality Reporting</li>
+                            </ul>
+                            <div class="quiz-feedback correct">
+                                <p>Correct! Quality Assurance is one of the main components of quality management, along with Quality Planning, Quality Control, and Quality Improvement.</p>
+                            </div>
+                            <div class="quiz-feedback incorrect">
+                                <p>Incorrect. Quality Assurance is one of the main components of quality management, along with Quality Planning, Quality Control, and Quality Improvement.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-question">
+                            <p>4. In risk-based testing, how is risk priority typically calculated?</p>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" data-correct="false">Risk Priority = Probability + Impact</li>
+                                <li class="quiz-option" data-correct="true">Risk Priority = Probability × Impact</li>
+                                <li class="quiz-option" data-correct="false">Risk Priority = Probability / Impact</li>
+                                <li class="quiz-option" data-correct="false">Risk Priority = Impact - Probability</li>
+                            </ul>
+                            <div class="quiz-feedback correct">
+                                <p>Correct! Risk priority is typically calculated by multiplying the probability of a risk occurring by its impact if it does occur. This gives higher priority to risks that are both likely and impactful.</p>
+                            </div>
+                            <div class="quiz-feedback incorrect">
+                                <p>Incorrect. Risk priority is typically calculated by multiplying the probability of a risk occurring by its impact if it does occur. This gives higher priority to risks that are both likely and impactful.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-question">
+                            <p>5. Which of the following is NOT a best practice for test reporting?</p>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" data-correct="false">Use visual elements like charts and graphs</li>
+                                <li class="quiz-option" data-correct="false">Tailor reports for different stakeholders</li>
+                                <li class="quiz-option" data-correct="true">Include all available metrics in every report</li>
+                                <li class="quiz-option" data-correct="false">Provide recommendations based on findings</li>
+                            </ul>
+                            <div class="quiz-feedback correct">
+                                <p>Correct! Including all available metrics in every report is not a best practice. Reports should be focused and contain only the most relevant information for the intended audience.</p>
+                            </div>
+                            <div class="quiz-feedback incorrect">
+                                <p>Incorrect. Including all available metrics in every report is not a best practice. Reports should be focused and contain only the most relevant information for the intended audience.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Additional Resources</h2>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=QEu2PqmZjIY" target="_blank">Video: Software Testing Metrics and KPIs</a></li>
+                        <li><a href="https://www.iso.org/standard/35733.html" target="_blank">ISO/IEC 25010 Software Quality Model</a></li>
+                        <li><a href="https://www.istqb.org/downloads/syllabi/foundation-level-syllabus.html" target="_blank">ISTQB Foundation Level Syllabus</a></li>
+                        <li><a href="https://testsigma.com/blog/what-are-the-kpis-of-software-testing-and-qa-testsigma/" target="_blank">Article: KPIs of Software Testing and QA</a></li>
+                        <li><a href="https://martinfowler.com/articles/useOfMetrics.html" target="_blank">Article: Metrics for Software Testing by Martin Fowler</a></li>
+                    </ul>
+                </div>
+                
+                <div class="week-navigation">
+                    <a href="week8-10.html" class="btn">Previous Week: Putting Testing First</a>
+                    <a href="week14-16.html" class="btn">Next Week: Advanced Quality Management</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">DevOps & QA Courses</div>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="../index.html">Home</a></li>
+                    <li class="footer-link"><a href="../devops/index.html">DevOps Course</a></li>
+                    <li class="footer-link"><a href="index.html">QA Course</a></li>
+                    <li class="footer-link"><a href="../resources/index.html">Resources</a></li>
+                    <li class="footer-link"><a href="https://github.com/username/course-website" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DevOps & QA Courses. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <span>↑</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

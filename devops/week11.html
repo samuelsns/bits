@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 11: Continuous Feedback | DevOps Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;700&family=Fira+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="../index.html">DevOps & QA Courses</a>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="index.html" class="nav-link">DevOps Course</a></li>
+                    <li class="nav-item"><a href="../qa/index.html" class="nav-link">QA Course</a></li>
+                    <li class="nav-item"><a href="../resources/index.html" class="nav-link">Resources</a></li>
+                    <li class="nav-item"><a href="https://github.com/username/course-website" class="nav-link" target="_blank">GitHub</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="week-content">
+                <h1>Week 11: Continuous Feedback</h1>
+                
+                <div class="content-section">
+                    <h2>Learning Objectives</h2>
+                    <p>By the end of this week, you will be able to:</p>
+                    <ul>
+                        <li>Understand the importance of continuous feedback in DevOps</li>
+                        <li>Implement effective feedback loops in the development process</li>
+                        <li>Design and analyze telemetry systems</li>
+                        <li>Utilize feedback data to drive improvements</li>
+                        <li>Apply A/B testing and feature flagging techniques</li>
+                        <li>Create a culture of continuous learning and improvement</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Introduction to Continuous Feedback</h2>
+                    <p>Continuous feedback is the practice of gathering, analyzing, and acting on information throughout the software development lifecycle to improve products, processes, and teams.</p>
+                    
+                    <h3>The Importance of Feedback Loops</h3>
+                    <p>Feedback loops are essential for continuous improvement in DevOps. They provide the information needed to make informed decisions and drive positive change.</p>
+                    <ul>
+                        <li><strong>Faster Learning</strong> - Quickly identify what works and what doesn't</li>
+                        <li><strong>Reduced Risk</strong> - Catch issues early when they're easier to fix</li>
+                        <li><strong>Better Quality</strong> - Continuously improve based on real-world data</li>
+                        <li><strong>Increased Agility</strong> - Adapt quickly to changing requirements</li>
+                        <li><strong>Enhanced Collaboration</strong> - Foster communication between teams</li>
+                        <li><strong>Customer Satisfaction</strong> - Deliver features that users actually want</li>
+                    </ul>
+                    
+                    <h3>Types of Feedback Loops</h3>
+                    <ul>
+                        <li><strong>Internal Feedback</strong> - From within the development process (e.g., tests, code reviews)</li>
+                        <li><strong>External Feedback</strong> - From users and customers (e.g., usage data, surveys)</li>
+                        <li><strong>Short Feedback Loops</strong> - Immediate feedback (e.g., automated tests)</li>
+                        <li><strong>Long Feedback Loops</strong> - Feedback over time (e.g., user behavior analysis)</li>
+                    </ul>
+                    
+                    <div class="activity">
+                        <h4 class="activity-title">Discussion Question</h4>
+                        <p>How does continuous feedback differ from traditional feedback mechanisms in software development? What challenges might organizations face when implementing continuous feedback loops?</p>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Implementing Feedback Loops</h2>
+                    <p>Effective feedback loops require careful design and implementation to provide valuable insights.</p>
+                    
+                    <h3>Key Components of Effective Feedback Loops</h3>
+                    <ul>
+                        <li><strong>Data Collection</strong> - Gathering relevant information</li>
+                        <li><strong>Analysis</strong> - Making sense of the data</li>
+                        <li><strong>Action</strong> - Taking steps based on insights</li>
+                        <li><strong>Verification</strong> - Confirming that actions had the desired effect</li>
+                    </ul>
+                    
+                    <h3>Feedback Loops in the Development Process</h3>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Stage</th>
+                                <th>Feedback Mechanisms</th>
+                                <th>Benefits</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Planning</td>
+                                <td>User research, stakeholder interviews, retrospectives</td>
+                                <td>Better requirements, prioritization</td>
+                            </tr>
+                            <tr>
+                                <td>Development</td>
+                                <td>Pair programming, code reviews, static analysis</td>
+                                <td>Higher code quality, knowledge sharing</td>
+                            </tr>
+                            <tr>
+                                <td>Testing</td>
+                                <td>Automated tests, manual testing, security scans</td>
+                                <td>Fewer bugs, improved security</td>
+                            </tr>
+                            <tr>
+                                <td>Deployment</td>
+                                <td>Canary releases, blue/green deployments</td>
+                                <td>Reduced deployment risk</td>
+                            </tr>
+                            <tr>
+                                <td>Operations</td>
+                                <td>Monitoring, alerting, incident response</td>
+                                <td>Improved reliability, faster recovery</td>
+                            </tr>
+                            <tr>
+                                <td>User Experience</td>
+                                <td>Usage analytics, A/B testing, user feedback</td>
+                                <td>Better user experience, feature validation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h3>Implementing Continuous Integration Feedback</h3>
+                    <p>Continuous Integration (CI) provides immediate feedback on code changes.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: GitHub Actions Workflow with Feedback</div>
+<pre><code class="yaml">name: CI Feedback
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Lint code
+      run: npm run lint
+      
+    - name: Run unit tests
+      run: npm test -- --coverage
+      
+    - name: Upload coverage report
+      uses: codecov/codecov-action@v3
+      
+    - name: Build application
+      run: npm run build
+      
+    - name: Run integration tests
+      run: npm run test:integration
+      
+    - name: Analyze bundle size
+      run: npm run analyze-bundle
+      
+    - name: Comment on PR
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const fs = require('fs');
+          
+          // Read test results
+          const testResults = JSON.parse(fs.readFileSync('./test-results.json', 'utf8'));
+          const coverage = JSON.parse(fs.readFileSync('./coverage-summary.json', 'utf8'));
+          const bundleSize = JSON.parse(fs.readFileSync('./bundle-analysis.json', 'utf8'));
+          
+          // Create feedback message
+          let message = '## CI Feedback Summary\n\n';
+          
+          // Test results
+          message += '### Test Results\n';
+          message += `- Total Tests: ${testResults.numTotalTests}\n`;
+          message += `- Passed: ${testResults.numPassedTests}\n`;
+          message += `- Failed: ${testResults.numFailedTests}\n\n`;
+          
+          // Coverage
+          message += '### Code Coverage\n';
+          message += `- Statements: ${coverage.total.statements.pct}%\n`;
+          message += `- Branches: ${coverage.total.branches.pct}%\n`;
+          message += `- Functions: ${coverage.total.functions.pct}%\n`;
+          message += `- Lines: ${coverage.total.lines.pct}%\n\n`;
+          
+          // Bundle size
+          message += '### Bundle Size\n';
+          message += `- Total: ${bundleSize.totalBytes / 1024} KB\n`;
+          message += `- Change: ${bundleSize.changeBytes / 1024} KB\n\n`;
+          
+          // Recommendations
+          message += '### Recommendations\n';
+          if (testResults.numFailedTests > 0) {
+            message += '- ❌ Fix failing tests\n';
+          }
+          if (coverage.total.statements.pct < 80) {
+            message += '- ⚠️ Improve test coverage\n';
+          }
+          if (bundleSize.changeBytes > 10240) {
+            message += '- ⚠️ Bundle size increased significantly\n';
+          }
+          
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: message
+          })
+</code></pre>
+                    </div>
+                    
+                    <div class="activity">
+                        <h4 class="activity-title">Exercise: Design a Feedback Loop</h4>
+                        <p>Design a feedback loop for a specific aspect of the software development process. Include the following:</p>
+                        <ol class="activity-steps">
+                            <li>What data will you collect?</li>
+                            <li>How will you collect and analyze the data?</li>
+                            <li>Who will receive the feedback?</li>
+                            <li>How will actions be taken based on the feedback?</li>
+                            <li>How will you verify that the actions had the desired effect?</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Telemetry Systems</h2>
+                    <p>Telemetry systems collect, transmit, and analyze data from applications and infrastructure to provide insights into system behavior and user experience.</p>
+                    
+                    <h3>Key Components of Telemetry Systems</h3>
+                    <ul>
+                        <li><strong>Data Collection</strong> - Gathering metrics, logs, and traces</li>
+                        <li><strong>Data Transmission</strong> - Sending data to storage and analysis systems</li>
+                        <li><strong>Data Storage</strong> - Storing data for analysis</li>
+                        <li><strong>Data Analysis</strong> - Processing and analyzing data</li>
+                        <li><strong>Visualization</strong> - Presenting data in a meaningful way</li>
+                        <li><strong>Alerting</strong> - Notifying teams of issues</li>
+                    </ul>
+                    
+                    <h3>Types of Telemetry Data</h3>
+                    <ul>
+                        <li><strong>Technical Telemetry</strong> - System performance, errors, resource usage</li>
+                        <li><strong>Business Telemetry</strong> - User behavior, feature usage, conversion rates</li>
+                        <li><strong>User Experience Telemetry</strong> - Page load times, UI interactions, errors</li>
+                    </ul>
+                    
+                    <h3>Implementing Application Telemetry</h3>
+                    <p>Application telemetry provides insights into how users interact with your application.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Application Telemetry with OpenTelemetry in JavaScript</div>
+<pre><code class="javascript">// Initialize OpenTelemetry
+const { NodeTracerProvider } = require('@opentelemetry/node');
+const { ConsoleSpanExporter, SimpleSpanProcessor } = require('@opentelemetry/tracing');
+const { CollectorMetricExporter } = require('@opentelemetry/exporter-collector');
+const { MeterProvider } = require('@opentelemetry/metrics');
+
+// Create a tracer provider
+const tracerProvider = new NodeTracerProvider();
+
+// Configure exporters
+const spanExporter = new ConsoleSpanExporter();
+const metricExporter = new CollectorMetricExporter({
+  url: 'http://collector:4317',
+  headers: {},
+});
+
+// Add the span processor to the provider
+tracerProvider.addSpanProcessor(new SimpleSpanProcessor(spanExporter));
+
+// Register the provider
+tracerProvider.register();
+
+// Create a meter provider
+const meterProvider = new MeterProvider({
+  exporter: metricExporter,
+  interval: 1000,
+});
+
+// Get a tracer and meter
+const tracer = tracerProvider.getTracer('my-app');
+const meter = meterProvider.getMeter('my-app');
+
+// Create metrics
+const requestCounter = meter.createCounter('requests', {
+  description: 'Count of requests',
+});
+
+const requestDuration = meter.createValueRecorder('request_duration', {
+  description: 'Duration of requests',
+  unit: 'ms',
+});
+
+// Express middleware for telemetry
+function telemetryMiddleware(req, res, next) {
+  const startTime = Date.now();
+  
+  // Create a span for the request
+  const span = tracer.startSpan(`${req.method} ${req.path}`);
+  
+  // Add attributes to the span
+  span.setAttribute('http.method', req.method);
+  span.setAttribute('http.url', req.url);
+  span.setAttribute('http.route', req.route?.path);
+  
+  // Increment request counter
+  requestCounter.add(1, {
+    method: req.method,
+    route: req.route?.path || req.path,
+  });
+  
+  // Add response event listener
+  res.on('finish', () => {
+    const duration = Date.now() - startTime;
+    
+    // Record request duration
+    requestDuration.record(duration, {
+      method: req.method,
+      route: req.route?.path || req.path,
+      status: res.statusCode,
+    });
+    
+    // Add response attributes to the span
+    span.setAttribute('http.status_code', res.statusCode);
+    span.setAttribute('http.duration_ms', duration);
+    
+    // End the span
+    span.end();
+  });
+  
+  next();
+}
+
+// Example usage in Express
+const express = require('express');
+const app = express();
+
+app.use(telemetryMiddleware);
+
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+
+app.get('/api/data', (req, res) => {
+  // Create a custom span for business logic
+  const span = tracer.startSpan('fetch-data', {
+    attributes: {
+      'data.source': 'database',
+    },
+  });
+  
+  try {
+    // Simulate data fetching
+    const data = { items: [1, 2, 3] };
+    
+    // Add business telemetry
+    span.setAttribute('data.items.count', data.items.length);
+    
+    res.json(data);
+  } catch (error) {
+    // Record error
+    span.recordException(error);
+    res.status(500).json({ error: error.message });
+  } finally {
+    span.end();
+  }
+});
+
+app.listen(3000, () => {
+  console.log('Server listening on port 3000');
+});
+</code></pre>
+                    </div>
+                    
+                    <h3>Analyzing Telemetry Data</h3>
+                    <p>Telemetry data analysis helps identify patterns, trends, and issues.</p>
+                    <ul>
+                        <li><strong>Real-time Analysis</strong> - Immediate processing for alerting</li>
+                        <li><strong>Batch Analysis</strong> - Processing large volumes of data</li>
+                        <li><strong>Statistical Analysis</strong> - Identifying patterns and anomalies</li>
+                        <li><strong>Machine Learning</strong> - Predictive analysis and anomaly detection</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Analyzing Telemetry Data with Python</div>
+<pre><code class="python">import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+
+# Load telemetry data
+data = pd.read_csv('telemetry_data.csv')
+
+# Basic statistics
+print("Basic Statistics:")
+print(data.describe())
+
+# Response time analysis
+print("\nResponse Time by Endpoint:")
+response_times = data.groupby('endpoint')['response_time'].agg(['mean', 'median', 'min', 'max', 'count'])
+print(response_times)
+
+# Error rate analysis
+print("\nError Rate by Endpoint:")
+data['is_error'] = data['status_code'] >= 400
+error_rates = data.groupby('endpoint')['is_error'].mean() * 100
+print(error_rates)
+
+# Visualize response time distribution
+plt.figure(figsize=(10, 6))
+sns.boxplot(x='endpoint', y='response_time', data=data)
+plt.title('Response Time Distribution by Endpoint')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('response_time_distribution.png')
+
+# Visualize error rates
+plt.figure(figsize=(10, 6))
+error_rates.plot(kind='bar')
+plt.title('Error Rate by Endpoint')
+plt.ylabel('Error Rate (%)')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('error_rates.png')
+
+# Time series analysis
+data['timestamp'] = pd.to_datetime(data['timestamp'])
+data.set_index('timestamp', inplace=True)
+
+# Resample to hourly data
+hourly_data = data.resample('H').agg({
+    'response_time': 'mean',
+    'is_error': 'mean',
+    'request_count': 'sum'
+})
+
+# Visualize hourly metrics
+fig, axes = plt.subplots(3, 1, figsize=(12, 10), sharex=True)
+
+hourly_data['response_time'].plot(ax=axes[0])
+axes[0].set_title('Average Response Time (ms)')
+axes[0].set_ylabel('Response Time (ms)')
+
+(hourly_data['is_error'] * 100).plot(ax=axes[1])
+axes[1].set_title('Error Rate (%)')
+axes[1].set_ylabel('Error Rate (%)')
+
+hourly_data['request_count'].plot(ax=axes[2])
+axes[2].set_title('Request Count')
+axes[2].set_ylabel('Count')
+axes[2].set_xlabel('Time')
+
+plt.tight_layout()
+plt.savefig('hourly_metrics.png')
+
+# User behavior clustering
+user_data = data.groupby('user_id').agg({
+    'request_count': 'sum',
+    'response_time': 'mean',
+    'is_error': 'mean',
+    'session_duration': 'mean'
+})
+
+# Standardize the data
+scaler = StandardScaler()
+user_data_scaled = scaler.fit_transform(user_data)
+
+# Apply K-means clustering
+kmeans = KMeans(n_clusters=3, random_state=42)
+user_data['cluster'] = kmeans.fit_predict(user_data_scaled)
+
+# Analyze clusters
+print("\nUser Behavior Clusters:")
+cluster_analysis = user_data.groupby('cluster').mean()
+print(cluster_analysis)
+
+# Visualize clusters
+plt.figure(figsize=(10, 8))
+sns.scatterplot(
+    x='request_count',
+    y='session_duration',
+    hue='cluster',
+    palette='viridis',
+    data=user_data
+)
+plt.title('User Behavior Clusters')
+plt.xlabel('Request Count')
+plt.ylabel('Session Duration (s)')
+plt.savefig('user_clusters.png')
+
+# Generate recommendations based on analysis
+print("\nRecommendations:")
+high_error_endpoints = error_rates[error_rates > 5].index.tolist()
+if high_error_endpoints:
+    print(f"- Investigate high error rates in endpoints: {', '.join(high_error_endpoints)}")
+
+slow_endpoints = response_times[response_times['mean'] > 1000].index.tolist()
+if slow_endpoints:
+    print(f"- Optimize slow endpoints: {', '.join(slow_endpoints)}")
+
+# Identify peak usage times
+peak_hour = hourly_data['request_count'].idxmax()
+print(f"- Peak usage time: {peak_hour}")
+</code></pre>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>A/B Testing and Feature Flags</h2>
+                    <p>A/B testing and feature flags enable controlled experimentation and gradual feature rollout.</p>
+                    
+                    <h3>A/B Testing</h3>
+                    <p>A/B testing compares two versions of a feature to determine which performs better.</p>
+                    <ul>
+                        <li><strong>Hypothesis</strong> - Define what you're testing and expected outcomes</li>
+                        <li><strong>Variants</strong> - Create different versions (A and B)</li>
+                        <li><strong>Randomization</strong> - Randomly assign users to variants</li>
+                        <li><strong>Measurement</strong> - Collect data on key metrics</li>
+                        <li><strong>Analysis</strong> - Determine statistical significance</li>
+                        <li><strong>Decision</strong> - Choose the better variant</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Implementing A/B Testing</div>
+<pre><code class="javascript">// Simple A/B testing implementation
+class ABTest {
+  constructor(testName, variants, userAssignmentFunction) {
+    this.testName = testName;
+    this.variants = variants;
+    this.userAssignmentFunction = userAssignmentFunction;
+  }
+  
+  // Get the variant for a user
+  getVariant(userId) {
+    // Use the assignment function to determine the variant
+    const variantIndex = this.userAssignmentFunction(userId, this.variants.length);
+    return this.variants[variantIndex];
+  }
+  
+  // Track an event for the test
+  trackEvent(userId, eventName, eventData = {}) {
+    const variant = this.getVariant(userId);
+    
+    // Log the event (in a real implementation, this would send to an analytics service)
+    console.log(`[ABTest] ${this.testName} - User ${userId} (Variant: ${variant.name}) - Event: ${eventName}`, eventData);
+    
+    // In a real implementation, you would send this to your analytics service
+    // analyticsService.track({
+    //   userId,
+    //   event: eventName,
+    //   properties: {
+    //     ...eventData,
+    //     abTest: this.testName,
+    //     abTestVariant: variant.name
+    //   }
+    // });
+  }
+}
+
+// Example usage
+const buttonTest = new ABTest(
+  'button-color-test',
+  [
+    { name: 'control', config: { buttonColor: 'blue', buttonText: 'Sign Up' } },
+    { name: 'variant-1', config: { buttonColor: 'green', buttonText: 'Sign Up' } },
+    { name: 'variant-2', config: { buttonColor: 'blue', buttonText: 'Get Started' } }
+  ],
+  // Simple hash function to consistently assign users to variants
+  (userId, numVariants) => {
+    let hash = 0;
+    for (let i = 0; i < userId.length; i++) {
+      hash = ((hash << 5) - hash) + userId.charCodeAt(i);
+      hash = hash & hash; // Convert to 32bit integer
+    }
+    return Math.abs(hash) % numVariants;
+  }
+);
+
+// Example React component using the A/B test
+function SignupButton({ userId }) {
+  const variant = buttonTest.getVariant(userId);
+  
+  const handleClick = () => {
+    buttonTest.trackEvent(userId, 'button_click');
+    // Proceed with signup
+  };
+  
+  return (
+    <button 
+      style={{ backgroundColor: variant.config.buttonColor }}
+      onClick={handleClick}
+    >
+      {variant.config.buttonText}
+    </button>
+  );
+}
+
+// Analyzing A/B test results
+function analyzeTestResults(testName, startDate, endDate) {
+  // In a real implementation, you would fetch data from your analytics service
+  // const results = analyticsService.getTestResults(testName, startDate, endDate);
+  
+  // Example results
+  const results = {
+    'control': {
+      impressions: 10000,
+      clicks: 500,
+      conversions: 100
+    },
+    'variant-1': {
+      impressions: 10000,
+      clicks: 600,
+      conversions: 120
+    },
+    'variant-2': {
+      impressions: 10000,
+      clicks: 550,
+      conversions: 110
+    }
+  };
+  
+  // Calculate metrics
+  const variantMetrics = {};
+  for (const [variant, data] of Object.entries(results)) {
+    variantMetrics[variant] = {
+      clickThroughRate: data.clicks / data.impressions,
+      conversionRate: data.conversions / data.impressions
+    };
+  }
+  
+  // Determine the winner
+  let winner = null;
+  let bestConversionRate = 0;
+  
+  for (const [variant, metrics] of Object.entries(variantMetrics)) {
+    if (metrics.conversionRate > bestConversionRate) {
+      bestConversionRate = metrics.conversionRate;
+      winner = variant;
+    }
+  }
+  
+  return {
+    testName,
+    startDate,
+    endDate,
+    results,
+    variantMetrics,
+    winner,
+    improvement: (variantMetrics[winner].conversionRate / variantMetrics['control'].conversionRate - 1) * 100
+  };
+}
+</code></pre>
+                    </div>
+                    
+                    <h3>Feature Flags</h3>
+                    <p>Feature flags (or feature toggles) allow you to enable or disable features without deploying new code.</p>
+                    <ul>
+                        <li><strong>Release Toggles</strong> - Control feature visibility in production</li>
+                        <li><strong>Experiment Toggles</strong> - Implement A/B tests</li>
+                        <li><strong>Ops Toggles</strong> - Control operational aspects</li>
+                        <li><strong>Permission Toggles</strong> - Control access based on user permissions</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Implementing Feature Flags</div>
+<pre><code class="javascript">// Feature flag service
+class FeatureFlagService {
+  constructor(config = {}) {
+    this.flags = config.flags || {};
+    this.environment = config.environment || 'development';
+    this.userRolloutPercentages = config.userRolloutPercentages || {};
+  }
+  
+  // Check if a feature is enabled
+  isEnabled(featureName, context = {}) {
+    const flag = this.flags[featureName];
+    
+    // If flag doesn't exist, return false
+    if (!flag) {
+      return false;
+    }
+    
+    // Check if the flag is enabled for the current environment
+    if (flag.environments && !flag.environments.includes(this.environment)) {
+      return false;
+    }
+    
+    // Check if the flag is enabled for the user's role
+    if (context.userRole && flag.enabledRoles && !flag.enabledRoles.includes(context.userRole)) {
+      return false;
+    }
+    
+    // Check if the flag is enabled based on rollout percentage
+    if (context.userId && this.userRolloutPercentages[featureName]) {
+      const percentage = this.userRolloutPercentages[featureName];
+      const userHash = this.hashUserId(context.userId);
+      if (userHash > percentage) {
+        return false;
+      }
+    }
+    
+    // If all checks pass, return the flag's enabled status
+    return flag.enabled;
+  }
+  
+  // Hash a user ID to a number between 0 and 100
+  hashUserId(userId) {
+    let hash = 0;
+    for (let i = 0; i < userId.length; i++) {
+      hash = ((hash << 5) - hash) + userId.charCodeAt(i);
+      hash = hash & hash; // Convert to 32bit integer
+    }
+    return Math.abs(hash) % 100;
+  }
+  
+  // Update a feature flag
+  updateFlag(featureName, flagConfig) {
+    this.flags[featureName] = {
+      ...this.flags[featureName],
+      ...flagConfig
+    };
+  }
+  
+  // Set rollout percentage for a feature
+  setRolloutPercentage(featureName, percentage) {
+    this.userRolloutPercentages[featureName] = percentage;
+  }
+}
+
+// Example usage
+const featureFlags = new FeatureFlagService({
+  environment: 'production',
+  flags: {
+    'new-dashboard': {
+      enabled: true,
+      environments: ['development', 'staging', 'production'],
+      enabledRoles: ['admin', 'beta-tester']
+    },
+    'dark-mode': {
+      enabled: true,
+      environments: ['development', 'staging', 'production']
+    },
+    'advanced-analytics': {
+      enabled: false,
+      environments: ['development', 'staging']
+    }
+  },
+  userRolloutPercentages: {
+    'dark-mode': 50 // Enable for 50% of users
+  }
+});
+
+// Example React component using feature flags
+function Dashboard({ user }) {
+  const context = {
+    userId: user.id,
+    userRole: user.role
+  };
+  
+  const showNewDashboard = featureFlags.isEnabled('new-dashboard', context);
+  const showDarkMode = featureFlags.isEnabled('dark-mode', context);
+  
+  return (
+    <div className={showDarkMode ? 'dark-theme' : 'light-theme'}>
+      {showNewDashboard ? (
+        <NewDashboard user={user} />
+      ) : (
+        <LegacyDashboard user={user} />
+      )}
+    </div>
+  );
+}
+
+// Gradually rolling out a feature
+function rolloutFeature(featureName, startPercentage, endPercentage, durationDays) {
+  const incrementPerDay = (endPercentage - startPercentage) / durationDays;
+  let currentPercentage = startPercentage;
+  
+  // Set initial percentage
+  featureFlags.setRolloutPercentage(featureName, currentPercentage);
+  
+  // Schedule daily updates
+  const intervalId = setInterval(() => {
+    currentPercentage += incrementPerDay;
+    
+    if (currentPercentage >= endPercentage) {
+      currentPercentage = endPercentage;
+      clearInterval(intervalId);
+    }
+    
+    featureFlags.setRolloutPercentage(featureName, currentPercentage);
+    console.log(`[Feature Rollout] ${featureName} now at ${currentPercentage.toFixed(2)}%`);
+  }, 24 * 60 * 60 * 1000); // 24 hours
+}
+
+// Start rolling out dark mode to all users over 10 days
+rolloutFeature('dark-mode', 50, 100, 10);
+</code></pre>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Creating a Culture of Continuous Learning</h2>
+                    <p>Continuous feedback is most effective when embedded in a culture of continuous learning and improvement.</p>
+                    
+                    <h3>Key Elements of a Learning Culture</h3>
+                    <ul>
+                        <li><strong>Psychological Safety</strong> - Create an environment where it's safe to take risks and make mistakes</li>
+                        <li><strong>Blameless Postmortems</strong> - Focus on learning from incidents, not blaming individuals</li>
+                        <li><strong>Experimentation</strong> - Encourage trying new approaches and learning from the results</li>
+                        <li><strong>Knowledge Sharing</strong> - Facilitate sharing of insights and lessons learned</li>
+                        <li><strong>Continuous Improvement</strong> - Regularly reflect on processes and make incremental improvements</li>
+                    </ul>
+                    
+                    <h3>Blameless Postmortem Template</h3>
+                    <div class="code-block">
+                        <div class="code-header">Example: Blameless Postmortem Template</div>
+<pre><code class="markdown"># Incident Postmortem: [Incident Title]
+
+## Incident Summary
+- **Date and Time**: [Start and end time of the incident]
+- **Duration**: [How long the incident lasted]
+- **Impact**: [Description of the user impact]
+- **Severity**: [Critical/Major/Minor]
+
+## Timeline
+- **[Time]**: [Event description]
+- **[Time]**: [Event description]
+- **[Time]**: [Event description]
+- **[Time]**: [Event description]
+- **[Time]**: [Event description]
+
+## Root Cause
+[Detailed description of what caused the incident, focusing on systems and processes, not individuals]
+
+## Detection
+- **How was the incident detected?**: [Description]
+- **Time to detection**: [Time between start and detection]
+- **Detection gaps**: [What could have helped detect the issue sooner?]
+
+## Response
+- **Time to response**: [Time between detection and first response]
+- **Response process**: [Description of how the team responded]
+- **Response gaps**: [What could have improved the response?]
+
+## Resolution
+- **Time to resolution**: [Time between response and resolution]
+- **Resolution process**: [Description of how the issue was resolved]
+- **Resolution gaps**: [What could have helped resolve the issue faster?]
+
+## What Went Well
+- [Point 1]
+- [Point 2]
+- [Point 3]
+
+## What Went Wrong
+- [Point 1]
+- [Point 2]
+- [Point 3]
+
+## Action Items
+- [ ] **[Action Item 1]**: [Description] - [Owner] - [Due Date]
+- [ ] **[Action Item 2]**: [Description] - [Owner] - [Due Date]
+- [ ] **[Action Item 3]**: [Description] - [Owner] - [Due Date]
+
+## Lessons Learned
+- [Lesson 1]
+- [Lesson 2]
+- [Lesson 3]
+</code></pre>
+                    </div>
+                    
+                    <h3>Implementing Continuous Learning Practices</h3>
+                    <ul>
+                        <li><strong>Regular Retrospectives</strong> - Reflect on what went well and what could be improved</li>
+                        <li><strong>Learning from Incidents</strong> - Conduct blameless postmortems after incidents</li>
+                        <li><strong>Innovation Time</strong> - Allocate time for experimentation and learning</li>
+                        <li><strong>Communities of Practice</strong> - Create forums for sharing knowledge</li>
+                        <li><strong>Documentation</strong> - Document lessons learned and best practices</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Real-World Example: Etsy's Continuous Feedback</h2>
+                    <p>Etsy has developed a sophisticated approach to continuous feedback and experimentation.</p>
+                    
+                    <h3>Key Aspects of Etsy's Approach</h3>
+                    <ul>
+                        <li><strong>Feature Flagging</strong> - Using feature flags for controlled rollouts</li>
+                        <li><strong>A/B Testing</strong> - Running hundreds of experiments simultaneously</li>
+                        <li><strong>Telemetry</strong> - Collecting detailed data on user behavior</li>
+                        <li><strong>Blameless Culture</strong> - Focusing on learning from failures</li>
+                        <li><strong>Continuous Deployment</strong> - Deploying code multiple times per day</li>
+                    </ul>
+                    
+                    <h3>Lessons from Etsy</h3>
+                    <ul>
+                        <li>Make data-driven decisions based on real user behavior</li>
+                        <li>Create a safe environment for experimentation</li>
+                        <li>Invest in tooling for experimentation and analysis</li>
+                        <li>Focus on learning and improvement, not blame</li>
+                        <li>Empower teams to make decisions based on data</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Knowledge Check</h2>
+                    <div class="quiz-question">
+                        <p>1. What is the primary benefit of continuous feedback in DevOps?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">Reduced development costs</li>
+                            <li class="quiz-option" data-correct="true">Faster learning and improvement cycles</li>
+                            <li class="quiz-option" data-correct="false">Elimination of testing requirements</li>
+                            <li class="quiz-option" data-correct="false">Simplified deployment processes</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>2. Which of the following is NOT a type of feature flag?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">Release Toggle</li>
+                            <li class="quiz-option" data-correct="false">Experiment Toggle</li>
+                            <li class="quiz-option" data-correct="false">Ops Toggle</li>
+                            <li class="quiz-option" data-correct="true">Security Toggle</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>3. What is the purpose of A/B testing?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">To test application performance</li>
+                            <li class="quiz-option" data-correct="false">To verify code quality</li>
+                            <li class="quiz-option" data-correct="true">To compare two versions of a feature to determine which performs better</li>
+                            <li class="quiz-option" data-correct="false">To automate deployment processes</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>4. Which of the following is a key component of a blameless postmortem?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">Identifying who caused the incident</li>
+                            <li class="quiz-option" data-correct="false">Disciplinary actions for those responsible</li>
+                            <li class="quiz-option" data-correct="true">Focus on systems and processes, not individuals</li>
+                            <li class="quiz-option" data-correct="false">Minimizing documentation of the incident</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>5. What type of telemetry data focuses on user behavior and feature usage?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">Technical Telemetry</li>
+                            <li class="quiz-option" data-correct="true">Business Telemetry</li>
+                            <li class="quiz-option" data-correct="false">Infrastructure Telemetry</li>
+                            <li class="quiz-option" data-correct="false">Network Telemetry</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Additional Resources</h2>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=2rW_d2Hg-Aw" target="_blank">Video: Implementing Continuous Feedback</a></li>
+                        <li><a href="https://launchdarkly.com/blog/what-are-feature-flags/" target="_blank">Article: What Are Feature Flags?</a></li>
+                        <li><a href="https://www.optimizely.com/optimization-glossary/ab-testing/" target="_blank">Guide: A/B Testing</a></li>
+                        <li><a href="https://codeascraft.com/" target="_blank">Blog: Etsy's Code as Craft</a></li>
+                        <li><a href="https://sre.google/workbook/postmortem-culture/" target="_blank">Book Chapter: Postmortem Culture (Google SRE Workbook)</a></li>
+                    </ul>
+                </div>
+                
+                <div class="week-navigation">
+                    <a href="week10.html" class="btn">Previous Week: Monitoring and Observability</a>
+                    <a href="week12.html" class="btn">Next Week: DevOps Culture and Mindset</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">DevOps & QA Courses</div>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="../index.html">Home</a></li>
+                    <li class="footer-link"><a href="index.html">DevOps Course</a></li>
+                    <li class="footer-link"><a href="../qa/index.html">QA Course</a></li>
+                    <li class="footer-link"><a href="../resources/index.html">Resources</a></li>
+                    <li class="footer-link"><a href="https://github.com/username/course-website" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DevOps & QA Courses. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <span>↑</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

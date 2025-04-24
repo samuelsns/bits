@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 10: Monitoring and Observability | DevOps Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;700&family=Fira+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="../index.html">DevOps & QA Courses</a>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="index.html" class="nav-link">DevOps Course</a></li>
+                    <li class="nav-item"><a href="../qa/index.html" class="nav-link">QA Course</a></li>
+                    <li class="nav-item"><a href="../resources/index.html" class="nav-link">Resources</a></li>
+                    <li class="nav-item"><a href="https://github.com/username/course-website" class="nav-link" target="_blank">GitHub</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="week-content">
+                <h1>Week 10: Monitoring and Observability</h1>
+                
+                <div class="content-section">
+                    <h2>Learning Objectives</h2>
+                    <p>By the end of this week, you will be able to:</p>
+                    <ul>
+                        <li>Understand the principles and importance of monitoring and observability</li>
+                        <li>Differentiate between monitoring and observability</li>
+                        <li>Implement effective monitoring strategies</li>
+                        <li>Set up monitoring tools and dashboards</li>
+                        <li>Design and implement alerting systems</li>
+                        <li>Apply observability best practices to improve system reliability</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Introduction to Monitoring and Observability</h2>
+                    <p>Monitoring and observability are essential practices for understanding the health and performance of systems and applications.</p>
+                    
+                    <h3>Monitoring vs. Observability</h3>
+                    <p>While often used interchangeably, monitoring and observability have distinct meanings:</p>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Monitoring</th>
+                                <th>Observability</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Watching known metrics and logs</td>
+                                <td>Understanding system behavior from external outputs</td>
+                            </tr>
+                            <tr>
+                                <td>Focuses on predefined indicators</td>
+                                <td>Enables exploration of unknown issues</td>
+                            </tr>
+                            <tr>
+                                <td>Answers "Is the system working?"</td>
+                                <td>Answers "Why isn't the system working?"</td>
+                            </tr>
+                            <tr>
+                                <td>Reactive approach</td>
+                                <td>Proactive approach</td>
+                            </tr>
+                            <tr>
+                                <td>Based on dashboards and alerts</td>
+                                <td>Based on logs, metrics, and traces</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h3>The Three Pillars of Observability</h3>
+                    <ul>
+                        <li><strong>Metrics</strong> - Numerical data points collected over time (e.g., CPU usage, request rate)</li>
+                        <li><strong>Logs</strong> - Timestamped records of discrete events</li>
+                        <li><strong>Traces</strong> - Records of requests as they flow through distributed systems</li>
+                    </ul>
+                    
+                    <h3>Benefits of Effective Monitoring and Observability</h3>
+                    <ul>
+                        <li><strong>Improved Reliability</strong> - Detect and resolve issues before they impact users</li>
+                        <li><strong>Faster Troubleshooting</strong> - Quickly identify the root cause of problems</li>
+                        <li><strong>Better Performance</strong> - Identify and address performance bottlenecks</li>
+                        <li><strong>Capacity Planning</strong> - Make informed decisions about resource allocation</li>
+                        <li><strong>Security</strong> - Detect and respond to security incidents</li>
+                        <li><strong>Business Insights</strong> - Understand how systems are used and how they perform</li>
+                    </ul>
+                    
+                    <div class="activity">
+                        <h4 class="activity-title">Discussion Question</h4>
+                        <p>How does the shift from monolithic to microservice architectures change monitoring and observability requirements? What new challenges arise, and how can they be addressed?</p>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Monitoring Strategies</h2>
+                    <p>Effective monitoring requires a strategic approach to collecting, analyzing, and acting on data.</p>
+                    
+                    <h3>What to Monitor</h3>
+                    <ul>
+                        <li><strong>Infrastructure Metrics</strong> - CPU, memory, disk, network</li>
+                        <li><strong>Application Metrics</strong> - Request rate, response time, error rate</li>
+                        <li><strong>Business Metrics</strong> - User signups, transactions, revenue</li>
+                        <li><strong>External Dependencies</strong> - Third-party services, APIs</li>
+                        <li><strong>Security Metrics</strong> - Authentication attempts, access patterns</li>
+                    </ul>
+                    
+                    <h3>The RED Method</h3>
+                    <p>The RED method focuses on three key metrics for monitoring service health:</p>
+                    <ul>
+                        <li><strong>Rate</strong> - Requests per second</li>
+                        <li><strong>Errors</strong> - Failed requests per second</li>
+                        <li><strong>Duration</strong> - Distribution of request latencies</li>
+                    </ul>
+                    
+                    <h3>The USE Method</h3>
+                    <p>The USE method focuses on resources:</p>
+                    <ul>
+                        <li><strong>Utilization</strong> - Percentage of time the resource is busy</li>
+                        <li><strong>Saturation</strong> - Amount of work the resource cannot process (queue)</li>
+                        <li><strong>Errors</strong> - Count of error events</li>
+                    </ul>
+                    
+                    <h3>The Four Golden Signals</h3>
+                    <p>Google's SRE book recommends monitoring these four signals:</p>
+                    <ul>
+                        <li><strong>Latency</strong> - Time to serve a request</li>
+                        <li><strong>Traffic</strong> - Demand on the system</li>
+                        <li><strong>Errors</strong> - Rate of failed requests</li>
+                        <li><strong>Saturation</strong> - How "full" the system is</li>
+                    </ul>
+                    
+                    <h3>Black Box vs. White Box Monitoring</h3>
+                    <ul>
+                        <li><strong>Black Box Monitoring</strong> - Monitoring from the outside (e.g., synthetic tests)</li>
+                        <li><strong>White Box Monitoring</strong> - Monitoring internal system metrics</li>
+                    </ul>
+                    <p>A comprehensive monitoring strategy combines both approaches.</p>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Monitoring Tools and Dashboards</h2>
+                    <p>There are various tools for collecting, storing, visualizing, and alerting on monitoring data.</p>
+                    
+                    <h3>Popular Monitoring Tools</h3>
+                    <ul>
+                        <li><strong>Prometheus</strong> - Time-series database and monitoring system</li>
+                        <li><strong>Grafana</strong> - Visualization and dashboarding</li>
+                        <li><strong>Datadog</strong> - Cloud monitoring as a service</li>
+                        <li><strong>New Relic</strong> - Application performance monitoring</li>
+                        <li><strong>Nagios</strong> - Infrastructure monitoring</li>
+                        <li><strong>Zabbix</strong> - Enterprise-level monitoring</li>
+                        <li><strong>ELK Stack</strong> - Elasticsearch, Logstash, Kibana for log analysis</li>
+                        <li><strong>Jaeger</strong> - Distributed tracing</li>
+                    </ul>
+                    
+                    <h3>Setting Up Prometheus and Grafana</h3>
+                    <p>Prometheus and Grafana are popular open-source tools for monitoring and visualization.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Docker Compose for Prometheus and Grafana</div>
+<pre><code class="yaml"># docker-compose.yml
+version: '3'
+
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    restart: always
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    ports:
+      - "9100:9100"
+    restart: always
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    restart: always
+
+volumes:
+  prometheus_data:
+  grafana_data:
+</code></pre>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Prometheus Configuration</div>
+<pre><code class="yaml"># prometheus.yml
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+
+  - job_name: 'spring-boot-app'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['app:8080']
+</code></pre>
+                    </div>
+                    
+                    <h3>Instrumenting Applications</h3>
+                    <p>To collect application metrics, you need to instrument your code. Many frameworks and libraries provide built-in support for metrics collection.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Instrumenting a Node.js Application with Prometheus</div>
+<pre><code class="javascript">const express = require('express');
+const promClient = require('prom-client');
+
+// Create a Registry to register the metrics
+const register = new promClient.Registry();
+promClient.collectDefaultMetrics({ register });
+
+// Create custom metrics
+const httpRequestDurationMicroseconds = new promClient.Histogram({
+  name: 'http_request_duration_seconds',
+  help: 'Duration of HTTP requests in seconds',
+  labelNames: ['method', 'route', 'status'],
+  buckets: [0.1, 0.3, 0.5, 0.7, 1, 3, 5, 7, 10]
+});
+
+const httpRequestCounter = new promClient.Counter({
+  name: 'http_requests_total',
+  help: 'Total number of HTTP requests',
+  labelNames: ['method', 'route', 'status']
+});
+
+// Register the metrics
+register.registerMetric(httpRequestDurationMicroseconds);
+register.registerMetric(httpRequestCounter);
+
+const app = express();
+
+// Add middleware to measure request duration
+app.use((req, res, next) => {
+  const end = httpRequestDurationMicroseconds.startTimer();
+  res.on('finish', () => {
+    end({ method: req.method, route: req.route?.path || req.path, status: res.statusCode });
+    httpRequestCounter.inc({ method: req.method, route: req.route?.path || req.path, status: res.statusCode });
+  });
+  next();
+});
+
+// Expose metrics endpoint
+app.get('/metrics', async (req, res) => {
+  res.set('Content-Type', register.contentType);
+  res.end(await register.metrics());
+});
+
+// Application routes
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+
+app.listen(3000, () => {
+  console.log('Server listening on port 3000');
+});
+</code></pre>
+                    </div>
+                    
+                    <h3>Creating Effective Dashboards</h3>
+                    <p>Dashboards should provide a clear view of system health and performance. Here are some best practices:</p>
+                    <ul>
+                        <li><strong>Focus on Key Metrics</strong> - Include the most important metrics</li>
+                        <li><strong>Group Related Metrics</strong> - Organize metrics logically</li>
+                        <li><strong>Use Appropriate Visualizations</strong> - Choose the right chart type for each metric</li>
+                        <li><strong>Include Context</strong> - Add annotations and descriptions</li>
+                        <li><strong>Design for Different Audiences</strong> - Create dashboards for different stakeholders</li>
+                        <li><strong>Keep It Simple</strong> - Avoid cluttered dashboards</li>
+                    </ul>
+                    
+                    <div class="activity">
+                        <h4 class="activity-title">Exercise: Set Up a Monitoring Stack</h4>
+                        <p>Set up a monitoring stack using Prometheus and Grafana to monitor a simple web application. Include the following:</p>
+                        <ol class="activity-steps">
+                            <li>Deploy Prometheus and Grafana using Docker Compose</li>
+                            <li>Configure Prometheus to scrape metrics from the application</li>
+                            <li>Instrument the application to expose metrics</li>
+                            <li>Create a Grafana dashboard to visualize the metrics</li>
+                            <li>Set up alerts for key metrics</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Alerting Systems</h2>
+                    <p>Alerting is a critical component of monitoring, notifying operators when systems need attention.</p>
+                    
+                    <h3>Alerting Best Practices</h3>
+                    <ul>
+                        <li><strong>Alert on Symptoms, Not Causes</strong> - Focus on user-impacting issues</li>
+                        <li><strong>Reduce Noise</strong> - Minimize false positives and alert fatigue</li>
+                        <li><strong>Provide Context</strong> - Include relevant information in alerts</li>
+                        <li><strong>Define Severity Levels</strong> - Categorize alerts by importance</li>
+                        <li><strong>Implement Escalation Policies</strong> - Define who gets notified and when</li>
+                        <li><strong>Document Response Procedures</strong> - Include runbooks or links to documentation</li>
+                    </ul>
+                    
+                    <h3>Setting Up Alerts in Prometheus</h3>
+                    <p>Prometheus uses Alertmanager to handle alerts.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Prometheus Alert Rules</div>
+<pre><code class="yaml"># alerts.yml
+groups:
+  - name: example
+    rules:
+      - alert: HighCPULoad
+        expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU load (instance {{ $labels.instance }})"
+          description: "CPU load is above 80% for 5 minutes\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+      - alert: HighMemoryUsage
+        expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 80
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High memory usage (instance {{ $labels.instance }})"
+          description: "Memory usage is above 80% for 5 minutes\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+      - alert: HighDiskUsage
+        expr: 100 - ((node_filesystem_avail_bytes{mountpoint="/"} * 100) / node_filesystem_size_bytes{mountpoint="/"}) > 80
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High disk usage (instance {{ $labels.instance }})"
+          description: "Disk usage is above 80% for 5 minutes\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+      - alert: InstanceDown
+        expr: up == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Instance down (instance {{ $labels.instance }})"
+          description: "Instance has been down for more than 5 minutes\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+      - alert: HighErrorRate
+        expr: sum(rate(http_requests_total{status=~"5.."}[5m])) / sum(rate(http_requests_total[5m])) * 100 > 5
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High error rate"
+          description: "Error rate is above 5% for 5 minutes\n  VALUE = {{ $value }}"
+</code></pre>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Alertmanager Configuration</div>
+<pre><code class="yaml"># alertmanager.yml
+global:
+  resolve_timeout: 5m
+  slack_api_url: 'https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX'
+
+route:
+  group_by: ['alertname', 'job']
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 12h
+  receiver: 'slack-notifications'
+  routes:
+  - match:
+      severity: critical
+    receiver: 'pagerduty-critical'
+    continue: true
+
+receivers:
+- name: 'slack-notifications'
+  slack_configs:
+  - channel: '#alerts'
+    send_resolved: true
+    title: "{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}"
+    text: "{{ range .Alerts }}{{ .Annotations.description }}\n{{ end }}"
+
+- name: 'pagerduty-critical'
+  pagerduty_configs:
+  - service_key: 'your_pagerduty_service_key'
+    send_resolved: true
+
+inhibit_rules:
+  - source_match:
+      severity: 'critical'
+    target_match:
+      severity: 'warning'
+    equal: ['alertname', 'instance']
+</code></pre>
+                    </div>
+                    
+                    <h3>Alert Notification Channels</h3>
+                    <p>Alerts can be sent through various channels:</p>
+                    <ul>
+                        <li><strong>Email</strong> - Simple but may be overlooked</li>
+                        <li><strong>SMS</strong> - More immediate than email</li>
+                        <li><strong>Chat Applications</strong> - Slack, Microsoft Teams, etc.</li>
+                        <li><strong>Incident Management Systems</strong> - PagerDuty, OpsGenie, etc.</li>
+                        <li><strong>Voice Calls</strong> - For critical issues</li>
+                        <li><strong>Mobile Apps</strong> - Dedicated alerting apps</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Observability Best Practices</h2>
+                    <p>Observability goes beyond monitoring to provide deep insights into system behavior.</p>
+                    
+                    <h3>Implementing Distributed Tracing</h3>
+                    <p>Distributed tracing tracks requests as they flow through microservices.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Implementing Tracing with OpenTelemetry in Node.js</div>
+<pre><code class="javascript">const { NodeTracerProvider } = require('@opentelemetry/node');
+const { SimpleSpanProcessor } = require('@opentelemetry/tracing');
+const { JaegerExporter } = require('@opentelemetry/exporter-jaeger');
+const { registerInstrumentations } = require('@opentelemetry/instrumentation');
+const { ExpressInstrumentation } = require('@opentelemetry/instrumentation-express');
+const { HttpInstrumentation } = require('@opentelemetry/instrumentation-http');
+
+// Create a tracer provider
+const provider = new NodeTracerProvider();
+
+// Configure the Jaeger exporter
+const exporter = new JaegerExporter({
+  serviceName: 'my-service',
+  endpoint: 'http://jaeger:14268/api/traces',
+});
+
+// Add the exporter to the provider
+provider.addSpanProcessor(new SimpleSpanProcessor(exporter));
+
+// Register the provider
+provider.register();
+
+// Register instrumentations
+registerInstrumentations({
+  instrumentations: [
+    new HttpInstrumentation(),
+    new ExpressInstrumentation(),
+  ],
+});
+
+// Now your Express app will automatically generate traces
+const express = require('express');
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+
+app.get('/api/data', async (req, res) => {
+  // Create a custom span
+  const tracer = provider.getTracer('my-service');
+  const span = tracer.startSpan('fetch-data');
+  
+  try {
+    // Simulate fetching data
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    // Add attributes to the span
+    span.setAttribute('data.items', 42);
+    
+    res.json({ success: true, data: { items: 42 } });
+  } catch (error) {
+    // Record errors
+    span.recordException(error);
+    res.status(500).json({ success: false, error: error.message });
+  } finally {
+    // End the span
+    span.end();
+  }
+});
+
+app.listen(3000, () => {
+  console.log('Server listening on port 3000');
+});
+</code></pre>
+                    </div>
+                    
+                    <h3>Structured Logging</h3>
+                    <p>Structured logging makes logs more searchable and analyzable.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Structured Logging in Node.js with Winston</div>
+<pre><code class="javascript">const winston = require('winston');
+const { format } = winston;
+
+// Create a logger
+const logger = winston.createLogger({
+  level: 'info',
+  format: format.combine(
+    format.timestamp(),
+    format.json()
+  ),
+  defaultMeta: { service: 'my-service' },
+  transports: [
+    new winston.transports.Console(),
+    new winston.transports.File({ filename: 'error.log', level: 'error' }),
+    new winston.transports.File({ filename: 'combined.log' })
+  ]
+});
+
+// Example usage
+function processOrder(order) {
+  logger.info('Processing order', {
+    orderId: order.id,
+    customerId: order.customerId,
+    amount: order.amount,
+    items: order.items.length
+  });
+  
+  try {
+    // Process the order
+    // ...
+    
+    logger.info('Order processed successfully', {
+      orderId: order.id,
+      processingTime: 123 // milliseconds
+    });
+    
+    return { success: true };
+  } catch (error) {
+    logger.error('Failed to process order', {
+      orderId: order.id,
+      error: error.message,
+      stack: error.stack
+    });
+    
+    return { success: false, error: error.message };
+  }
+}
+</code></pre>
+                    </div>
+                    
+                    <h3>Service Level Objectives (SLOs) and Service Level Indicators (SLIs)</h3>
+                    <p>SLOs and SLIs provide a framework for measuring and improving service reliability.</p>
+                    <ul>
+                        <li><strong>SLI (Service Level Indicator)</strong> - A metric that measures service performance (e.g., latency, error rate)</li>
+                        <li><strong>SLO (Service Level Objective)</strong> - A target value or range for an SLI (e.g., 99.9% availability)</li>
+                        <li><strong>SLA (Service Level Agreement)</strong> - A contract with users about service performance</li>
+                        <li><strong>Error Budget</strong> - The allowed amount of service degradation within an SLO</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Implementing SLOs with Prometheus</div>
+<pre><code class="yaml"># slo_rules.yml
+groups:
+  - name: slo_rules
+    rules:
+      # Define an SLI for availability (success rate)
+      - record: sli:availability:ratio_5m
+        expr: sum(rate(http_requests_total{status!~"5.."}[5m])) / sum(rate(http_requests_total[5m]))
+
+      # Define an SLI for latency (90th percentile)
+      - record: sli:latency:p90_5m
+        expr: histogram_quantile(0.9, sum(rate(http_request_duration_seconds_bucket[5m])) by (le))
+
+      # Define an SLO for availability (99.9%)
+      - alert: AvailabilitySLOViolation
+        expr: sli:availability:ratio_5m < 0.999
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Availability SLO violation"
+          description: "Service availability is below 99.9% for 5 minutes\n  VALUE = {{ $value }}"
+
+      # Define an SLO for latency (200ms)
+      - alert: LatencySLOViolation
+        expr: sli:latency:p90_5m > 0.2
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Latency SLO violation"
+          description: "Service 90th percentile latency is above 200ms for 5 minutes\n  VALUE = {{ $value }}"
+</code></pre>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Real-World Example: Google's Monitoring and Observability</h2>
+                    <p>Google has developed sophisticated monitoring and observability practices as part of its Site Reliability Engineering (SRE) approach.</p>
+                    
+                    <h3>Key Aspects of Google's Approach</h3>
+                    <ul>
+                        <li><strong>Monitoring the Four Golden Signals</strong> - Latency, traffic, errors, and saturation</li>
+                        <li><strong>SLOs and Error Budgets</strong> - Setting clear reliability targets</li>
+                        <li><strong>Distributed Tracing</strong> - Using Dapper for request tracing</li>
+                        <li><strong>Borgmon</strong> - Internal monitoring system (inspiration for Prometheus)</li>
+                        <li><strong>Dashboards and Alerts</strong> - Visualizing metrics and notifying operators</li>
+                        <li><strong>Postmortems</strong> - Learning from incidents</li>
+                    </ul>
+                    
+                    <h3>Lessons from Google</h3>
+                    <ul>
+                        <li>Focus on user-impacting metrics</li>
+                        <li>Set clear reliability targets with SLOs</li>
+                        <li>Use error budgets to balance reliability and innovation</li>
+                        <li>Implement comprehensive tracing for complex systems</li>
+                        <li>Learn from incidents through blameless postmortems</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Knowledge Check</h2>
+                    <div class="quiz-question">
+                        <p>1. What is the primary difference between monitoring and observability?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">Monitoring is for production, observability is for development</li>
+                            <li class="quiz-option" data-correct="true">Monitoring focuses on known issues, observability helps understand unknown issues</li>
+                            <li class="quiz-option" data-correct="false">Monitoring is manual, observability is automated</li>
+                            <li class="quiz-option" data-correct="false">Monitoring is for infrastructure, observability is for applications</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>2. Which of the following is NOT one of the three pillars of observability?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">Metrics</li>
+                            <li class="quiz-option" data-correct="false">Logs</li>
+                            <li class="quiz-option" data-correct="false">Traces</li>
+                            <li class="quiz-option" data-correct="true">Alerts</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>3. What is the purpose of distributed tracing?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">To monitor server CPU usage</li>
+                            <li class="quiz-option" data-correct="false">To collect application logs</li>
+                            <li class="quiz-option" data-correct="true">To track requests as they flow through microservices</li>
+                            <li class="quiz-option" data-correct="false">To alert operators when systems fail</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>4. Which of the following is NOT one of Google's Four Golden Signals?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">Latency</li>
+                            <li class="quiz-option" data-correct="false">Traffic</li>
+                            <li class="quiz-option" data-correct="false">Errors</li>
+                            <li class="quiz-option" data-correct="true">Availability</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>5. What is an SLO (Service Level Objective)?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">A contract with users about service performance</li>
+                            <li class="quiz-option" data-correct="true">A target value or range for a service level indicator</li>
+                            <li class="quiz-option" data-correct="false">A metric that measures service performance</li>
+                            <li class="quiz-option" data-correct="false">The allowed amount of service degradation</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Additional Resources</h2>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=h4Sl21AKiDg" target="_blank">Video: Monitoring and Observability</a></li>
+                        <li><a href="https://prometheus.io/docs/introduction/overview/" target="_blank">Documentation: Prometheus</a></li>
+                        <li><a href="https://grafana.com/docs/grafana/latest/" target="_blank">Documentation: Grafana</a></li>
+                        <li><a href="https://sre.google/sre-book/monitoring-distributed-systems/" target="_blank">Book Chapter: Monitoring Distributed Systems (Google SRE Book)</a></li>
+                        <li><a href="https://opentelemetry.io/docs/" target="_blank">Documentation: OpenTelemetry</a></li>
+                    </ul>
+                </div>
+                
+                <div class="week-navigation">
+                    <a href="week9.html" class="btn">Previous Week: Configuration Management</a>
+                    <a href="week11.html" class="btn">Next Week: Continuous Feedback</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">DevOps & QA Courses</div>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="../index.html">Home</a></li>
+                    <li class="footer-link"><a href="index.html">DevOps Course</a></li>
+                    <li class="footer-link"><a href="../qa/index.html">QA Course</a></li>
+                    <li class="footer-link"><a href="../resources/index.html">Resources</a></li>
+                    <li class="footer-link"><a href="https://github.com/username/course-website" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DevOps & QA Courses. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <span>↑</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

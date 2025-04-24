@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weeks 6-7: Test Automation | QA Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;700&family=Fira+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="../index.html">DevOps & QA Courses</a>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="../devops/index.html" class="nav-link">DevOps Course</a></li>
+                    <li class="nav-item"><a href="index.html" class="nav-link">QA Course</a></li>
+                    <li class="nav-item"><a href="../resources/index.html" class="nav-link">Resources</a></li>
+                    <li class="nav-item"><a href="https://github.com/username/course-website" class="nav-link" target="_blank">GitHub</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="week-content">
+                <h1>Weeks 6-7: Test Automation</h1>
+                
+                <div class="content-section">
+                    <h2>Learning Objectives</h2>
+                    <p>By the end of these two weeks, you will be able to:</p>
+                    <ul>
+                        <li>Understand the principles and benefits of test automation</li>
+                        <li>Design and implement effective test automation frameworks</li>
+                        <li>Create automated tests using Selenium with JavaScript/TypeScript</li>
+                        <li>Apply best practices for maintainable and reliable automated tests</li>
+                        <li>Evaluate and select appropriate tools for different testing needs</li>
+                        <li>Integrate automated testing into the development workflow</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Introduction to Test Automation</h2>
+                    <p>Test automation involves using specialized tools to control the execution of tests and compare actual outcomes with predicted outcomes. It can significantly improve testing efficiency, coverage, and reliability.</p>
+                    
+                    <h3>Why Automate Tests?</h3>
+                    <ul>
+                        <li><strong>Efficiency</strong> - Run tests faster and more frequently</li>
+                        <li><strong>Consistency</strong> - Execute tests the same way every time</li>
+                        <li><strong>Coverage</strong> - Run more tests in less time</li>
+                        <li><strong>Regression Testing</strong> - Quickly verify that new changes don't break existing functionality</li>
+                        <li><strong>Resource Optimization</strong> - Free up manual testers for more complex testing</li>
+                        <li><strong>Early Defect Detection</strong> - Find issues earlier in the development process</li>
+                        <li><strong>Continuous Testing</strong> - Enable testing as part of CI/CD pipelines</li>
+                    </ul>
+                    
+                    <div class="interactive-element">
+                        <h4 class="interactive-title">Interactive Diagram: Manual vs. Automated Testing</h4>
+                        <div class="comparison-diagram">
+                            <div class="comparison-side" id="manual-side">
+                                <h5>Manual Testing</h5>
+                                <ul class="comparison-list">
+                                    <li class="comparison-item" id="manual-1">Human testers execute test cases</li>
+                                    <li class="comparison-item" id="manual-2">Time-consuming for repetitive tests</li>
+                                    <li class="comparison-item" id="manual-3">Prone to human error</li>
+                                    <li class="comparison-item" id="manual-4">Better for exploratory and usability testing</li>
+                                    <li class="comparison-item" id="manual-5">Lower initial setup cost</li>
+                                    <li class="comparison-item" id="manual-6">Flexible for changing requirements</li>
+                                </ul>
+                            </div>
+                            <div class="comparison-side" id="automated-side">
+                                <h5>Automated Testing</h5>
+                                <ul class="comparison-list">
+                                    <li class="comparison-item" id="auto-1">Scripts execute test cases</li>
+                                    <li class="comparison-item" id="auto-2">Efficient for repetitive tests</li>
+                                    <li class="comparison-item" id="auto-3">Consistent execution</li>
+                                    <li class="comparison-item" id="auto-4">Better for regression and performance testing</li>
+                                    <li class="comparison-item" id="auto-5">Higher initial setup cost</li>
+                                    <li class="comparison-item" id="auto-6">Requires maintenance when requirements change</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p class="diagram-caption">Click on each item to see a detailed comparison between manual and automated approaches.</p>
+                    </div>
+                    
+                    <h3>What to Automate?</h3>
+                    <p>Not all tests should be automated. Consider automating tests that are:</p>
+                    <ul>
+                        <li><strong>Repetitive</strong> - Tests that need to be run frequently</li>
+                        <li><strong>Regression-Prone</strong> - Areas where changes often cause issues</li>
+                        <li><strong>Data-Driven</strong> - Tests that need to be run with multiple data sets</li>
+                        <li><strong>Time-Consuming</strong> - Tests that take a long time to execute manually</li>
+                        <li><strong>Critical Path</strong> - Tests for core functionality that must always work</li>
+                        <li><strong>Stable</strong> - Tests for features that don't change frequently</li>
+                    </ul>
+                    
+                    <div class="activity">
+                        <h4 class="activity-title">Discussion Question</h4>
+                        <p>For a typical e-commerce website, which features would you prioritize for test automation and why? Which features might be better suited for manual testing?</p>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Test Automation Frameworks</h2>
+                    <p>A test automation framework is a set of guidelines, practices, and tools that support automated testing. It provides a structured approach to creating, executing, and maintaining automated tests.</p>
+                    
+                    <h3>Types of Test Automation Frameworks</h3>
+                    <ul>
+                        <li><strong>Linear (Record & Playback)</strong> - Simple scripts that record and replay user actions</li>
+                        <li><strong>Modular</strong> - Divides the application into separate modules or functions</li>
+                        <li><strong>Data-Driven</strong> - Separates test data from test scripts</li>
+                        <li><strong>Keyword-Driven</strong> - Uses keywords to represent actions in the application</li>
+                        <li><strong>Hybrid</strong> - Combines elements of multiple framework types</li>
+                        <li><strong>Behavior-Driven Development (BDD)</strong> - Uses natural language to describe tests</li>
+                    </ul>
+                    
+                    <div class="interactive-element">
+                        <h4 class="interactive-title">Interactive Diagram: Components of a Test Automation Framework</h4>
+                        <div class="framework-diagram">
+                            <div class="framework-component" id="test-scripts">
+                                <span>Test Scripts</span>
+                                <div class="component-details">
+                                    <h5>Test Scripts</h5>
+                                    <p>Automated test cases that execute specific test scenarios</p>
+                                    <p>Example: Login test, checkout test, search test</p>
+                                </div>
+                            </div>
+                            <div class="framework-component" id="page-objects">
+                                <span>Page Objects</span>
+                                <div class="component-details">
+                                    <h5>Page Objects</h5>
+                                    <p>Abstractions that represent pages or components in the application</p>
+                                    <p>Encapsulate page elements and actions</p>
+                                    <p>Improve maintainability by centralizing element locators</p>
+                                </div>
+                            </div>
+                            <div class="framework-component" id="test-data">
+                                <span>Test Data</span>
+                                <div class="component-details">
+                                    <h5>Test Data</h5>
+                                    <p>Input data and expected results for tests</p>
+                                    <p>Can be stored in various formats: CSV, JSON, Excel, databases</p>
+                                    <p>Separating data from scripts improves maintainability</p>
+                                </div>
+                            </div>
+                            <div class="framework-component" id="utilities">
+                                <span>Utilities</span>
+                                <div class="component-details">
+                                    <h5>Utilities</h5>
+                                    <p>Helper functions and common operations</p>
+                                    <p>Examples: logging, reporting, screenshot capture, date handling</p>
+                                </div>
+                            </div>
+                            <div class="framework-component" id="configuration">
+                                <span>Configuration</span>
+                                <div class="component-details">
+                                    <h5>Configuration</h5>
+                                    <p>Settings for test execution</p>
+                                    <p>Examples: browser type, environment URLs, timeouts</p>
+                                </div>
+                            </div>
+                            <div class="framework-component" id="reporting">
+                                <span>Reporting</span>
+                                <div class="component-details">
+                                    <h5>Reporting</h5>
+                                    <p>Mechanisms to generate test results and reports</p>
+                                    <p>Provides visibility into test execution and outcomes</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="diagram-caption">Click on each component to learn more about its role in a test automation framework.</p>
+                    </div>
+                    
+                    <h3>Page Object Model (POM)</h3>
+                    <p>The Page Object Model is a design pattern that creates an object repository for web UI elements. It helps improve test maintenance and reduces code duplication.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Page Object Model in JavaScript with Selenium</div>
+<pre><code class="javascript">// LoginPage.js - Page Object for the login page
+class LoginPage {
+  constructor(driver) {
+    this.driver = driver;
+    this.usernameInput = By.id('username');
+    this.passwordInput = By.id('password');
+    this.loginButton = By.id('login-button');
+    this.errorMessage = By.id('error-message');
+  }
+  
+  async navigate() {
+    await this.driver.get('https://example.com/login');
+  }
+  
+  async enterUsername(username) {
+    await this.driver.findElement(this.usernameInput).sendKeys(username);
+  }
+  
+  async enterPassword(password) {
+    await this.driver.findElement(this.passwordInput).sendKeys(password);
+  }
+  
+  async clickLogin() {
+    await this.driver.findElement(this.loginButton).click();
+  }
+  
+  async getErrorMessage() {
+    return await this.driver.findElement(this.errorMessage).getText();
+  }
+  
+  async login(username, password) {
+    await this.enterUsername(username);
+    await this.enterPassword(password);
+    await this.clickLogin();
+  }
+}
+
+// DashboardPage.js - Page Object for the dashboard page
+class DashboardPage {
+  constructor(driver) {
+    this.driver = driver;
+    this.welcomeMessage = By.id('welcome-message');
+    this.logoutButton = By.id('logout-button');
+    this.menuItems = By.css('.menu-item');
+  }
+  
+  async getWelcomeMessage() {
+    return await this.driver.findElement(this.welcomeMessage).getText();
+  }
+  
+  async logout() {
+    await this.driver.findElement(this.logoutButton).click();
+  }
+  
+  async isDisplayed() {
+    // Wait for the dashboard to be displayed
+    await this.driver.wait(until.elementLocated(this.welcomeMessage), 5000);
+    return true;
+  }
+}
+
+// LoginTest.js - Test using Page Objects
+const { Builder, By, until } = require('selenium-webdriver');
+const assert = require('assert');
+
+describe('Login Functionality', function() {
+  let driver;
+  let loginPage;
+  let dashboardPage;
+  
+  before(async function() {
+    driver = await new Builder().forBrowser('chrome').build();
+    loginPage = new LoginPage(driver);
+    dashboardPage = new DashboardPage(driver);
+  });
+  
+  after(async function() {
+    await driver.quit();
+  });
+  
+  it('should login successfully with valid credentials', async function() {
+    await loginPage.navigate();
+    await loginPage.login('testuser', 'Password123');
+    
+    // Verify successful login
+    assert.ok(await dashboardPage.isDisplayed(), 'Dashboard should be displayed after login');
+    
+    const welcomeMessage = await dashboardPage.getWelcomeMessage();
+    assert.ok(welcomeMessage.includes('testuser'), 'Welcome message should include username');
+  });
+  
+  it('should show error message with invalid credentials', async function() {
+    await loginPage.navigate();
+    await loginPage.login('testuser', 'WrongPassword');
+    
+    const errorMessage = await loginPage.getErrorMessage();
+    assert.equal(errorMessage, 'Invalid username or password', 'Error message should indicate invalid credentials');
+  });
+});</code></pre>
+                    </div>
+                    
+                    <h3>Framework Design Best Practices</h3>
+                    <ul>
+                        <li><strong>Separation of Concerns</strong> - Separate test logic, test data, and page interactions</li>
+                        <li><strong>Reusability</strong> - Create reusable components and utilities</li>
+                        <li><strong>Maintainability</strong> - Design for easy updates when the application changes</li>
+                        <li><strong>Readability</strong> - Write clear, self-documenting code</li>
+                        <li><strong>Scalability</strong> - Design to accommodate growth in test coverage</li>
+                        <li><strong>Stability</strong> - Build robust tests that don't fail due to timing or environmental issues</li>
+                        <li><strong>Reporting</strong> - Provide clear, detailed test results</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Selenium WebDriver</h2>
+                    <p>Selenium WebDriver is one of the most popular tools for automating web browsers. It provides a programming interface to create and execute test scripts.</p>
+                    
+                    <h3>Key Features of Selenium</h3>
+                    <ul>
+                        <li><strong>Multi-Browser Support</strong> - Works with Chrome, Firefox, Safari, Edge, etc.</li>
+                        <li><strong>Multi-Language Support</strong> - Java, JavaScript, Python, C#, Ruby, etc.</li>
+                        <li><strong>Cross-Platform</strong> - Works on Windows, macOS, Linux</li>
+                        <li><strong>WebDriver API</strong> - Interacts with browser elements</li>
+                        <li><strong>Wait Mechanisms</strong> - Handles synchronization issues</li>
+                        <li><strong>Actions API</strong> - Supports complex user interactions</li>
+                    </ul>
+                    
+                    <h3>Setting Up Selenium with JavaScript</h3>
+                    <div class="code-block">
+                        <div class="code-header">Setting Up a Selenium Project with JavaScript</div>
+<pre><code class="bash"># Create a new directory for your project
+mkdir selenium-js-project
+cd selenium-js-project
+
+# Initialize a new Node.js project
+npm init -y
+
+# Install Selenium WebDriver and testing framework
+npm install selenium-webdriver
+npm install mocha chai
+
+# Install browser drivers
+npm install chromedriver geckodriver
+
+# Create a basic directory structure
+mkdir -p src/test/pages
+mkdir -p src/test/data
+mkdir -p src/test/utils
+mkdir -p src/test/reports</code></pre>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Basic Selenium Test in JavaScript</div>
+<pre><code class="javascript">// src/test/basic-test.js
+const { Builder, By, Key, until } = require('selenium-webdriver');
+const assert = require('assert');
+
+describe('Google Search Test', function() {
+  // Increase timeout for Selenium tests
+  this.timeout(10000);
+  
+  let driver;
+  
+  before(async function() {
+    // Set up the WebDriver
+    driver = await new Builder().forBrowser('chrome').build();
+  });
+  
+  after(async function() {
+    // Quit the WebDriver
+    await driver.quit();
+  });
+  
+  it('should search Google and find results', async function() {
+    // Navigate to Google
+    await driver.get('https://www.google.com');
+    
+    // Accept cookies if the dialog appears
+    try {
+      const acceptButton = await driver.findElement(By.xpath('//button[contains(., "Accept all")]'));
+      await acceptButton.click();
+    } catch (e) {
+      // Cookie dialog might not appear, continue with the test
+    }
+    
+    // Find the search input and enter a query
+    const searchInput = await driver.findElement(By.name('q'));
+    await searchInput.sendKeys('Selenium WebDriver', Key.RETURN);
+    
+    // Wait for the results page to load
+    await driver.wait(until.titleContains('Selenium WebDriver'), 5000);
+    
+    // Verify that results are displayed
+    const results = await driver.findElements(By.css('#search .g'));
+    assert.ok(results.length > 0, 'Search results should be displayed');
+    
+    // Verify that the first result contains "Selenium"
+    const firstResultText = await results[0].getText();
+    assert.ok(firstResultText.includes('Selenium'), 'First result should mention Selenium');
+  });
+});</code></pre>
+                    </div>
+                    
+                    <h3>Locating Elements</h3>
+                    <p>Selenium provides several strategies for locating elements on a web page:</p>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Locator Strategy</th>
+                                <th>Example</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ID</td>
+                                <td><code>By.id('username')</code></td>
+                                <td>Locates elements by the value of their id attribute</td>
+                            </tr>
+                            <tr>
+                                <td>Name</td>
+                                <td><code>By.name('password')</code></td>
+                                <td>Locates elements by the value of their name attribute</td>
+                            </tr>
+                            <tr>
+                                <td>Class Name</td>
+                                <td><code>By.className('btn-primary')</code></td>
+                                <td>Locates elements by the value of their class attribute</td>
+                            </tr>
+                            <tr>
+                                <td>Tag Name</td>
+                                <td><code>By.tagName('button')</code></td>
+                                <td>Locates elements by their tag name</td>
+                            </tr>
+                            <tr>
+                                <td>Link Text</td>
+                                <td><code>By.linkText('Sign up')</code></td>
+                                <td>Locates anchor elements by their exact text content</td>
+                            </tr>
+                            <tr>
+                                <td>Partial Link Text</td>
+                                <td><code>By.partialLinkText('Sign')</code></td>
+                                <td>Locates anchor elements by partial text content</td>
+                            </tr>
+                            <tr>
+                                <td>CSS Selector</td>
+                                <td><code>By.css('.form-control[type="email"]')</code></td>
+                                <td>Locates elements using CSS selectors</td>
+                            </tr>
+                            <tr>
+                                <td>XPath</td>
+                                <td><code>By.xpath('//button[contains(text(),"Submit")]')</code></td>
+                                <td>Locates elements using XPath expressions</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="activity">
+                        <h4 class="activity-title">Exercise: Element Locator Practice</h4>
+                        <p>Given the following HTML, write Selenium locators to find each of the specified elements:</p>
+                        <div class="code-snippet">
+<pre><code class="html">&lt;form id="login-form" class="auth-form"&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label for="email"&gt;Email&lt;/label&gt;
+    &lt;input type="email" id="email" name="email" class="form-control" placeholder="Enter your email"&gt;
+  &lt;/div&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label for="password"&gt;Password&lt;/label&gt;
+    &lt;input type="password" id="password" name="password" class="form-control" placeholder="Enter your password"&gt;
+  &lt;/div&gt;
+  &lt;div class="form-actions"&gt;
+    &lt;button type="submit" class="btn btn-primary"&gt;Log In&lt;/button&gt;
+    &lt;a href="/forgot-password" class="forgot-link"&gt;Forgot Password?&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="signup-prompt"&gt;
+    Don't have an account? &lt;a href="/signup"&gt;Sign up now&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+                        </div>
+                        <p>Write locators for:</p>
+                        <ol class="activity-steps">
+                            <li>The login form</li>
+                            <li>The email input field</li>
+                            <li>The password input field</li>
+                            <li>The login button</li>
+                            <li>The "Forgot Password?" link</li>
+                            <li>The "Sign up now" link</li>
+                        </ol>
+                    </div>
+                    
+                    <h3>Handling Waits</h3>
+                    <p>Proper synchronization is crucial for reliable automated tests. Selenium provides several wait mechanisms:</p>
+                    <ul>
+                        <li><strong>Implicit Waits</strong> - Set a default wait time for the entire session</li>
+                        <li><strong>Explicit Waits</strong> - Wait for a specific condition before proceeding</li>
+                        <li><strong>Fluent Waits</strong> - Similar to explicit waits but with more configuration options</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Different Types of Waits in Selenium</div>
+<pre><code class="javascript">const { Builder, By, until } = require('selenium-webdriver');
+
+async function waitExamples() {
+  const driver = await new Builder().forBrowser('chrome').build();
+  
+  try {
+    // Implicit Wait - applies to all findElement calls
+    await driver.manage().setTimeouts({ implicit: 10000 });
+    
+    await driver.get('https://example.com');
+    
+    // Even with implicit wait, the element might be found immediately if it exists
+    const header = await driver.findElement(By.tagName('h1'));
+    console.log(await header.getText());
+    
+    // Explicit Wait - waits for a specific condition
+    await driver.get('https://google.com');
+    
+    const searchBox = await driver.findElement(By.name('q'));
+    await searchBox.sendKeys('Selenium WebDriver');
+    await searchBox.submit();
+    
+    // Wait until the title contains the search query
+    await driver.wait(until.titleContains('Selenium WebDriver'), 5000);
+    console.log(await driver.getTitle());
+    
+    // Fluent Wait - more configurable explicit wait
+    const fluentWait = driver.wait(new Promise(async (resolve) => {
+      // Custom wait logic
+      let found = false;
+      while (!found) {
+        try {
+          const results = await driver.findElements(By.css('#search .g'));
+          if (results.length > 0) {
+            found = true;
+            resolve(results[0]);
+          }
+        } catch (e) {
+          // Ignore errors and continue waiting
+        }
+        // Sleep for 500ms before checking again
+        await new Promise(r => setTimeout(r, 500));
+      }
+    }), 10000, 'Results not found within timeout');
+    
+    const firstResult = await fluentWait;
+    console.log(await firstResult.getText());
+    
+  } finally {
+    await driver.quit();
+  }
+}
+
+waitExamples();</code></pre>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Advanced Selenium Techniques</h2>
+                    <p>Beyond basic interactions, Selenium provides capabilities for more complex scenarios.</p>
+                    
+                    <h3>Handling Different Types of Inputs</h3>
+                    <div class="code-block">
+                        <div class="code-header">Example: Interacting with Different Input Types</div>
+<pre><code class="javascript">const { Builder, By, Key } = require('selenium-webdriver');
+
+async function inputExamples() {
+  const driver = await new Builder().forBrowser('chrome').build();
+  
+  try {
+    await driver.get('https://example-form-site.com');
+    
+    // Text inputs
+    await driver.findElement(By.id('name')).sendKeys('John Doe');
+    await driver.findElement(By.id('email')).sendKeys('john.doe@example.com');
+    
+    // Clearing input
+    const phoneInput = await driver.findElement(By.id('phone'));
+    await phoneInput.clear();
+    await phoneInput.sendKeys('555-123-4567');
+    
+    // Checkboxes
+    const checkbox = await driver.findElement(By.id('subscribe'));
+    await checkbox.click();
+    
+    // Radio buttons
+    await driver.findElement(By.css('input[name="gender"][value="male"]')).click();
+    
+    // Select dropdowns
+    const dropdown = await driver.findElement(By.id('country'));
+    const options = await dropdown.findElements(By.tagName('option'));
+    await options[2].click(); // Select the third option
+    
+    // Alternative way to select using JavaScript
+    await driver.executeScript(
+      'arguments[0].value = arguments[1]', 
+      dropdown, 
+      'US'
+    );
+    
+    // Date pickers
+    const datePicker = await driver.findElement(By.id('birthdate'));
+    await datePicker.sendKeys('01/15/1990');
+    
+    // File uploads
+    await driver.findElement(By.id('profile-pic')).sendKeys('/path/to/photo.jpg');
+    
+    // Submit the form
+    await driver.findElement(By.css('button[type="submit"]')).click();
+    
+  } finally {
+    await driver.quit();
+  }
+}
+
+inputExamples();</code></pre>
+                    </div>
+                    
+                    <h3>Handling Alerts and Popups</h3>
+                    <div class="code-block">
+                        <div class="code-header">Example: Working with Alerts and Popups</div>
+<pre><code class="javascript">const { Builder, By } = require('selenium-webdriver');
+
+async function alertExamples() {
+  const driver = await new Builder().forBrowser('chrome').build();
+  
+  try {
+    await driver.get('https://example-alert-site.com');
+    
+    // Simple Alert
+    await driver.findElement(By.id('simple-alert-button')).click();
+    
+    // Switch to the alert
+    const simpleAlert = await driver.switchTo().alert();
+    console.log(await simpleAlert.getText());
+    await simpleAlert.accept(); // Click OK
+    
+    // Confirmation Alert
+    await driver.findElement(By.id('confirm-alert-button')).click();
+    
+    const confirmAlert = await driver.switchTo().alert();
+    console.log(await confirmAlert.getText());
+    await confirmAlert.dismiss(); // Click Cancel
+    
+    // Prompt Alert
+    await driver.findElement(By.id('prompt-alert-button')).click();
+    
+    const promptAlert = await driver.switchTo().alert();
+    console.log(await promptAlert.getText());
+    await promptAlert.sendKeys('Test Input');
+    await promptAlert.accept(); // Click OK
+    
+    // Handling a new window/tab
+    await driver.findElement(By.id('new-window-button')).click();
+    
+    // Get all window handles
+    const handles = await driver.getAllWindowHandles();
+    
+    // Switch to the new window (the second handle)
+    await driver.switchTo().window(handles[1]);
+    
+    // Do something in the new window
+    console.log(await driver.getTitle());
+    
+    // Close the new window
+    await driver.close();
+    
+    // Switch back to the original window
+    await driver.switchTo().window(handles[0]);
+    
+    // Handling iframes
+    await driver.get('https://example-iframe-site.com');
+    
+    // Switch to the iframe
+    await driver.switchTo().frame(await driver.findElement(By.id('my-iframe')));
+    
+    // Interact with elements inside the iframe
+    const iframeElement = await driver.findElement(By.id('iframe-button'));
+    await iframeElement.click();
+    
+    // Switch back to the main content
+    await driver.switchTo().defaultContent();
+    
+  } finally {
+    await driver.quit();
+  }
+}
+
+alertExamples();</code></pre>
+                    </div>
+                    
+                    <h3>Advanced User Interactions</h3>
+                    <div class="code-block">
+                        <div class="code-header">Example: Complex User Interactions</div>
+<pre><code class="javascript">const { Builder, By, Key, Actions } = require('selenium-webdriver');
+
+async function advancedInteractions() {
+  const driver = await new Builder().forBrowser('chrome').build();
+  
+  try {
+    await driver.get('https://example-interactions-site.com');
+    
+    // Create an Actions instance
+    const actions = driver.actions({ bridge: true });
+    
+    // Drag and drop
+    const source = await driver.findElement(By.id('draggable'));
+    const target = await driver.findElement(By.id('droppable'));
+    
+    await actions.dragAndDrop(source, target).perform();
+    
+    // Hover over an element
+    const menuItem = await driver.findElement(By.id('hover-menu'));
+    await actions.move({ origin: menuItem }).perform();
+    
+    // Now click a submenu item that appears on hover
+    const submenuItem = await driver.findElement(By.id('submenu-item'));
+    await submenuItem.click();
+    
+    // Double click
+    const doubleClickElement = await driver.findElement(By.id('double-click-area'));
+    await actions.doubleClick(doubleClickElement).perform();
+    
+    // Right click (context click)
+    const rightClickElement = await driver.findElement(By.id('right-click-area'));
+    await actions.contextClick(rightClickElement).perform();
+    
+    // Key combinations (e.g., Ctrl+A to select all)
+    const textArea = await driver.findElement(By.id('text-area'));
+    await textArea.sendKeys('Some text to select');
+    
+    // Select all text (Ctrl+A)
+    await actions.keyDown(Key.CONTROL)
+                 .sendKeys('a')
+                 .keyUp(Key.CONTROL)
+                 .perform();
+    
+    // Copy the selected text (Ctrl+C)
+    await actions.keyDown(Key.CONTROL)
+                 .sendKeys('c')
+                 .keyUp(Key.CONTROL)
+                 .perform();
+    
+    // Click in another text area
+    const anotherTextArea = await driver.findElement(By.id('another-text-area'));
+    await anotherTextArea.click();
+    
+    // Paste the copied text (Ctrl+V)
+    await actions.keyDown(Key.CONTROL)
+                 .sendKeys('v')
+                 .keyUp(Key.CONTROL)
+                 .perform();
+    
+    // Scroll actions
+    // Scroll down
+    await driver.executeScript('window.scrollBy(0, 500)');
+    
+    // Scroll to a specific element
+    const elementToScrollTo = await driver.findElement(By.id('element-at-bottom'));
+    await driver.executeScript('arguments[0].scrollIntoView(true)', elementToScrollTo);
+    
+  } finally {
+    await driver.quit();
+  }
+}
+
+advancedInteractions();</code></pre>
+                    </div>
+                    
+                    <h3>Taking Screenshots</h3>
+                    <div class="code-block">
+                        <div class="code-header">Example: Capturing Screenshots</div>
+<pre><code class="javascript">const { Builder, By } = require('selenium-webdriver');
+const fs = require('fs').promises;
+
+async function screenshotExamples() {
+  const driver = await new Builder().forBrowser('chrome').build();
+  
+  try {
+    await driver.get('https://example.com');
+    
+    // Take a screenshot of the entire page
+    const screenshot = await driver.takeScreenshot();
+    await fs.writeFile('full-page.png', screenshot, 'base64');
+    
+    // Take a screenshot of a specific element
+    const element = await driver.findElement(By.tagName('h1'));
+    const elementScreenshot = await element.takeScreenshot();
+    await fs.writeFile('element.png', elementScreenshot, 'base64');
+    
+    // Take a screenshot when a test fails
+    try {
+      await driver.findElement(By.id('non-existent-element'));
+    } catch (error) {
+      console.error('Test failed:', error.message);
+      
+      // Capture a screenshot for debugging
+      const errorScreenshot = await driver.takeScreenshot();
+      await fs.writeFile('error-screenshot.png', errorScreenshot, 'base64');
+    }
+    
+  } finally {
+    await driver.quit();
+  }
+}
+
+screenshotExamples();</code></pre>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Test Automation Best Practices</h2>
+                    <p>Following best practices helps create maintainable, reliable, and effective automated tests.</p>
+                    
+                    <h3>Writing Maintainable Tests</h3>
+                    <ul>
+                        <li><strong>Use Page Objects</strong> - Encapsulate page elements and actions</li>
+                        <li><strong>Avoid Hardcoding</strong> - Use configuration files for environment-specific values</li>
+                        <li><strong>Create Reusable Functions</strong> - Don't repeat common actions</li>
+                        <li><strong>Use Descriptive Names</strong> - Make test purpose clear from the name</li>
+                        <li><strong>Keep Tests Independent</strong> - Tests should not depend on each other</li>
+                        <li><strong>Clean Up After Tests</strong> - Reset the application state</li>
+                    </ul>
+                    
+                    <h3>Handling Test Data</h3>
+                    <ul>
+                        <li><strong>Separate Data from Tests</strong> - Store test data in external files</li>
+                        <li><strong>Use Data Providers</strong> - Run the same test with different data sets</li>
+                        <li><strong>Create Fresh Test Data</strong> - Generate data programmatically when possible</li>
+                        <li><strong>Clean Up Test Data</strong> - Remove data created during tests</li>
+                        <li><strong>Use Realistic Data</strong> - Test with data that resembles production</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Data-Driven Testing</div>
+<pre><code class="javascript">const { Builder, By } = require('selenium-webdriver');
+const assert = require('assert');
+const fs = require('fs').promises;
+
+async function runDataDrivenTests() {
+  // Load test data from JSON file
+  const testDataRaw = await fs.readFile('test-data.json', 'utf8');
+  const testData = JSON.parse(testDataRaw);
+  
+  const driver = await new Builder().forBrowser('chrome').build();
+  
+  try {
+    // Run the same test with different data sets
+    for (const data of testData) {
+      console.log(`Running test with data: ${JSON.stringify(data)}`);
+      
+      await driver.get('https://example-login-site.com');
+      
+      // Enter username and password from test data
+      await driver.findElement(By.id('username')).sendKeys(data.username);
+      await driver.findElement(By.id('password')).sendKeys(data.password);
+      
+      // Click login button
+      await driver.findElement(By.id('login-button')).click();
+      
+      // Check if the result matches the expected outcome
+      if (data.shouldSucceed) {
+        // Expect successful login
+        try {
+          await driver.findElement(By.id('welcome-message'));
+          console.log('✓ Login successful as expected');
+        } catch (e) {
+          console.error('✗ Expected successful login but failed');
+          throw new Error('Test failed: Expected successful login');
+        }
+      } else {
+        // Expect login failure
+        try {
+          const errorMessage = await driver.findElement(By.id('error-message')).getText();
+          assert.equal(errorMessage, data.expectedError);
+          console.log('✓ Login failed as expected with correct error message');
+        } catch (e) {
+          console.error('✗ Expected login failure but succeeded or wrong error message');
+          throw new Error('Test failed: Expected login failure');
+        }
+      }
+    }
+  } finally {
+    await driver.quit();
+  }
+}
+
+// Example test-data.json:
+/*
+[
+  {
+    "username": "validuser",
+    "password": "validpass",
+    "shouldSucceed": true
+  },
+  {
+    "username": "invaliduser",
+    "password": "invalidpass",
+    "shouldSucceed": false,
+    "expectedError": "Invalid username or password"
+  },
+  {
+    "username": "validuser",
+    "password": "",
+    "shouldSucceed": false,
+    "expectedError": "Password is required"
+  },
+  {
+    "username": "",
+    "password": "validpass",
+    "shouldSucceed": false,
+    "expectedError": "Username is required"
+  }
+]
+*/
+
+runDataDrivenTests();</code></pre>
+                    </div>
+                    
+                    <h3>Handling Flaky Tests</h3>
+                    <p>Flaky tests are tests that sometimes pass and sometimes fail without any changes to the code. They can be caused by:</p>
+                    <ul>
+                        <li><strong>Timing Issues</strong> - Elements not ready when the test tries to interact with them</li>
+                        <li><strong>Environmental Factors</strong> - Network issues, server load, etc.</li>
+                        <li><strong>Test Dependencies</strong> - Tests that depend on the state from previous tests</li>
+                        <li><strong>Animations</strong> - UI animations that affect element visibility or position</li>
+                        <li><strong>Resource Limitations</strong> - Browser or system resources running low</li>
+                    </ul>
+                    
+                    <p>Strategies to handle flaky tests:</p>
+                    <ul>
+                        <li><strong>Proper Waits</strong> - Use explicit waits for specific conditions</li>
+                        <li><strong>Retry Mechanisms</strong> - Retry failed tests a few times</li>
+                        <li><strong>Isolate Tests</strong> - Ensure tests are independent</li>
+                        <li><strong>Stable Locators</strong> - Use stable element locators (IDs over XPaths)</li>
+                        <li><strong>Disable Animations</strong> - Turn off animations in the test environment</li>
+                        <li><strong>Clean Environment</strong> - Start with a clean state for each test</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Handling Flaky Tests with Retry Logic</div>
+<pre><code class="javascript">const { Builder, By, until } = require('selenium-webdriver');
+
+// Retry wrapper function
+async function retryOperation(operation, maxRetries = 3, retryDelay = 1000) {
+  let lastError;
+  
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      return await operation();
+    } catch (error) {
+      console.warn(`Attempt ${attempt} failed: ${error.message}`);
+      lastError = error;
+      
+      if (attempt < maxRetries) {
+        console.log(`Waiting ${retryDelay}ms before retry...`);
+        await new Promise(resolve => setTimeout(resolve, retryDelay));
+      }
+    }
+  }
+  
+  throw new Error(`Operation failed after ${maxRetries} attempts. Last error: ${lastError.message}`);
+}
+
+async function stableClick(driver, locator, timeout = 10000) {
+  const element = await driver.wait(until.elementLocated(locator), timeout);
+  await driver.wait(until.elementIsVisible(element), timeout);
+  await driver.wait(until.elementIsEnabled(element), timeout);
+  
+  // Retry clicking if it fails
+  await retryOperation(async () => {
+    try {
+      await element.click();
+    } catch (error) {
+      // If direct click fails, try JavaScript click
+      if (error.name === 'ElementClickInterceptedError') {
+        await driver.executeScript('arguments[0].click();', element);
+      } else {
+        throw error;
+      }
+    }
+  });
+}
+
+async function stableTest() {
+  const driver = await new Builder().forBrowser('chrome').build();
+  
+  try {
+    await driver.get('https://example.com');
+    
+    // Use the stable click function instead of direct click
+    await stableClick(driver, By.linkText('About'));
+    
+    // Verify navigation worked
+    await driver.wait(until.titleContains('About'), 5000);
+    
+  } finally {
+    await driver.quit();
+  }
+}
+
+stableTest();</code></pre>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Real-World Example: Netflix's Test Automation</h2>
+                    <p>Netflix has developed a sophisticated test automation strategy to ensure the quality of their streaming service across thousands of device types.</p>
+                    
+                    <h3>Key Aspects of Netflix's Approach</h3>
+                    <ul>
+                        <li><strong>Chaos Engineering</strong> - Deliberately introducing failures to test resilience</li>
+                        <li><strong>Automated A/B Testing</strong> - Testing new features with a subset of users</li>
+                        <li><strong>Device Testing</strong> - Automated testing across different devices and platforms</li>
+                        <li><strong>Performance Testing</strong> - Ensuring smooth streaming under various conditions</li>
+                        <li><strong>Continuous Testing</strong> - Testing integrated into the CI/CD pipeline</li>
+                    </ul>
+                    
+                    <h3>Lessons from Netflix</h3>
+                    <ul>
+                        <li>Test in production-like environments</li>
+                        <li>Automate testing of critical user journeys</li>
+                        <li>Invest in test infrastructure</li>
+                        <li>Use data to prioritize testing efforts</li>
+                        <li>Embrace failure as a learning opportunity</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Knowledge Check</h2>
+                    <div class="quiz-container">
+                        <div class="quiz-question">
+                            <p>1. Which of the following is NOT a benefit of test automation?</p>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" data-correct="false">Faster test execution</li>
+                                <li class="quiz-option" data-correct="false">Consistent test execution</li>
+                                <li class="quiz-option" data-correct="true">Eliminating the need for manual testing</li>
+                                <li class="quiz-option" data-correct="false">Early defect detection</li>
+                            </ul>
+                            <div class="quiz-feedback correct">
+                                <p>Correct! Test automation complements manual testing but doesn't eliminate the need for it. Manual testing is still valuable for exploratory testing, usability testing, and other scenarios where human judgment is important.</p>
+                            </div>
+                            <div class="quiz-feedback incorrect">
+                                <p>Incorrect. Test automation complements manual testing but doesn't eliminate the need for it. Manual testing is still valuable for exploratory testing, usability testing, and other scenarios where human judgment is important.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-question">
+                            <p>2. Which design pattern helps improve test maintenance by creating an object repository for web UI elements?</p>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" data-correct="false">Factory Pattern</li>
+                                <li class="quiz-option" data-correct="true">Page Object Model</li>
+                                <li class="quiz-option" data-correct="false">Singleton Pattern</li>
+                                <li class="quiz-option" data-correct="false">Observer Pattern</li>
+                            </ul>
+                            <div class="quiz-feedback correct">
+                                <p>Correct! The Page Object Model (POM) creates an object repository for web UI elements, which helps improve test maintenance and reduces code duplication.</p>
+                            </div>
+                            <div class="quiz-feedback incorrect">
+                                <p>Incorrect. The Page Object Model (POM) creates an object repository for web UI elements, which helps improve test maintenance and reduces code duplication.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-question">
+                            <p>3. Which Selenium wait mechanism sets a default wait time for the entire session?</p>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" data-correct="true">Implicit Wait</li>
+                                <li class="quiz-option" data-correct="false">Explicit Wait</li>
+                                <li class="quiz-option" data-correct="false">Fluent Wait</li>
+                                <li class="quiz-option" data-correct="false">Thread.sleep()</li>
+                            </ul>
+                            <div class="quiz-feedback correct">
+                                <p>Correct! Implicit Wait sets a default wait time for the entire session, telling WebDriver to poll the DOM for a certain amount of time when trying to find an element that is not immediately available.</p>
+                            </div>
+                            <div class="quiz-feedback incorrect">
+                                <p>Incorrect. Implicit Wait sets a default wait time for the entire session, telling WebDriver to poll the DOM for a certain amount of time when trying to find an element that is not immediately available.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-question">
+                            <p>4. Which of the following is a best practice for handling test data?</p>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" data-correct="false">Hardcoding test data in the test scripts</li>
+                                <li class="quiz-option" data-correct="false">Using production data for all tests</li>
+                                <li class="quiz-option" data-correct="true">Separating test data from test scripts</li>
+                                <li class="quiz-option" data-correct="false">Using the same test data for all tests</li>
+                            </ul>
+                            <div class="quiz-feedback correct">
+                                <p>Correct! Separating test data from test scripts improves maintainability and allows the same test to be run with different data sets.</p>
+                            </div>
+                            <div class="quiz-feedback incorrect">
+                                <p>Incorrect. Separating test data from test scripts improves maintainability and allows the same test to be run with different data sets.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-question">
+                            <p>5. What is a common cause of flaky tests in Selenium?</p>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" data-correct="false">Using too many assertions in a single test</li>
+                                <li class="quiz-option" data-correct="true">Timing issues with elements not being ready</li>
+                                <li class="quiz-option" data-correct="false">Using Page Object Model</li>
+                                <li class="quiz-option" data-correct="false">Having too few test cases</li>
+                            </ul>
+                            <div class="quiz-feedback correct">
+                                <p>Correct! Timing issues, where elements are not ready when the test tries to interact with them, are a common cause of flaky tests in Selenium.</p>
+                            </div>
+                            <div class="quiz-feedback incorrect">
+                                <p>Incorrect. Timing issues, where elements are not ready when the test tries to interact with them, are a common cause of flaky tests in Selenium.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Additional Resources</h2>
+                    <ul>
+                        <li><a href="https://www.selenium.dev/documentation/en/" target="_blank">Selenium Documentation</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=Yd4GnWeEkIY" target="_blank">Video: Selenium WebDriver with JavaScript Tutorial</a></li>
+                        <li><a href="https://martinfowler.com/bliki/PageObject.html" target="_blank">Article: Page Object Pattern</a></li>
+                        <li><a href="https://www.browserstack.com/guide/automation-using-selenium-javascript" target="_blank">Guide: Automation Using Selenium JavaScript</a></li>
+                        <li><a href="https://medium.com/readers-club/essential-components-for-a-modern-test-automation-framework-46484bbaf73f" target="_blank">Article: Essential Components for a Modern Test Automation Framework</a></li>
+                    </ul>
+                </div>
+                
+                <div class="week-navigation">
+                    <a href="week4-5.html" class="btn">Previous Week: Test Design Concepts</a>
+                    <a href="week8-10.html" class="btn">Next Week: Putting Testing First</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">DevOps & QA Courses</div>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="../index.html">Home</a></li>
+                    <li class="footer-link"><a href="../devops/index.html">DevOps Course</a></li>
+                    <li class="footer-link"><a href="index.html">QA Course</a></li>
+                    <li class="footer-link"><a href="../resources/index.html">Resources</a></li>
+                    <li class="footer-link"><a href="https://github.com/username/course-website" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DevOps & QA Courses. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <span>↑</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

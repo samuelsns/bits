@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 4: Introduction to the Technical Practice of Flow | DevOps Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;700&family=Fira+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="../index.html">DevOps & QA Courses</a>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="index.html" class="nav-link">DevOps Course</a></li>
+                    <li class="nav-item"><a href="../qa/index.html" class="nav-link">QA Course</a></li>
+                    <li class="nav-item"><a href="../resources/index.html" class="nav-link">Resources</a></li>
+                    <li class="nav-item"><a href="https://github.com/username/course-website" class="nav-link" target="_blank">GitHub</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="week-content">
+                <h1>Week 4: Introduction to the Technical Practice of Flow</h1>
+                
+                <div class="content-section">
+                    <h2>Learning Objectives</h2>
+                    <p>By the end of this week, you will be able to:</p>
+                    <ul>
+                        <li>Understand the concept of flow in DevOps</li>
+                        <li>Identify the key principles of continuous delivery</li>
+                        <li>Recognize the importance of value stream mapping</li>
+                        <li>Explain how to optimize the flow of work through the delivery pipeline</li>
+                        <li>Describe the three ways of DevOps: Flow, Feedback, and Continuous Learning</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Introduction to Flow</h2>
+                    <p>Flow is the first way of DevOps, focusing on optimizing the movement of work from development to operations to the customer. The goal is to make work visible, reduce batch sizes, and eliminate constraints to achieve fast and smooth delivery.</p>
+                    
+                    <h3>Key Principles of Flow</h3>
+                    <ul>
+                        <li><strong>Make work visible</strong> - Use visual management tools to see the flow of work</li>
+                        <li><strong>Limit work in progress (WIP)</strong> - Reduce multitasking and context switching</li>
+                        <li><strong>Reduce batch sizes</strong> - Deliver smaller increments of work more frequently</li>
+                        <li><strong>Eliminate constraints</strong> - Identify and address bottlenecks in the delivery process</li>
+                        <li><strong>Eliminate waste</strong> - Remove activities that don't add value</li>
+                        <li><strong>Optimize globally</strong> - Focus on the entire system, not just individual parts</li>
+                    </ul>
+                    
+                    <div class="activity">
+                        <h4 class="activity-title">Discussion Question</h4>
+                        <p>What are some common bottlenecks in software delivery that you've experienced? How might applying flow principles help address these bottlenecks?</p>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Value Stream Mapping</h2>
+                    <p>Value stream mapping is a lean management technique used to analyze and visualize the flow of materials and information required to deliver a product or service to the customer.</p>
+                    
+                    <h3>Components of a Value Stream Map</h3>
+                    <ul>
+                        <li><strong>Process steps</strong> - The activities performed to deliver value</li>
+                        <li><strong>Information flows</strong> - How information moves between process steps</li>
+                        <li><strong>Material flows</strong> - How physical or digital artifacts move between process steps</li>
+                        <li><strong>Lead time</strong> - The total time from start to finish</li>
+                        <li><strong>Process time</strong> - The time spent actually working on the product</li>
+                        <li><strong>Wait time</strong> - The time spent waiting between process steps</li>
+                    </ul>
+                    
+                    <h3>Creating a Value Stream Map</h3>
+                    <ol>
+                        <li>Identify the product or service to map</li>
+                        <li>Draw the current state map</li>
+                        <li>Analyze the current state for waste and constraints</li>
+                        <li>Design the future state map</li>
+                        <li>Implement changes to achieve the future state</li>
+                    </ol>
+                    
+                    <div class="activity">
+                        <h4 class="activity-title">Exercise: Value Stream Mapping</h4>
+                        <p>Create a simple value stream map for a software feature from idea to production. Include the following:</p>
+                        <ol class="activity-steps">
+                            <li>Identify each process step</li>
+                            <li>Estimate the process time for each step</li>
+                            <li>Estimate the wait time between steps</li>
+                            <li>Calculate the total lead time</li>
+                            <li>Calculate the process efficiency (process time / lead time)</li>
+                            <li>Identify at least three areas for improvement</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Real-World Example: Spotify's Approach to Flow</h2>
+                    <p>Spotify has developed a unique approach to organizing teams and work to optimize flow:</p>
+                    
+                    <h3>Spotify Model</h3>
+                    <ul>
+                        <li><strong>Squads</strong> - Cross-functional teams focused on specific features or services</li>
+                        <li><strong>Tribes</strong> - Collections of squads working in related areas</li>
+                        <li><strong>Chapters</strong> - Functional expertise across squads (e.g., QA, DevOps)</li>
+                        <li><strong>Guilds</strong> - Communities of interest across the organization</li>
+                    </ul>
+                    
+                    <p>This structure allows Spotify to maintain small, autonomous teams that can deliver value quickly while still sharing knowledge and best practices across the organization.</p>
+                    
+                    <h3>Key Flow Practices at Spotify</h3>
+                    <ul>
+                        <li>Autonomous squads with end-to-end responsibility</li>
+                        <li>Continuous delivery with multiple releases per day</li>
+                        <li>Feature toggles to separate deployment from release</li>
+                        <li>Automated testing and deployment pipelines</li>
+                        <li>Regular retrospectives to identify and address impediments to flow</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>The Three Ways of DevOps</h2>
+                    <p>The Three Ways are the principles that underpin DevOps practices and culture:</p>
+                    
+                    <h3>The First Way: Flow</h3>
+                    <p>Optimize the flow of work from development to operations to the customer.</p>
+                    <ul>
+                        <li>Make work visible</li>
+                        <li>Reduce batch sizes</li>
+                        <li>Limit work in progress</li>
+                        <li>Eliminate constraints</li>
+                    </ul>
+                    
+                    <h3>The Second Way: Feedback</h3>
+                    <p>Create short feedback loops to detect and address problems quickly.</p>
+                    <ul>
+                        <li>Automated testing</li>
+                        <li>Monitoring and observability</li>
+                        <li>Fast incident response</li>
+                        <li>Learning from failures</li>
+                    </ul>
+                    
+                    <h3>The Third Way: Continuous Learning</h3>
+                    <p>Create a culture of experimentation, learning, and improvement.</p>
+                    <ul>
+                        <li>Blameless postmortems</li>
+                        <li>Sharing knowledge</li>
+                        <li>Experimentation</li>
+                        <li>Continuous improvement</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Measuring Flow</h2>
+                    <p>To improve flow, we need to measure it. Here are some key metrics:</p>
+                    
+                    <h3>Flow Metrics</h3>
+                    <ul>
+                        <li><strong>Lead Time</strong> - Time from work item creation to delivery</li>
+                        <li><strong>Cycle Time</strong> - Time from work item start to delivery</li>
+                        <li><strong>Throughput</strong> - Number of work items delivered per unit of time</li>
+                        <li><strong>Work in Progress (WIP)</strong> - Number of work items in progress</li>
+                        <li><strong>Flow Efficiency</strong> - Percentage of time spent actively working on items</li>
+                        <li><strong>Deployment Frequency</strong> - How often code is deployed to production</li>
+                        <li><strong>Change Lead Time</strong> - Time from code commit to code running in production</li>
+                        <li><strong>Change Failure Rate</strong> - Percentage of changes that result in failures</li>
+                        <li><strong>Mean Time to Recover (MTTR)</strong> - Time to recover from failures</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Calculating Cycle Time in Python</div>
+<pre><code class="python">import datetime
+
+# Sample data: list of work items with start and end dates
+work_items = [
+    {
+        'id': 'TASK-1',
+        'start_date': datetime.datetime(2025, 4, 1),
+        'end_date': datetime.datetime(2025, 4, 5)
+    },
+    {
+        'id': 'TASK-2',
+        'start_date': datetime.datetime(2025, 4, 2),
+        'end_date': datetime.datetime(2025, 4, 10)
+    },
+    {
+        'id': 'TASK-3',
+        'start_date': datetime.datetime(2025, 4, 3),
+        'end_date': datetime.datetime(2025, 4, 6)
+    }
+]
+
+# Calculate cycle time for each work item
+for item in work_items:
+    cycle_time = (item['end_date'] - item['start_date']).days
+    print(f"Work item {item['id']} cycle time: {cycle_time} days")
+
+# Calculate average cycle time
+total_cycle_time = sum([(item['end_date'] - item['start_date']).days for item in work_items])
+average_cycle_time = total_cycle_time / len(work_items)
+print(f"Average cycle time: {average_cycle_time} days")
+</code></pre>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Continuous Delivery</h2>
+                    <p>Continuous Delivery (CD) is a software development practice where code changes are automatically built, tested, and prepared for release to production. It enables organizations to deliver software quickly, safely, and sustainably.</p>
+                    
+                    <h3>Key Principles of Continuous Delivery</h3>
+                    <ul>
+                        <li><strong>Build quality in</strong> - Detect and fix problems early</li>
+                        <li><strong>Work in small batches</strong> - Reduce risk and get faster feedback</li>
+                        <li><strong>Automate repetitive tasks</strong> - Reduce errors and free up time</li>
+                        <li><strong>Relentlessly pursue continuous improvement</strong> - Always look for ways to get better</li>
+                        <li><strong>Everyone is responsible for the delivery process</strong> - Break down silos</li>
+                    </ul>
+                    
+                    <h3>Benefits of Continuous Delivery</h3>
+                    <ul>
+                        <li>Reduced deployment risk</li>
+                        <li>Faster time to market</li>
+                        <li>Higher quality software</li>
+                        <li>Lower costs</li>
+                        <li>Better customer satisfaction</li>
+                        <li>Happier teams</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Knowledge Check</h2>
+                    <div class="quiz-question">
+                        <p>1. Which of the following is NOT one of the key principles of flow?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">Make work visible</li>
+                            <li class="quiz-option" data-correct="false">Limit work in progress</li>
+                            <li class="quiz-option" data-correct="false">Reduce batch sizes</li>
+                            <li class="quiz-option" data-correct="true">Maximize resource utilization</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>2. What is the primary goal of value stream mapping in DevOps?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">To document the organizational structure</li>
+                            <li class="quiz-option" data-correct="true">To identify waste and constraints in the delivery process</li>
+                            <li class="quiz-option" data-correct="false">To assign blame for delays</li>
+                            <li class="quiz-option" data-correct="false">To create a project schedule</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>3. Which metric measures how quickly a team can recover from failures in production?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">Lead Time</li>
+                            <li class="quiz-option" data-correct="false">Cycle Time</li>
+                            <li class="quiz-option" data-correct="true">Mean Time to Recover (MTTR)</li>
+                            <li class="quiz-option" data-correct="false">Change Failure Rate</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>4. What is the relationship between lead time and cycle time?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">They are the same thing</li>
+                            <li class="quiz-option" data-correct="true">Lead time includes waiting time before work begins, while cycle time starts when work begins</li>
+                            <li class="quiz-option" data-correct="false">Cycle time is always longer than lead time</li>
+                            <li class="quiz-option" data-correct="false">Lead time applies to features, while cycle time applies to bugs</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>5. Which of the following is NOT one of the Three Ways of DevOps?</p>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">Flow</li>
+                            <li class="quiz-option" data-correct="false">Feedback</li>
+                            <li class="quiz-option" data-correct="false">Continuous Learning</li>
+                            <li class="quiz-option" data-correct="true">Resource Optimization</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Additional Resources</h2>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=2SK_QBTjVVo" target="_blank">Video: The Three Ways of DevOps</a></li>
+                        <li><a href="https://www.atlassian.com/continuous-delivery/principles/value-stream-mapping" target="_blank">Article: Value Stream Mapping for DevOps</a></li>
+                        <li><a href="https://engineering.atspotify.com/2014/03/27/spotify-engineering-culture-part-1/" target="_blank">Blog: Spotify Engineering Culture</a></li>
+                        <li><a href="https://cloud.google.com/architecture/devops/devops-tech-delivery-performance" target="_blank">Google Cloud: Measuring Delivery Performance</a></li>
+                    </ul>
+                </div>
+                
+                <div class="week-navigation">
+                    <a href="index.html" class="btn">Back to Course Overview</a>
+                    <a href="week5.html" class="btn">Next Week: Creating the Foundation of Deployment Pipeline</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">DevOps & QA Courses</div>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="../index.html">Home</a></li>
+                    <li class="footer-link"><a href="index.html">DevOps Course</a></li>
+                    <li class="footer-link"><a href="../qa/index.html">QA Course</a></li>
+                    <li class="footer-link"><a href="../resources/index.html">Resources</a></li>
+                    <li class="footer-link"><a href="https://github.com/username/course-website" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DevOps & QA Courses. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <span>↑</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weeks 14-16: Advanced Quality Management | QA Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;700&family=Fira+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="../index.html">DevOps & QA Courses</a>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="../devops/index.html" class="nav-link">DevOps Course</a></li>
+                    <li class="nav-item"><a href="index.html" class="nav-link">QA Course</a></li>
+                    <li class="nav-item"><a href="../resources/index.html" class="nav-link">Resources</a></li>
+                    <li class="nav-item"><a href="https://github.com/username/course-website" class="nav-link" target="_blank">GitHub</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="week-content">
+                <h1>Weeks 14-16: Advanced Quality Management</h1>
+                
+                <div class="content-section">
+                    <h2>Learning Objectives</h2>
+                    <p>By the end of these three weeks, you will be able to:</p>
+                    <ul>
+                        <li>Implement advanced quality management strategies in software development</li>
+                        <li>Apply DevOps principles to quality assurance</li>
+                        <li>Design and implement effective test automation strategies</li>
+                        <li>Integrate quality assurance into continuous delivery pipelines</li>
+                        <li>Measure and improve the ROI of testing activities</li>
+                        <li>Lead quality initiatives in software development organizations</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Quality in DevOps</h2>
+                    <p>DevOps emphasizes collaboration between development and operations teams to deliver software faster and more reliably. Quality assurance plays a crucial role in this approach.</p>
+                    
+                    <h3>DevOps and Quality Assurance</h3>
+                    <ul>
+                        <li><strong>Shift Left</strong> - Moving testing earlier in the development process</li>
+                        <li><strong>Continuous Testing</strong> - Testing throughout the delivery pipeline</li>
+                        <li><strong>Automation</strong> - Automating testing to enable rapid feedback</li>
+                        <li><strong>Collaboration</strong> - Breaking down silos between teams</li>
+                        <li><strong>Monitoring</strong> - Using production monitoring as a form of testing</li>
+                        <li><strong>Infrastructure as Code</strong> - Treating infrastructure like application code</li>
+                    </ul>
+                    
+                    <div class="interactive-element">
+                        <h4 class="interactive-title">Interactive Diagram: Quality in the DevOps Lifecycle</h4>
+                        <div class="devops-lifecycle">
+                            <div class="lifecycle-phase" id="plan">
+                                <span class="phase-name">Plan</span>
+                                <div class="phase-details">
+                                    <h5>Plan</h5>
+                                    <p>Quality activities in the planning phase:</p>
+                                    <ul>
+                                        <li>Define quality requirements</li>
+                                        <li>Create test strategies</li>
+                                        <li>Plan for test automation</li>
+                                        <li>Identify quality risks</li>
+                                        <li>Define acceptance criteria</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="lifecycle-arrow">→</div>
+                            <div class="lifecycle-phase" id="code">
+                                <span class="phase-name">Code</span>
+                                <div class="phase-details">
+                                    <h5>Code</h5>
+                                    <p>Quality activities in the coding phase:</p>
+                                    <ul>
+                                        <li>Test-Driven Development (TDD)</li>
+                                        <li>Behavior-Driven Development (BDD)</li>
+                                        <li>Code reviews</li>
+                                        <li>Static code analysis</li>
+                                        <li>Unit testing</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="lifecycle-arrow">→</div>
+                            <div class="lifecycle-phase" id="build">
+                                <span class="phase-name">Build</span>
+                                <div class="phase-details">
+                                    <h5>Build</h5>
+                                    <p>Quality activities in the build phase:</p>
+                                    <ul>
+                                        <li>Continuous Integration</li>
+                                        <li>Automated builds</li>
+                                        <li>Code quality checks</li>
+                                        <li>Integration testing</li>
+                                        <li>Build verification testing</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="lifecycle-arrow">→</div>
+                            <div class="lifecycle-phase" id="test">
+                                <span class="phase-name">Test</span>
+                                <div class="phase-details">
+                                    <h5>Test</h5>
+                                    <p>Quality activities in the test phase:</p>
+                                    <ul>
+                                        <li>Automated functional testing</li>
+                                        <li>Performance testing</li>
+                                        <li>Security testing</li>
+                                        <li>User acceptance testing</li>
+                                        <li>Exploratory testing</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="lifecycle-arrow">→</div>
+                            <div class="lifecycle-phase" id="deploy">
+                                <span class="phase-name">Deploy</span>
+                                <div class="phase-details">
+                                    <h5>Deploy</h5>
+                                    <p>Quality activities in the deployment phase:</p>
+                                    <ul>
+                                        <li>Deployment verification testing</li>
+                                        <li>Blue/green deployments</li>
+                                        <li>Canary releases</li>
+                                        <li>Feature toggles</li>
+                                        <li>Rollback planning</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="lifecycle-arrow">→</div>
+                            <div class="lifecycle-phase" id="operate">
+                                <span class="phase-name">Operate</span>
+                                <div class="phase-details">
+                                    <h5>Operate</h5>
+                                    <p>Quality activities in the operation phase:</p>
+                                    <ul>
+                                        <li>Monitoring and alerting</li>
+                                        <li>Log analysis</li>
+                                        <li>Performance monitoring</li>
+                                        <li>User feedback collection</li>
+                                        <li>Incident management</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="lifecycle-arrow">→</div>
+                            <div class="lifecycle-phase" id="monitor">
+                                <span class="phase-name">Monitor</span>
+                                <div class="phase-details">
+                                    <h5>Monitor</h5>
+                                    <p>Quality activities in the monitoring phase:</p>
+                                    <ul>
+                                        <li>Real-time application monitoring</li>
+                                        <li>User experience monitoring</li>
+                                        <li>Error tracking</li>
+                                        <li>A/B testing</li>
+                                        <li>Feedback loops to development</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="diagram-caption">Click on each phase to learn more about quality activities in that part of the DevOps lifecycle.</p>
+                    </div>
+                    
+                    <h3>Continuous Testing</h3>
+                    <p>Continuous Testing is the process of executing automated tests as part of the software delivery pipeline to obtain immediate feedback on the business risks associated with a software release candidate.</p>
+                    
+                    <div class="example-box">
+                        <h4>Key Principles of Continuous Testing</h4>
+                        <ul>
+                            <li><strong>Test Early</strong> - Start testing as soon as code is written</li>
+                            <li><strong>Test Often</strong> - Run tests with every change</li>
+                            <li><strong>Test Everywhere</strong> - Test across all environments</li>
+                            <li><strong>Automate</strong> - Automate as many tests as possible</li>
+                            <li><strong>Optimize</strong> - Focus on the most critical tests first</li>
+                            <li><strong>Integrate</strong> - Make testing part of the CI/CD pipeline</li>
+                            <li><strong>Analyze</strong> - Use test results to make informed decisions</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Continuous Testing Pipeline in GitHub Actions</div>
+<pre><code class="yaml"># .github/workflows/continuous-testing.yml
+name: Continuous Testing
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Install dependencies
+        run: npm ci
+      - name: Run unit tests
+        run: npm test
+      - name: Upload test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: unit-test-results
+          path: test-results/
+
+  integration-tests:
+    name: Integration Tests
+    needs: unit-tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Install dependencies
+        run: npm ci
+      - name: Run integration tests
+        run: npm run test:integration
+      - name: Upload test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: integration-test-results
+          path: test-results/
+
+  e2e-tests:
+    name: End-to-End Tests
+    needs: integration-tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright
+        run: npx playwright install --with-deps
+      - name: Run E2E tests
+        run: npm run test:e2e
+      - name: Upload test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: e2e-test-results
+          path: test-results/
+
+  security-tests:
+    name: Security Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run dependency vulnerability scan
+        run: npm audit
+      - name: Run SAST
+        uses: github/codeql-action/analyze@v1
+
+  performance-tests:
+    name: Performance Tests
+    needs: e2e-tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up k6
+        run: |
+          sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69
+          echo "deb https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+          sudo apt-get update
+          sudo apt-get install k6
+      - name: Run performance tests
+        run: k6 run performance-tests/load-test.js
+
+  report:
+    name: Generate Test Report
+    needs: [unit-tests, integration-tests, e2e-tests, security-tests, performance-tests]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download all test results
+        uses: actions/download-artifact@v2
+      - name: Generate combined report
+        run: node scripts/generate-test-report.js
+      - name: Upload combined report
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-report
+          path: test-report/</code></pre>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Advanced Test Automation Strategies</h2>
+                    <p>Effective test automation requires a strategic approach that goes beyond simply automating manual tests.</p>
+                    
+                    <h3>Test Automation Pyramid</h3>
+                    <div class="interactive-element">
+                        <h4 class="interactive-title">Interactive Diagram: Test Automation Pyramid</h4>
+                        <div class="pyramid-container">
+                            <div class="pyramid">
+                                <div class="pyramid-level" id="ui-tests">
+                                    <span class="level-name">UI Tests</span>
+                                    <div class="level-details">
+                                        <h5>UI Tests (10%)</h5>
+                                        <p>End-to-end tests that verify the application through the user interface</p>
+                                        <ul>
+                                            <li>Slower to execute</li>
+                                            <li>More brittle and prone to failure</li>
+                                            <li>More expensive to maintain</li>
+                                            <li>Provide high business value</li>
+                                            <li>Examples: Selenium, Cypress, Playwright</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="pyramid-level" id="integration-tests">
+                                    <span class="level-name">Integration Tests</span>
+                                    <div class="level-details">
+                                        <h5>Integration Tests (30%)</h5>
+                                        <p>Tests that verify interactions between components or systems</p>
+                                        <ul>
+                                            <li>Medium execution speed</li>
+                                            <li>Moderate maintenance cost</li>
+                                            <li>Verify component interactions</li>
+                                            <li>Test APIs and services</li>
+                                            <li>Examples: REST API tests, service integration tests</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="pyramid-level" id="unit-tests">
+                                    <span class="level-name">Unit Tests</span>
+                                    <div class="level-details">
+                                        <h5>Unit Tests (60%)</h5>
+                                        <p>Tests that verify individual units of code in isolation</p>
+                                        <ul>
+                                            <li>Fast to execute</li>
+                                            <li>Low maintenance cost</li>
+                                            <li>Provide immediate feedback</li>
+                                            <li>Support refactoring</li>
+                                            <li>Examples: Jest, Mocha, JUnit</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="diagram-caption">Click on each level to learn more about that type of testing in the automation pyramid.</p>
+                    </div>
+                    
+                    <h3>Test Automation Strategy Components</h3>
+                    <ul>
+                        <li><strong>Goals and Objectives</strong> - What you want to achieve with automation</li>
+                        <li><strong>Scope</strong> - What to automate and what to test manually</li>
+                        <li><strong>Tool Selection</strong> - Choosing the right tools for your needs</li>
+                        <li><strong>Framework Design</strong> - Creating a maintainable automation framework</li>
+                        <li><strong>Implementation Approach</strong> - How to roll out automation</li>
+                        <li><strong>Maintenance Plan</strong> - How to keep automation sustainable</li>
+                        <li><strong>Metrics and Reporting</strong> - How to measure success</li>
+                    </ul>
+                    
+                    <div class="example-box">
+                        <h4>Example: Test Automation Strategy Document Outline</h4>
+<pre>
+# Test Automation Strategy
+
+## 1. Introduction
+   - Purpose and Scope
+   - Business Context
+   - Current Testing Challenges
+
+## 2. Goals and Objectives
+   - Primary Goals
+   - Success Criteria
+   - Expected Benefits
+
+## 3. Automation Scope
+   - What to Automate
+   - What Not to Automate
+   - Prioritization Criteria
+
+## 4. Tool Selection
+   - Selection Criteria
+   - Evaluation Process
+   - Selected Tools and Justification
+
+## 5. Framework Design
+   - Architecture
+   - Design Patterns
+   - Reusable Components
+   - Test Data Management
+   - Environment Management
+
+## 6. Implementation Approach
+   - Phased Implementation Plan
+   - Resource Requirements
+   - Training Needs
+   - Timeline
+
+## 7. Maintenance Strategy
+   - Ownership and Responsibilities
+   - Update Processes
+   - Version Control
+   - Technical Debt Management
+
+## 8. Metrics and Reporting
+   - Key Performance Indicators
+   - Reporting Mechanisms
+   - Feedback Loops
+
+## 9. Risks and Mitigations
+   - Identified Risks
+   - Mitigation Strategies
+   - Contingency Plans
+
+## 10. Appendices
+    - Tool Evaluation Matrix
+    - Detailed Implementation Timeline
+    - Resource Allocation
+</pre>
+                    </div>
+                    
+                    <h3>Advanced Automation Techniques</h3>
+                    <ul>
+                        <li><strong>AI-Powered Testing</strong> - Using machine learning to enhance testing</li>
+                        <li><strong>Visual Testing</strong> - Automated verification of visual elements</li>
+                        <li><strong>Contract Testing</strong> - Verifying API contracts between services</li>
+                        <li><strong>Chaos Engineering</strong> - Testing system resilience through controlled failures</li>
+                        <li><strong>Model-Based Testing</strong> - Generating tests from system models</li>
+                        <li><strong>Snapshot Testing</strong> - Comparing current state with known good state</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Visual Testing with Applitools and Selenium</div>
+<pre><code class="javascript">const { Builder, By } = require('selenium-webdriver');
+const { Eyes, ClassicRunner, Target, RectangleSize } = require('@applitools/eyes-selenium');
+
+describe('Visual Testing Example', function() {
+  let driver;
+  let eyes;
+  
+  beforeEach(async function() {
+    // Initialize Selenium WebDriver
+    driver = await new Builder().forBrowser('chrome').build();
+    
+    // Initialize Applitools Eyes
+    eyes = new Eyes(new ClassicRunner());
+    
+    // Set API key
+    eyes.setApiKey(process.env.APPLITOOLS_API_KEY);
+  });
+  
+  afterEach(async function() {
+    // Close Eyes and WebDriver
+    await eyes.closeAsync();
+    await driver.quit();
+  });
+  
+  it('should verify the homepage visually', async function() {
+    // Start the test
+    await eyes.open(
+      driver,
+      'My Application',
+      'Homepage Visual Test',
+      new RectangleSize(1200, 800)
+    );
+    
+    // Navigate to the page
+    await driver.get('https://example.com');
+    
+    // Visual checkpoint - entire page
+    await eyes.check('Homepage', Target.window().fully());
+    
+    // Visual checkpoint - specific element
+    const header = await driver.findElement(By.css('header'));
+    await eyes.check('Header', Target.region(header));
+    
+    // Simulate user interaction
+    const loginButton = await driver.findElement(By.id('login-button'));
+    await loginButton.click();
+    
+    // Visual checkpoint - login form
+    await eyes.check('Login Form', Target.window());
+  });
+  
+  it('should verify responsive design', async function() {
+    await eyes.open(
+      driver,
+      'My Application',
+      'Responsive Design Test',
+      new RectangleSize(1200, 800)
+    );
+    
+    await driver.get('https://example.com');
+    
+    // Check desktop view
+    await eyes.check('Desktop View', Target.window().fully());
+    
+    // Resize to tablet size
+    await driver.manage().window().setRect({ width: 768, height: 1024 });
+    await eyes.check('Tablet View', Target.window().fully());
+    
+    // Resize to mobile size
+    await driver.manage().window().setRect({ width: 375, height: 667 });
+    await eyes.check('Mobile View', Target.window().fully());
+  });
+});</code></pre>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Quality in Continuous Delivery</h2>
+                    <p>Continuous Delivery (CD) is the practice of ensuring that code is always in a deployable state. Quality assurance is essential to achieve this goal.</p>
+                    
+                    <h3>Quality Gates</h3>
+                    <p>Quality gates are checkpoints in the delivery pipeline that enforce quality standards before allowing code to proceed to the next stage.</p>
+                    
+                    <div class="interactive-element">
+                        <h4 class="interactive-title">Interactive Diagram: Quality Gates in CD Pipeline</h4>
+                        <div class="pipeline-container">
+                            <div class="pipeline-stage" id="commit-stage">
+                                <span class="stage-name">Commit Stage</span>
+                                <div class="quality-gate" id="gate1">
+                                    <span class="gate-name">Gate 1</span>
+                                    <div class="gate-details">
+                                        <h5>Commit Stage Quality Gate</h5>
+                                        <p>Criteria to pass:</p>
+                                        <ul>
+                                            <li>All unit tests pass</li>
+                                            <li>Code coverage meets minimum threshold (e.g., 80%)</li>
+                                            <li>Static code analysis passes (no critical issues)</li>
+                                            <li>Build succeeds</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pipeline-arrow">→</div>
+                            <div class="pipeline-stage" id="acceptance-stage">
+                                <span class="stage-name">Acceptance Stage</span>
+                                <div class="quality-gate" id="gate2">
+                                    <span class="gate-name">Gate 2</span>
+                                    <div class="gate-details">
+                                        <h5>Acceptance Stage Quality Gate</h5>
+                                        <p>Criteria to pass:</p>
+                                        <ul>
+                                            <li>All acceptance tests pass</li>
+                                            <li>Integration tests pass</li>
+                                            <li>API contract tests pass</li>
+                                            <li>No regression in functionality</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pipeline-arrow">→</div>
+                            <div class="pipeline-stage" id="capacity-stage">
+                                <span class="stage-name">Capacity Stage</span>
+                                <div class="quality-gate" id="gate3">
+                                    <span class="gate-name">Gate 3</span>
+                                    <div class="gate-details">
+                                        <h5>Capacity Stage Quality Gate</h5>
+                                        <p>Criteria to pass:</p>
+                                        <ul>
+                                            <li>Performance tests meet SLAs</li>
+                                            <li>Load tests show acceptable response times</li>
+                                            <li>Stress tests show system can handle peak loads</li>
+                                            <li>Resource utilization within acceptable limits</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pipeline-arrow">→</div>
+                            <div class="pipeline-stage" id="security-stage">
+                                <span class="stage-name">Security Stage</span>
+                                <div class="quality-gate" id="gate4">
+                                    <span class="gate-name">Gate 4</span>
+                                    <div class="gate-details">
+                                        <h5>Security Stage Quality Gate</h5>
+                                        <p>Criteria to pass:</p>
+                                        <ul>
+                                            <li>Security scans show no critical vulnerabilities</li>
+                                            <li>Dependency checks pass</li>
+                                            <li>Compliance requirements met</li>
+                                            <li>Penetration testing issues addressed</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pipeline-arrow">→</div>
+                            <div class="pipeline-stage" id="production-stage">
+                                <span class="stage-name">Production Stage</span>
+                                <div class="quality-gate" id="gate5">
+                                    <span class="gate-name">Gate 5</span>
+                                    <div class="gate-details">
+                                        <h5>Production Stage Quality Gate</h5>
+                                        <p>Criteria to pass:</p>
+                                        <ul>
+                                            <li>Smoke tests in production pass</li>
+                                            <li>Canary deployment metrics acceptable</li>
+                                            <li>Monitoring shows no issues</li>
+                                            <li>Business approval received</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="diagram-caption">Click on each quality gate to see the criteria that must be met to pass that gate.</p>
+                    </div>
+                    
+                    <h3>Progressive Delivery</h3>
+                    <p>Progressive delivery extends continuous delivery by gradually rolling out changes to users while monitoring for issues.</p>
+                    
+                    <ul>
+                        <li><strong>Feature Flags</strong> - Toggle features on/off without deploying new code</li>
+                        <li><strong>Canary Releases</strong> - Release to a small percentage of users first</li>
+                        <li><strong>Blue/Green Deployments</strong> - Maintain two identical environments</li>
+                        <li><strong>A/B Testing</strong> - Compare different versions with real users</li>
+                        <li><strong>Dark Launches</strong> - Release features that are invisible to users</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Feature Flag Implementation</div>
+<pre><code class="javascript">// Using LaunchDarkly for feature flags
+const LaunchDarkly = require('launchdarkly-node-server-sdk');
+
+// Initialize the LaunchDarkly client
+const ldClient = LaunchDarkly.init(process.env.LAUNCHDARKLY_SDK_KEY);
+
+// Wait for the client to be ready
+ldClient.once('ready', () => {
+  console.log('LaunchDarkly SDK successfully initialized');
+});
+
+// Express route handler with feature flag
+app.get('/api/checkout', async (req, res) => {
+  try {
+    // Get the user from the request
+    const user = req.user;
+    
+    // Create a LaunchDarkly user context
+    const ldUser = {
+      key: user.id,
+      email: user.email,
+      custom: {
+        groups: user.groups,
+        country: user.country,
+        accountType: user.accountType
+      }
+    };
+    
+    // Check if the new checkout experience is enabled for this user
+    const newCheckoutEnabled = await ldClient.variation('new-checkout-experience', ldUser, false);
+    
+    if (newCheckoutEnabled) {
+      // Serve the new checkout experience
+      console.log(`Serving new checkout experience to user ${user.id}`);
+      return res.json({ checkoutVersion: 'new', ...newCheckoutData });
+    } else {
+      // Serve the old checkout experience
+      console.log(`Serving old checkout experience to user ${user.id}`);
+      return res.json({ checkoutVersion: 'old', ...oldCheckoutData });
+    }
+  } catch (error) {
+    console.error('Error in checkout API:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// Monitoring feature flag usage
+ldClient.on('update', (key) => {
+  console.log(`Feature flag "${key}" was updated`);
+});
+
+// Graceful shutdown
+process.on('SIGTERM', () => {
+  console.log('Shutting down LaunchDarkly client');
+  ldClient.flush((err) => {
+    if (err) {
+      console.error('Error flushing LaunchDarkly client:', err);
+    }
+    ldClient.close();
+    process.exit(0);
+  });
+});</code></pre>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Measuring the ROI of Testing</h2>
+                    <p>Return on Investment (ROI) for testing activities helps justify the resources allocated to quality assurance and identify areas for improvement.</p>
+                    
+                    <h3>Calculating Testing ROI</h3>
+                    <div class="example-box">
+                        <h4>Basic ROI Formula</h4>
+                        <p>ROI = (Benefits - Costs) / Costs × 100%</p>
+                        
+                        <h4>Testing ROI Components</h4>
+                        <p><strong>Costs:</strong></p>
+                        <ul>
+                            <li>Testing tools and infrastructure</li>
+                            <li>Tester salaries and training</li>
+                            <li>Test environment maintenance</li>
+                            <li>Automation development and maintenance</li>
+                            <li>Time spent on testing activities</li>
+                        </ul>
+                        
+                        <p><strong>Benefits:</strong></p>
+                        <ul>
+                            <li>Cost of defects prevented</li>
+                            <li>Reduced time to market</li>
+                            <li>Improved customer satisfaction</li>
+                            <li>Reduced support costs</li>
+                            <li>Increased developer productivity</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">Example: Calculating Testing ROI</div>
+<pre><code class="javascript">// JavaScript function to calculate testing ROI
+function calculateTestingROI(testingCosts, defectData, productionData) {
+  // Calculate total testing costs
+  const totalCosts = Object.values(testingCosts).reduce((sum, cost) => sum + cost, 0);
+  
+  // Calculate benefits from prevented defects
+  // For each defect found in testing, calculate the savings compared to finding it in production
+  const preventedDefectSavings = defectData.reduce((savings, defect) => {
+    // Cost to fix in production based on severity
+    const productionFixCost = productionData.fixCosts[defect.severity];
+    
+    // Cost to fix during testing
+    const testingFixCost = defectData.fixCosts[defect.severity];
+    
+    // Savings = difference between fixing in production vs. testing
+    const defectSavings = productionFixCost - testingFixCost;
+    
+    return savings + defectSavings;
+  }, 0);
+  
+  // Additional benefits
+  const reducedTimeToMarket = productionData.timeToMarketSavings || 0;
+  const reducedSupportCosts = productionData.supportCostSavings || 0;
+  const improvedCustomerSatisfaction = productionData.customerSatisfactionValue || 0;
+  
+  // Total benefits
+  const totalBenefits = preventedDefectSavings + reducedTimeToMarket + 
+                        reducedSupportCosts + improvedCustomerSatisfaction;
+  
+  // Calculate ROI
+  const roi = ((totalBenefits - totalCosts) / totalCosts) * 100;
+  
+  return {
+    costs: totalCosts,
+    benefits: totalBenefits,
+    roi: roi,
+    breakdown: {
+      preventedDefectSavings,
+      reducedTimeToMarket,
+      reducedSupportCosts,
+      improvedCustomerSatisfaction
+    }
+  };
+}
+
+// Example usage
+const testingCosts = {
+  personnel: 150000,  // $150,000 for testing personnel
+  tools: 50000,       // $50,000 for testing tools
+  infrastructure: 30000, // $30,000 for test environments
+  training: 10000     // $10,000 for training
+};
+
+const defectData = {
+  fixCosts: {
+    critical: 500,    // $500 to fix a critical defect during testing
+    major: 300,       // $300 to fix a major defect during testing
+    minor: 100        // $100 to fix a minor defect during testing
+  },
+  // List of defects found during testing
+  defects: [
+    { id: 1, severity: 'critical' },
+    { id: 2, severity: 'critical' },
+    { id: 3, severity: 'major' },
+    { id: 4, severity: 'major' },
+    { id: 5, severity: 'major' },
+    { id: 6, severity: 'minor' },
+    { id: 7, severity: 'minor' },
+    { id: 8, severity: 'minor' },
+    { id: 9, severity: 'minor' },
+    { id: 10, severity: 'minor' }
+  ]
+};
+
+const productionData = {
+  fixCosts: {
+    critical: 5000,   // $5,000 to fix a critical defect in production
+    major: 2000,      // $2,000 to fix a major defect in production
+    minor: 500        // $500 to fix a minor defect in production
+  },
+  timeToMarketSavings: 100000,  // $100,000 saved from faster time to market
+  supportCostSavings: 50000,    // $50,000 saved in support costs
+  customerSatisfactionValue: 75000  // $75,000 value from improved customer satisfaction
+};
+
+const roiResults = calculateTestingROI(testingCosts, defectData, productionData);
+console.log(roiResults);</code></pre>
+                    </div>
+                    
+                    <h3>Optimizing Testing ROI</h3>
+                    <ul>
+                        <li><strong>Risk-Based Testing</strong> - Focus on high-risk areas</li>
+                        <li><strong>Automation Strategy</strong> - Automate repetitive, high-value tests</li>
+                        <li><strong>Early Testing</strong> - Find defects when they're cheaper to fix</li>
+                        <li><strong>Test Optimization</strong> - Eliminate redundant or low-value tests</li>
+                        <li><strong>Continuous Improvement</strong> - Regularly review and improve processes</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Leading Quality Initiatives</h2>
+                    <p>Quality leaders drive organizational change to improve software quality and testing practices.</p>
+                    
+                    <h3>Quality Leadership Roles</h3>
+                    <ul>
+                        <li><strong>Quality Architect</strong> - Designs quality strategies and frameworks</li>
+                        <li><strong>Test Manager</strong> - Manages testing teams and activities</li>
+                        <li><strong>QA Director</strong> - Sets quality vision and direction</li>
+                        <li><strong>DevOps Quality Lead</strong> - Integrates quality into DevOps practices</li>
+                        <li><strong>Quality Coach</strong> - Mentors teams on quality practices</li>
+                    </ul>
+                    
+                    <h3>Building a Quality Culture</h3>
+                    <div class="example-box">
+                        <h4>Elements of a Strong Quality Culture</h4>
+                        <ul>
+                            <li><strong>Shared Responsibility</strong> - Quality is everyone's job, not just QA</li>
+                            <li><strong>Continuous Learning</strong> - Regular training and knowledge sharing</li>
+                            <li><strong>Psychological Safety</strong> - Safe to report issues without blame</li>
+                            <li><strong>Data-Driven Decisions</strong> - Using metrics to guide improvements</li>
+                            <li><strong>Customer Focus</strong> - Quality defined by customer satisfaction</li>
+                            <li><strong>Process Improvement</strong> - Continuously refining practices</li>
+                            <li><strong>Leadership Support</strong> - Management champions quality initiatives</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>Quality Transformation Roadmap</h3>
+                    <div class="interactive-element">
+                        <h4 class="interactive-title">Interactive Diagram: Quality Transformation Roadmap</h4>
+                        <div class="roadmap-container">
+                            <div class="roadmap-phase" id="assess">
+                                <span class="phase-name">Assess</span>
+                                <div class="phase-details">
+                                    <h5>Phase 1: Assess</h5>
+                                    <p>Evaluate current quality practices and identify gaps</p>
+                                    <ul>
+                                        <li>Conduct quality maturity assessment</li>
+                                        <li>Analyze defect data and trends</li>
+                                        <li>Review testing processes and tools</li>
+                                        <li>Gather feedback from stakeholders</li>
+                                        <li>Benchmark against industry standards</li>
+                                    </ul>
+                                    <p>Deliverables: Assessment report, gap analysis, improvement opportunities</p>
+                                </div>
+                            </div>
+                            <div class="roadmap-arrow">→</div>
+                            <div class="roadmap-phase" id="plan">
+                                <span class="phase-name">Plan</span>
+                                <div class="phase-details">
+                                    <h5>Phase 2: Plan</h5>
+                                    <p>Develop a strategic plan for quality improvement</p>
+                                    <ul>
+                                        <li>Define quality vision and objectives</li>
+                                        <li>Prioritize improvement initiatives</li>
+                                        <li>Develop implementation roadmap</li>
+                                        <li>Identify resource requirements</li>
+                                        <li>Establish success metrics</li>
+                                    </ul>
+                                    <p>Deliverables: Quality strategy, implementation plan, resource allocation</p>
+                                </div>
+                            </div>
+                            <div class="roadmap-arrow">→</div>
+                            <div class="roadmap-phase" id="implement">
+                                <span class="phase-name">Implement</span>
+                                <div class="phase-details">
+                                    <h5>Phase 3: Implement</h5>
+                                    <p>Execute the quality improvement initiatives</p>
+                                    <ul>
+                                        <li>Establish quality governance</li>
+                                        <li>Implement new processes and tools</li>
+                                        <li>Provide training and coaching</li>
+                                        <li>Develop quality guidelines and standards</li>
+                                        <li>Pilot new approaches with selected teams</li>
+                                    </ul>
+                                    <p>Deliverables: Updated processes, tool implementations, training materials</p>
+                                </div>
+                            </div>
+                            <div class="roadmap-arrow">→</div>
+                            <div class="roadmap-phase" id="measure">
+                                <span class="phase-name">Measure</span>
+                                <div class="phase-details">
+                                    <h5>Phase 4: Measure</h5>
+                                    <p>Track progress and measure results</p>
+                                    <ul>
+                                        <li>Collect quality metrics</li>
+                                        <li>Monitor implementation progress</li>
+                                        <li>Evaluate effectiveness of changes</li>
+                                        <li>Gather feedback from teams</li>
+                                        <li>Report results to stakeholders</li>
+                                    </ul>
+                                    <p>Deliverables: Metrics dashboard, progress reports, success stories</p>
+                                </div>
+                            </div>
+                            <div class="roadmap-arrow">→</div>
+                            <div class="roadmap-phase" id="refine">
+                                <span class="phase-name">Refine</span>
+                                <div class="phase-details">
+                                    <h5>Phase 5: Refine</h5>
+                                    <p>Continuously improve based on feedback and results</p>
+                                    <ul>
+                                        <li>Analyze what's working and what's not</li>
+                                        <li>Adjust strategies based on feedback</li>
+                                        <li>Scale successful practices</li>
+                                        <li>Address emerging challenges</li>
+                                        <li>Celebrate and recognize achievements</li>
+                                    </ul>
+                                    <p>Deliverables: Refined strategy, lessons learned, next-phase planning</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="diagram-caption">Click on each phase to learn more about the activities and deliverables in that part of the quality transformation journey.</p>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Real-World Example: Microsoft's Quality Transformation</h2>
+                    <p>Microsoft underwent a significant quality transformation as part of its shift to DevOps and cloud services.</p>
+                    
+                    <h3>Key Aspects of Microsoft's Approach</h3>
+                    <ul>
+                        <li><strong>Shift from Testers to SDETs</strong> - Transformed test roles to Software Development Engineers in Test</li>
+                        <li><strong>Engineering Systems</strong> - Built sophisticated testing platforms and tools</li>
+                        <li><strong>Data-Driven Quality</strong> - Used telemetry and analytics to guide testing</li>
+                        <li><strong>Continuous Experimentation</strong> - Implemented feature flags and A/B testing</li>
+                        <li><strong>Automated Verification</strong> - Heavily invested in test automation</li>
+                        <li><strong>Cultural Change</strong> - Made quality everyone's responsibility</li>
+                    </ul>
+                    
+                    <h3>Lessons from Microsoft</h3>
+                    <ul>
+                        <li>Quality transformation requires both technical and cultural changes</li>
+                        <li>Invest in engineering systems and tools</li>
+                        <li>Use data to drive quality decisions</li>
+                        <li>Evolve testing roles to include more technical skills</li>
+                        <li>Integrate quality into the development process</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Knowledge Check</h2>
+                    <div class="quiz-container">
+                        <div class="quiz-question">
+                            <p>1. Which of the following is NOT a principle of DevOps quality?</p>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" data-correct="false">Shift left testing</li>
+                                <li class="quiz-option" data-correct="false">Continuous testing</li>
+                                <li class="quiz-option" data-correct="true">Manual verification of all changes</li>
+                                <li class="quiz-option" data-correct="false">Monitoring as a form of testing</li>
+                            </ul>
+                            <div class="quiz-feedback correct">
+                                <p>Correct! Manual verification of all changes contradicts DevOps principles, which emphasize automation to enable speed and reliability. While some manual testing may still occur, requiring manual verification for all changes would create a bottleneck in the delivery pipeline.</p>
+                            </div>
+                            <div class="quiz-feedback incorrect">
+                                <p>Incorrect. Manual verification of all changes contradicts DevOps principles, which emphasize automation to enable speed and reliability. While some manual testing may still occur, requiring manual verification for all changes would create a bottleneck in the delivery pipeline.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-question">
+                            <p>2. According to the Test Automation Pyramid, which type of tests should make up the largest portion of your test suite?</p>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" data-correct="false">UI Tests</li>
+                                <li class="quiz-option" data-correct="false">Integration Tests</li>
+                                <li class="quiz-option" data-correct="true">Unit Tests</li>
+                                <li class="quiz-option" data-correct="false">Manual Tests</li>
+                            </ul>
+                            <div class="quiz-feedback correct">
+                                <p>Correct! According to the Test Automation Pyramid, unit tests should form the base and largest portion of your test suite (around 60%). They are fast, reliable, and provide immediate feedback to developers.</p>
+                            </div>
+                            <div class="quiz-feedback incorrect">
+                                <p>Incorrect. According to the Test Automation Pyramid, unit tests should form the base and largest portion of your test suite (around 60%). They are fast, reliable, and provide immediate feedback to developers.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-question">
+                            <p>3. What is a quality gate in a continuous delivery pipeline?</p>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" data-correct="true">A checkpoint that enforces quality standards before code proceeds to the next stage</li>
+                                <li class="quiz-option" data-correct="false">A tool that automatically fixes quality issues in code</li>
+                                <li class="quiz-option" data-correct="false">A person responsible for approving all code changes</li>
+                                <li class="quiz-option" data-correct="false">A document that defines quality requirements</li>
+                            </ul>
+                            <div class="quiz-feedback correct">
+                                <p>Correct! A quality gate is a checkpoint in the delivery pipeline that enforces quality standards before allowing code to proceed to the next stage. It helps ensure that only code meeting defined quality criteria moves forward in the pipeline.</p>
+                            </div>
+                            <div class="quiz-feedback incorrect">
+                                <p>Incorrect. A quality gate is a checkpoint in the delivery pipeline that enforces quality standards before allowing code to proceed to the next stage. It helps ensure that only code meeting defined quality criteria moves forward in the pipeline.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-question">
+                            <p>4. Which of the following is a progressive delivery technique?</p>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" data-correct="false">Unit testing</li>
+                                <li class="quiz-option" data-correct="true">Canary releases</li>
+                                <li class="quiz-option" data-correct="false">Code reviews</li>
+                                <li class="quiz-option" data-correct="false">Test-driven development</li>
+                            </ul>
+                            <div class="quiz-feedback correct">
+                                <p>Correct! Canary releases are a progressive delivery technique where changes are gradually rolled out to a small percentage of users first, allowing teams to monitor for issues before deploying to all users.</p>
+                            </div>
+                            <div class="quiz-feedback incorrect">
+                                <p>Incorrect. Canary releases are a progressive delivery technique where changes are gradually rolled out to a small percentage of users first, allowing teams to monitor for issues before deploying to all users.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-question">
+                            <p>5. What is the formula for calculating ROI of testing activities?</p>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" data-correct="false">ROI = Benefits + Costs</li>
+                                <li class="quiz-option" data-correct="false">ROI = Benefits / Costs</li>
+                                <li class="quiz-option" data-correct="true">ROI = (Benefits - Costs) / Costs × 100%</li>
+                                <li class="quiz-option" data-correct="false">ROI = Costs / Benefits × 100%</li>
+                            </ul>
+                            <div class="quiz-feedback correct">
+                                <p>Correct! The formula for calculating ROI is (Benefits - Costs) / Costs × 100%. This gives the percentage return on the investment made in testing activities.</p>
+                            </div>
+                            <div class="quiz-feedback incorrect">
+                                <p>Incorrect. The formula for calculating ROI is (Benefits - Costs) / Costs × 100%. This gives the percentage return on the investment made in testing activities.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Additional Resources</h2>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=YGYoYSR-d98" target="_blank">Video: Quality Engineering in DevOps</a></li>
+                        <li><a href="https://martinfowler.com/articles/cd4ml.html" target="_blank">Article: Continuous Delivery for Machine Learning</a></li>
+                        <li><a href="https://launchdarkly.com/blog/what-is-progressive-delivery/" target="_blank">Guide: What is Progressive Delivery?</a></li>
+                        <li><a href="https://www.ministryoftesting.com/dojo/lessons/calculating-roi-of-testing" target="_blank">Article: Calculating ROI of Testing</a></li>
+                        <li><a href="https://www.atlassian.com/continuous-delivery/principles/continuous-integration-vs-delivery-vs-deployment" target="_blank">Guide: CI vs. CD vs. Deployment</a></li>
+                    </ul>
+                </div>
+                
+                <div class="week-navigation">
+                    <a href="week11-13.html" class="btn">Previous Week: Testing Metrics and Quality Management</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">DevOps & QA Courses</div>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="../index.html">Home</a></li>
+                    <li class="footer-link"><a href="../devops/index.html">DevOps Course</a></li>
+                    <li class="footer-link"><a href="index.html">QA Course</a></li>
+                    <li class="footer-link"><a href="../resources/index.html">Resources</a></li>
+                    <li class="footer-link"><a href="https://github.com/username/course-website" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DevOps & QA Courses. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <span>↑</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
