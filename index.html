@@ -6,24 +6,24 @@
     <title>DevOps & QA Courses</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;700&family=Fira+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@300;400;600;700&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <!-- Header & Navigation -->
-    <header>
+    <header class="sticky-header">
         <div class="container header-container">
             <div class="logo">
                 <a href="index.html">DevOps & QA Courses</a>
             </div>
             <nav>
                 <ul class="nav-menu">
-                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
                     <li class="nav-item"><a href="devops/index.html" class="nav-link">DevOps Course</a></li>
                     <li class="nav-item"><a href="qa/index.html" class="nav-link">QA Course</a></li>
                     <li class="nav-item"><a href="resources/index.html" class="nav-link">Resources</a></li>
-                    <li class="nav-item"><a href="https://github.com/username/course-website" class="nav-link" target="_blank">GitHub</a></li>
                 </ul>
                 <div class="hamburger">
                     <span class="bar"></span>
@@ -38,9 +38,8 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Welcome to DevOps & QA Courses</h1>
-                <p>Comprehensive learning materials for DevOps and Software Quality Assurance</p>
-                <a href="#courses" class="btn btn-accent">Explore Courses</a>
+                <h1>Master DevOps & Software QA Engineering</h1>
+                <p class="hero-subtitle">Hands-on courses designed by industry experts</p>
             </div>
         </div>
     </section>
@@ -48,96 +47,65 @@
     <!-- Courses Section -->
     <section id="courses" class="courses section">
         <div class="container">
-            <h2 class="section-title">Our Courses</h2>
             <div class="course-grid">
                 <!-- DevOps Course Card -->
                 <div class="course-card">
                     <div class="course-image">
-                        <img src="assets/images/devops-illustration.png" alt="DevOps Course">
+                        <img src="assets/images/devops.png" alt="DevOps Course">
                     </div>
                     <div class="course-content">
+                        <div class="course-meta">
+                            <span class="course-level">Intermediate</span>
+                            <span class="course-duration"><i class="far fa-clock"></i> 12 Weeks</span>
+                        </div>
                         <h3 class="course-title">DevOps Engineering</h3>
-                        <p class="course-description">Learn the technical practices of flow, continuous integration, deployment pipelines, and DevOps principles to improve software delivery and operations.</p>
-                        <a href="devops/index.html" class="btn">View Course</a>
+                        <p class="course-description">Master CI/CD, infrastructure as code, monitoring, and cloud platforms to streamline software delivery.</p>
+                        <div class="course-features">
+                            <div class="feature"><i class="fas fa-check"></i> Docker & Kubernetes</div>
+                            <div class="feature"><i class="fas fa-check"></i> Terraform & Ansible</div>
+                            <div class="feature"><i class="fas fa-check"></i> AWS/GCP/Azure</div>
+                        </div>
+                        <div class="course-footer">
+                            <a href="devops/index.html" class="btn btn-block">View Course <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- QA Course Card -->
                 <div class="course-card">
                     <div class="course-image">
-                        <img src="assets/images/qa-illustration.png" alt="QA Course">
+                        <img src="assets/images/qa.png" alt="QA Course">
                     </div>
                     <div class="course-content">
+                        <div class="course-meta">
+                            <span class="course-level">Beginner</span>
+                            <span class="course-duration"><i class="far fa-clock"></i> 10 Weeks</span>
+                        </div>
                         <h3 class="course-title">Software Quality Assurance</h3>
-                        <p class="course-description">Master software testing principles, test design techniques, automation frameworks, and quality management to ensure high-quality software delivery.</p>
-                        <a href="qa/index.html" class="btn">View Course</a>
+                        <p class="course-description">Learn testing methodologies, automation frameworks, and quality metrics to ensure software excellence.</p>
+                        <div class="course-features">
+                            <div class="feature"><i class="fas fa-check"></i> Selenium & Cypress</div>
+                            <div class="feature"><i class="fas fa-check"></i> JUnit & TestNG</div>
+                            <div class="feature"><i class="fas fa-check"></i> Performance Testing</div>
+                        </div>
+                        <div class="course-footer">
+                            <a href="qa/index.html" class="btn btn-block">View Course <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features section">
-        <div class="container">
-            <h2 class="section-title">Course Features</h2>
-            <div class="content-section">
-                <h3>Interactive Learning Materials</h3>
-                <p>Our courses feature interactive elements designed to enhance your learning experience:</p>
-                <ul>
-                    <li>Clickable diagrams and flowcharts</li>
-                    <li>Interactive code examples</li>
-                    <li>Knowledge check quizzes</li>
-                    <li>Hands-on exercises and activities</li>
-                </ul>
-            </div>
-            <div class="content-section">
-                <h3>Real-World Examples</h3>
-                <p>Learn from real-world case studies and examples from leading companies:</p>
-                <ul>
-                    <li>Success stories from Google, Netflix, Amazon, and more</li>
-                    <li>Analysis of notable software failures and their lessons</li>
-                    <li>Industry best practices and standards</li>
-                </ul>
-            </div>
-            <div class="content-section">
-                <h3>Comprehensive Resources</h3>
-                <p>Access a wealth of supporting materials to deepen your understanding:</p>
-                <ul>
-                    <li>Curated YouTube videos for each topic</li>
-                    <li>Recommended reading and websites</li>
-                    <li>Tools and templates for practical application</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">DevOps & QA Courses</div>
-                <ul class="footer-links">
-                    <li class="footer-link"><a href="index.html">Home</a></li>
-                    <li class="footer-link"><a href="devops/index.html">DevOps Course</a></li>
-                    <li class="footer-link"><a href="qa/index.html">QA Course</a></li>
-                    <li class="footer-link"><a href="resources/index.html">Resources</a></li>
-                    <li class="footer-link"><a href="https://github.com/username/course-website" target="_blank">GitHub</a></li>
-                </ul>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 DevOps & QA Courses. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
+ 
     <!-- Back to Top Button -->
     <div class="back-to-top">
-        <span>↑</span>
+        <i class="fas fa-arrow-up"></i>
     </div>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
